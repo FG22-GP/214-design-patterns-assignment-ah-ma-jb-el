@@ -27,10 +27,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="game.cpp" />
+    <ClCompile Include="source\Core.cpp" />
+    <ClCompile Include="source\Engine\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window.h" />
+    <ClInclude Include="source\Core.hpp" />
+    <ClInclude Include="source\Core\API.hpp" />
+    <ClInclude Include="source\Core\Includes.hpp" />
+    <ClInclude Include="source\Engine\Window\Window.hpp" />
+    <ClInclude Include="source\GameEngine.hpp" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\ext\SDL2-2.26.4\lib\x64\SDL2.dll">
@@ -41,6 +46,9 @@
     <CopyFileToFolders Include="..\ext\SDL2_ttf-2.20.2\lib\x64\SDL2_ttf.dll">
       <FileType>Document</FileType>
     </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -65,7 +73,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -133,10 +141,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)ext\SDL2-2.26.4\include;$(SolutionDir)ext\SDL2_image-2.6.3\include;$(SolutionDir)\ext\SDL2_ttf-2.20.2\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)ext\SDL2-2.26.4\lib\x64\;$(SolutionDir)ext\SDL2_image-2.6.3\lib\x64;$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x64;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Builds\$(ProjectName)-$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\$(ProjectName)-$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SolutionDir)ext\SDL2-2.26.4\include;$(SolutionDir)ext\SDL2_image-2.6.3\include;$(SolutionDir)\ext\SDL2_ttf-2.20.2\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)ext\SDL2-2.26.4\lib\x64\;$(SolutionDir)ext\SDL2_image-2.6.3\lib\x64;$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x64;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Builds\$(ProjectName)-$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\$(ProjectName)-$(Configuration)-$(Platform)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -182,17 +194,24 @@ copy /Y "$(SolutionDir)ext\SDL2_image-2.6.3\lib\x86\SDL2_image.dll" "$(TargetDir
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GAME_ENGINE;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)GameEngine\source\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeaderFile>Core.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\ext\SDL2_image-2.6.3\lib\x64\;$(SolutionDir)\ext\SDL2-2.26.4\lib\x64\;$(SolutionDir)\ext\SDL2_ttf-2.20.2\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(SolutionDir)ext\SDL2_image-2.6.3\lib\x64\SDL2_image.dll" "$(TargetDir)SDL2_image.dll"</Command>
+      <Command>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"
+copy /Y "$(SolutionDir)ext\SDL2_image-2.6.3\lib\x64\SDL2_image.dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"
+copy /Y "$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x64\SDL2_ttf.dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"
+copy /Y "$(SolutionDir)ext\SDL2-2.26.4\lib\x64\SDL2.dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -201,9 +220,12 @@ copy /Y "$(SolutionDir)ext\SDL2_image-2.6.3\lib\x86\SDL2_image.dll" "$(TargetDir
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GAME_ENGINE;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)GameEngine\source\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeaderFile>Core.hpp</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -211,9 +233,13 @@ copy /Y "$(SolutionDir)ext\SDL2_image-2.6.3\lib\x86\SDL2_image.dll" "$(TargetDir
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\ext\SDL2_image-2.6.3\lib\x64\;$(SolutionDir)\ext\SDL2-2.26.4\lib\x64\;$(SolutionDir)\ext\SDL2_ttf-2.20.2\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(SolutionDir)ext\SDL2_image-2.6.3\lib\x64\SDL2_image.dll" "$(TargetDir)SDL2_image.dll"</Command>
+      <Command>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"
+copy /Y "$(SolutionDir)ext\SDL2_image-2.6.3\lib\x64\SDL2_image.dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"
+copy /Y "$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x64\SDL2_ttf.dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"
+copy /Y "$(SolutionDir)ext\SDL2-2.26.4\lib\x64\SDL2.dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">
