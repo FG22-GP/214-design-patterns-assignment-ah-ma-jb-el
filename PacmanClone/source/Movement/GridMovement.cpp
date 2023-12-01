@@ -3,20 +3,19 @@
 #include "Grid/GridCell.h"
 #include "Grid/GridLink.h"
 
-std::shared_ptr<GridCell> GridMovement::NextCell(std::shared_ptr<GridCell> currentCell)
+void GridMovement::NextCell(std::shared_ptr<GridCell> currentCell, float DeltaTime)
 {
     std::shared_ptr<GridCell> target = currentCell->Links[newDirection]->Target;
     if (target != nullptr && target->bIsWalkable)
     {
         currentDirection = newDirection;
-        return target; 
+        // std::lerp();
     }
     target = currentCell->Links[currentDirection]->Target;
     if (target != nullptr && target->bIsWalkable)
     {
-        return target; 
+        // std::lerp();
     }
-    return currentCell;
 }
 
 void GridMovement::SetDirection(Directions direction)

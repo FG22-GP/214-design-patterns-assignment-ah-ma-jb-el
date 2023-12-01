@@ -8,7 +8,9 @@ class GridMovement
 {
     
 public:
-    std::shared_ptr<GridCell> NextCell(std::shared_ptr<GridCell> currentCell);
+    //should be tickable
+    void NextCell(std::shared_ptr<GridCell> currentCell, float DeltaTime);
+    
     void SetDirection(Directions direction);
 
 protected:
