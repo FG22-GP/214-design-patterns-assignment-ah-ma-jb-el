@@ -22,10 +22,11 @@ public:
 
 	std::shared_ptr<GridLink> GetLinkInDirection(GameEngine::Directions Direction);
 
+	//These are all objects currently within the cell. Food, player, ghosts.
 	std::vector<std::shared_ptr<GridCellContent>> Contents;
 
+	//Reference to and coordinate within parent Grid.
 	std::shared_ptr<GameGrid> Grid;
-
 	Point2 Coordinate;
 };
 

@@ -13,6 +13,8 @@ public:
 	uint16_t GetHeight() const { return Height; }
 
 	std::shared_ptr<GridCell> GetCellAt(const Point2& Coordinate) const;
+
+	//Each Cell already contains coordinates, but this can be used as a fallback.
 	Point2 GetCoordinateOf(const std::shared_ptr<GridCell> Cell) const;
 
 private:
