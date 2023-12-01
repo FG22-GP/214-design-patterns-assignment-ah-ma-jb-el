@@ -28,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Core.cpp" />
+    <ClCompile Include="source\Engine\Renderer\Renderer.cpp" />
     <ClCompile Include="source\Engine\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -35,6 +36,7 @@
     <ClInclude Include="source\Core\API.hpp" />
     <ClInclude Include="source\Core\Includes.hpp" />
     <ClInclude Include="source\Data\Vectors\Point2.hpp" />
+    <ClInclude Include="source\Engine\Renderer\Renderer.hpp" />
     <ClInclude Include="source\Engine\Window\Window.hpp" />
     <ClInclude Include="source\GameEngine.hpp" />
   </ItemGroup>
