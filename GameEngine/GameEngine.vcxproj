@@ -28,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Core.cpp" />
+    <ClCompile Include="source\Data\Vectors\Point2.cpp" />
     <ClCompile Include="source\Engine\Renderer\Renderer.cpp" />
     <ClCompile Include="source\Engine\Window\Window.cpp" />
   </ItemGroup>

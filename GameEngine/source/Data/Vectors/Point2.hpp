@@ -19,46 +19,12 @@ namespace GameEngine
 
 #pragma region Static Directions
 
-		static Point2 Up() {
-			Point2 P;
-			P.x = 0; P.y = 1;
-			return P;
-		}
-
-		static Point2 Down() {
-			Point2 P;
-			P.x = 0; P.y = -1;
-			return P;
-		}
-
-		static Point2 Right() {
-			Point2 P;
-			P.x = 1; P.y = 0;
-			return P;
-		}
-
-		static Point2 Left() {
-			Point2 P;
-			P.x = -1; P.y = 0;
-			return P;
-		}
-
-		static Point2 DirectionVector(Directions Dir)
-		{
-			switch (Dir)
-			{
-			case Directions::Up:
-				return Up();
-			case Directions::Down:
-				return Down();
-			case Directions::Right:
-				return Right();
-			case Directions::Left:
-				return Left();
-			default:
-				return Point2();
-			}
-		}
+		static Point2 Up();
+		static Point2 Down();
+		static Point2 Right();
+		static Point2 Left();
+		static Point2 DirectionVector(Directions Dir);
+		static std::vector<Point2> AllDirections();
 
 #pragma endregion
 
