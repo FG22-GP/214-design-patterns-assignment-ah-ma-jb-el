@@ -28,5 +28,26 @@ namespace GameEngine
 
 #pragma endregion
 
+		bool operator==(const Point2& other) const
+		{
+			return (x == other.x) && (y == other.y);
+		}
+
+		Point2 operator+(const Point2& other) const
+		{
+			Point2 result;
+			result.x = x + other.x;
+			result.y = y + other.y;
+			return result;
+		}
+
+		Point2 operator-(const Point2& other) const
+		{
+			Point2 result;
+			result.x = x - other.x;
+			result.y = y - other.y;
+			return result;
+		}
+
 	};
 }
