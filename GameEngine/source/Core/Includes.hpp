@@ -1,8 +1,23 @@
 #pragma once
 
 #include <string>
+#include <chrono>
+#include <string_view>
+#include <sstream>
+#include <iostream>
+#include <fstream>
+#include <format>
 
 #include <array>
 #include <vector>
-#include <map>
+#include <unordered_map>
+#include <unordered_set>
 
+#include <cmath>
+#include <random>
+
+#include <memory>
+#include <typeinfo>
+#include <functional>
+#include <utility>
+#include <algorithm>
