@@ -20,6 +20,8 @@ public:
 	//Use Directions from Point2.hpp to keep track of indices
 	std::vector<std::shared_ptr<GridLink>> Links;
 
+	std::shared_ptr<GridLink> GetLinkInDirection(GameEngine::Directions Direction);
+
 	std::vector<std::shared_ptr<GridCellContent>> Contents;
 
 	std::shared_ptr<GameGrid> Grid;
