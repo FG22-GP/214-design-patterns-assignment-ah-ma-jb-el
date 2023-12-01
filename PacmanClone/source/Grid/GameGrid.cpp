@@ -7,13 +7,6 @@ GameGrid::GameGrid(uint16_t Width, uint16_t Height)
 	this->Height = Height;
 
 	Cells.resize(Width * Height);
-
-	/*
-	for (int i = 0; i < Width * Height; i++)
-	{
-		Cells[i] = std::make_shared<GridCell>(shared_from_this());
-	}
-	*/
 }
 
 std::shared_ptr<GridCell> GameGrid::GetCellAt(const Point2& Coordinate) const
