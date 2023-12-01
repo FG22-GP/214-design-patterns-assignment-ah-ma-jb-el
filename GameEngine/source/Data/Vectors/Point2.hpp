@@ -4,6 +4,14 @@
 
 namespace GameEngine
 {
+	enum Directions
+	{
+		Up = 0,
+		Down = 1,
+		Right = 2,
+		Left = 3
+	};
+
 	struct GAME_API Point2
 	{
 		int32_t x;
@@ -33,6 +41,23 @@ namespace GameEngine
 			Point2 P;
 			P.x = -1; P.y = 0;
 			return P;
+		}
+
+		static Point2 DirectionVector(Directions Dir)
+		{
+			switch (Dir)
+			{
+			case Directions::Up:
+				return Up();
+			case Directions::Down:
+				return Down();
+			case Directions::Right:
+				return Right();
+			case Directions::Left:
+				return Left();
+			default:
+				return Point2();
+			}
 		}
 
 #pragma endregion
