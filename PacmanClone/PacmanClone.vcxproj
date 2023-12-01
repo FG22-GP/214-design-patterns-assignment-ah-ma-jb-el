@@ -148,6 +148,7 @@
     <ClCompile Include="source\Grid\GridWrapLink.cpp" />
     <ClCompile Include="source\Grid\GridGenerator.cpp" />
     <ClCompile Include="source\Grid\GridCellContent.cpp" />
+    <ClCompile Include="source\Movement\GridMovement.cpp" />
     <ClCompile Include="source\PacmanCore.cpp" />
     <ClCompile Include="source\Grid\GridLink.cpp" />
     <ClCompile Include="source\Grid\GridCell.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="source\Grid\GridWrapLink.h" />
     <ClInclude Include="source\Grid\GridGenerator.h" />
     <ClInclude Include="source\Grid\GridCellContent.h" />
+    <ClInclude Include="source\Movement\GridMovement.h" />
     <ClInclude Include="source\PacmanCore.h" />
     <ClInclude Include="source\Grid\GridLink.h" />
     <ClInclude Include="source\Grid\GridCell.h" />
