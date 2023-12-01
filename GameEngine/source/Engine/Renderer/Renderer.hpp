@@ -1,10 +1,12 @@
 #pragma once
 
 #include "Core.hpp"
-#include "SDL.h"
+//#include "SDL.h"
 
 namespace GameEngine
 {
+	struct SDL_Renderer;
+
 	class Renderer
 	{
 	public:
@@ -16,7 +18,7 @@ namespace GameEngine
 
 	private:
 
-		static SDL_Renderer* s_Renderer;
+		SDL_Renderer* m_Renderer;
 
 	};
 }

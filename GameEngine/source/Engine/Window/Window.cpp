@@ -1,10 +1,10 @@
 #include "Core.hpp"
 #include "Window.hpp"
 
+#include "SDL.h"
+
 namespace GameEngine
 {
-	SDL_Window* Window::s_Window;
-
 // SINGLETON
 
 	/*Window& Window::GetInstance(){
@@ -28,17 +28,18 @@ namespace GameEngine
 
 		//auto instance = GetInstance();
 
-		s_Window = SDL_CreateWindow(
+		/*s_Window = SDL_CreateWindow(
 			title.c_str(), 
 			SDL_WINDOWPOS_CENTERED, 
 			SDL_WINDOWPOS_CENTERED, 
 			width, height, 
 			SDL_WINDOW_SHOWN
-		);
+		);*/
 	}
 
 	void Window::Close(){
-		SDL_DestroyWindow(s_Window);
+		//SDL_DestroyWindow(s_Window);
 		SDL_Quit();
 	}
+
 }

@@ -1,5 +1,4 @@
-#include "GameEngine.hpp"
-using namespace GameEngine;
+#include "PacmanCore.h"
 
 // Game entry
 int main()

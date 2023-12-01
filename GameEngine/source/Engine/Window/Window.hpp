@@ -1,10 +1,12 @@
 #pragma once
 
 #include "Core.hpp"
-#include "SDL.h"
+//#include "SDL.h"
 
 namespace GameEngine
 {
+	struct SDL_Window;
+
 	class Window
 	{
 	public:
@@ -21,7 +23,7 @@ namespace GameEngine
 
 	private:
 
-		static SDL_Window* s_Window;
+		SDL_Window* s_Window;
 
 	// CONSTRUCTORS
 
