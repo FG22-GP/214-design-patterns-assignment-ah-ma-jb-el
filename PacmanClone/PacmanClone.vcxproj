@@ -115,6 +115,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)GameEngine\source\;$(SolutionDir)$(ProjectName)\source\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>PacmanCore.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,6 +133,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)GameEngine\source\;$(SolutionDir)$(ProjectName)\source\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,6 +145,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\Grid\GridWrapLink.cpp" />
+    <ClCompile Include="source\Grid\GridGenerator.cpp" />
+    <ClCompile Include="source\Grid\GridCellContent.cpp" />
     <ClCompile Include="source\PacmanCore.cpp" />
     <ClCompile Include="source\Grid\GridLink.cpp" />
     <ClCompile Include="source\Grid\GridCell.cpp" />
@@ -150,6 +155,9 @@
     <ClCompile Include="source\Application.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Grid\GridWrapLink.h" />
+    <ClInclude Include="source\Grid\GridGenerator.h" />
+    <ClInclude Include="source\Grid\GridCellContent.h" />
     <ClInclude Include="source\PacmanCore.h" />
     <ClInclude Include="source\Grid\GridLink.h" />
     <ClInclude Include="source\Grid\GridCell.h" />

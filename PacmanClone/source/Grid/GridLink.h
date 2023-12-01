@@ -6,7 +6,10 @@ class GridCell;
 
 class GridLink
 {
-	GridCell* Source;
-	GridCell* Target;
+
+public:
+
+	std::shared_ptr<GridCell> Source, Target;
+
 };
 

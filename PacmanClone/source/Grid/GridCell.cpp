@@ -1,7 +1,8 @@
 #include "PacmanCore.h"
 #include "GridCell.h"
 
-GridCell::GridCell()
+GridCell::GridCell(std::shared_ptr<GameGrid> ParentGrid)
 {
 	Links.resize(4);
+	Grid = ParentGrid;
 }
