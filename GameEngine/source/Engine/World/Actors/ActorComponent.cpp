@@ -1,3 +1,3 @@
 #include "Core.hpp"
-#include "ActorComponent.h"
+#include "ActorComponent.hpp"
 #include "Actor.hpp"

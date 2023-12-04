@@ -1,20 +1,28 @@
 #pragma once
 
 #include "Core.hpp"
-
-class Actor;
-
-class World : public std::enable_shared_from_this<World>
+namespace GameEngine
 {
-public:
+	class Actor;
+	struct Transform;
 
-	template<typename T> std::shared_ptr<T> CreateActor();
+	class World : public std::enable_shared_from_this<World>
+	{
+	public:
 
-protected:
+		template<typename T> GAME_API std::shared_ptr<T> CreateActor();
+		template<typename T> GAME_API std::shared_ptr<T> CreateActor(Transform Transform);
 
-	std::vector<std::shared_ptr<Actor>> RegisteredActors;
+		void Tick(float DeltaTime);
 
-	void RegisterActor(std::shared_ptr<Actor> NewActor);
-	void TickAllRegisteredActors(float DeltaTime);
-};
+	protected:
+
+		std::vector<std::shared_ptr<Actor>> RegisteredActors;
+
+		void RegisterActor(std::shared_ptr<Actor> NewActor);
+		void TickAllRegisteredActors(float DeltaTime);
+		void RenderAllRegisteredActors();
+	};
+}
+
 
