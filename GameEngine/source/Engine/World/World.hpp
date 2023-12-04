@@ -8,7 +8,7 @@ class World : public std::enable_shared_from_this<World>
 {
 public:
 
-	std::shared_ptr<Actor> CreateActor();
+	template<typename T> std::shared_ptr<T> CreateActor();
 
 protected:
 

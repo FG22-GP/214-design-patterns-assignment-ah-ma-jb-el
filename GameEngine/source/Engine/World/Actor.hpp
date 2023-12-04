@@ -19,6 +19,8 @@ public:
 	// Returns the newly created ActorComponentT
 	template<typename T> std::shared_ptr<T> AddComponent();
 
+	std::vector<std::shared_ptr<ActorComponent>> GetChildren() { return ChildComponents; }
+
 protected:
 
 	std::shared_ptr<World> ParentWorld;

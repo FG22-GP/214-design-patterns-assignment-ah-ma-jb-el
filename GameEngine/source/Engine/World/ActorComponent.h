@@ -14,6 +14,8 @@ public:
 		this->Parent = ParentActor;
 	}
 
+	std::shared_ptr<Actor> GetParent() { return Parent; }
+
 protected:
 	std::shared_ptr<Actor> Parent;
 };
