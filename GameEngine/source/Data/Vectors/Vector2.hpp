@@ -8,37 +8,18 @@ namespace GameEngine
 	{
 		float X, Y;
 
-		Vector2 operator+(const Vector2& other) const
-		{
-			Vector2 Result;
-			Result.X = X + other.X;
-			Result.Y = Y + other.Y;
-			return Result;
-		}
+		GAME_API Vector2 operator+(const Vector2& other) const;
 
-		void operator+=(const Vector2& other)
-		{
-			X += other.X;
-			Y += other.Y;
-		}
+		GAME_API void operator+=(const Vector2& other);
 
-		Vector2 operator-(const Vector2& other) const
-		{
-			Vector2 Result;
-			Result.X = X - other.X;
-			Result.Y = Y - other.Y;
-			return Result;
-		}
+		GAME_API Vector2 operator-(const Vector2& other) const;
 
-		void operator-=(const Vector2& other)
-		{
-			X -= other.X;
-			Y -= other.Y;
-		}
+		GAME_API void operator-=(const Vector2& other);
 
-		bool operator==(const Vector2& other) const
-		{
-			return X == other.X && Y == other.Y;
-		}
+		GAME_API bool operator==(const Vector2& other) const;
+
+		GAME_API Vector2 operator/(const float& other) const;
+
+		GAME_API Vector2 operator*(const float& other) const;
 	};
 }

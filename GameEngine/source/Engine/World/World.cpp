@@ -2,6 +2,7 @@
 #include "World.hpp"
 #include "Actors/Actor.hpp"
 #include "Data/Transform.hpp"
+#include "Actors/SpriteComponent.hpp"
 
 namespace GameEngine
 {
@@ -27,7 +28,11 @@ namespace GameEngine
 
 	void World::RenderAllRegisteredActors()
 	{
-		//TODO
+		for (auto Comp : SpriteComponent::AllSpriteComponents)
+		{
+			//TODO At this point, Comp->GetPosition() is in grid-space, not pixel-space.
+		}
+		
 	}
 
 	template<typename T> std::shared_ptr<T> World::CreateActor()

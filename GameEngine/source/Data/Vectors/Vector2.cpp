@@ -1,2 +1,55 @@
 #include "Core.hpp"
 #include "Vector2.hpp"
+
+namespace GameEngine
+{
+	Vector2 Vector2::operator+(const Vector2& other) const
+	{
+		Vector2 Result;
+		Result.X = X + other.X;
+		Result.Y = Y + other.Y;
+		return Result;
+	}
+
+	void Vector2::operator+=(const Vector2& other)
+	{
+		X += other.X;
+		Y += other.Y;
+	}
+
+	Vector2 Vector2::operator-(const Vector2& other) const
+	{
+		Vector2 Result;
+		Result.X = X - other.X;
+		Result.Y = Y - other.Y;
+		return Result;
+	}
+
+	void Vector2::operator-=(const Vector2& other)
+	{
+		X -= other.X;
+		Y -= other.Y;
+	}
+
+	bool Vector2::operator==(const Vector2& other) const
+	{
+		return X == other.X && Y == other.Y;
+	}
+
+	Vector2 Vector2::operator/(const float& other) const
+	{
+		Vector2 Result;
+		Result.X = X / other;
+		Result.Y = Y / other;
+		return Result;
+	}
+
+	Vector2 Vector2::operator*(const float& other) const
+	{
+		Vector2 Result;
+		Result.X = X * other;
+		Result.Y = Y * other;
+		return Result;
+	}
+}
+
