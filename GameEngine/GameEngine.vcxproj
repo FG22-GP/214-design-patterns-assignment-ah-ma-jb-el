@@ -27,13 +27,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\Engine\World\Actor.cpp" />
     <ClCompile Include="source\Core.cpp" />
     <ClCompile Include="source\Data\Vectors\Point2.cpp" />
     <ClCompile Include="source\Engine\Application\Application.cpp" />
     <ClCompile Include="source\Engine\Renderer\Renderer.cpp" />
     <ClCompile Include="source\Engine\Window\Window.cpp" />
+    <ClCompile Include="source\Engine\World\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Engine\World\Actor.hpp" />
     <ClInclude Include="source\Core.hpp" />
     <ClInclude Include="source\Core\API.hpp" />
     <ClInclude Include="source\Core\Includes.hpp" />
@@ -42,6 +45,7 @@
     <ClInclude Include="source\Engine\Renderer\Renderer.hpp" />
     <ClInclude Include="source\Engine\Window\Window.hpp" />
     <ClInclude Include="source\GameEngine.hpp" />
+    <ClInclude Include="source\Engine\World\World.hpp" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\ext\SDL2-2.26.4\lib\x64\SDL2.dll">
