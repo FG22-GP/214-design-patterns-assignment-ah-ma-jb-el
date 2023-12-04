@@ -36,6 +36,7 @@
     <ClCompile Include="source\Engine\Window\Window.cpp" />
     <ClCompile Include="source\Engine\World\World.cpp" />
     <ClCompile Include="source\Data\Transform.cpp" />
+    <ClCompile Include="source\Data\Vectors\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Engine\World\Actors\ActorComponent.hpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="source\GameEngine.hpp" />
     <ClInclude Include="source\Engine\World\World.hpp" />
     <ClInclude Include="source\Data\Transform.hpp" />
+    <ClInclude Include="source\Data\Vectors\Vector2.hpp" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\ext\SDL2-2.26.4\lib\x64\SDL2.dll">
