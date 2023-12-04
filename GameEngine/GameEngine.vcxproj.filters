@@ -51,6 +51,9 @@
     <ClCompile Include="source\Data\Vectors\Vector2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Engine\World\Actors\SpriteComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\GameEngine.hpp">
@@ -90,6 +93,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Data\Vectors\Vector2.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Engine\World\Actors\SpriteComponent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
