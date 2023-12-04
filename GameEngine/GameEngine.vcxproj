@@ -27,6 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\Engine\World\ActorComponent.cpp" />
     <ClCompile Include="source\Engine\World\Actor.cpp" />
     <ClCompile Include="source\Core.cpp" />
     <ClCompile Include="source\Data\Vectors\Point2.cpp" />
@@ -36,6 +37,7 @@
     <ClCompile Include="source\Engine\World\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Engine\World\ActorComponent.h" />
     <ClInclude Include="source\Engine\World\Actor.hpp" />
     <ClInclude Include="source\Core.hpp" />
     <ClInclude Include="source\Core\API.hpp" />
