@@ -51,5 +51,10 @@ namespace GameEngine
 		Result.Y = Y * other;
 		return Result;
 	}
+
+	Vector2 Vector2::Lerp(const Vector2& A, const Vector2& B, float Alpha)
+	{
+		return A * (1.0f - Alpha) + B * Alpha;
+	}
 }
 

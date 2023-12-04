@@ -21,5 +21,7 @@ namespace GameEngine
 		GAME_API Vector2 operator/(const float& other) const;
 
 		GAME_API Vector2 operator*(const float& other) const;
+
+		GAME_API static Vector2 Lerp(const Vector2& A, const Vector2& B, float Alpha);
 	};
 }
