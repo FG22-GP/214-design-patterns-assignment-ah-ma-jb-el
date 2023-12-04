@@ -2,9 +2,12 @@
 
 #include "PacmanCore.h"
 
+#include "Engine/World/Actors/ActorComponent.hpp"
+#include "Data/Vectors/Vector2.hpp"
+
 class GridCell;
 
-class GridMovement
+class GridMovement : ActorComponent
 {
     
 public:
@@ -17,12 +20,15 @@ protected:
     Directions currentDirection {};
     Directions newDirection {};
 
+    void Tick(float DeltaTime) override;
+
 
 private:
-    Point2 LerpPoint2(Point2 p1, Point2 p2, float T);
-
-    Point2 LerpMovement(Point2 start, Point2 target, float DeltaTime);
-
     float fTimeElapsed = 0;
     float fLerpDuration = 1;
+
+    void LerpMovement(Vector2 start, Vector2 target, float DeltaTime);
+
+    Point2 LerpPoint2(Point2 p1, Point2 p2, float T);
+    Vector2 LerpVector2(Vector2 v1, Vector2 v2, float T);
 };
