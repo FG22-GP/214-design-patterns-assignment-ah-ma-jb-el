@@ -29,6 +29,7 @@
   <ItemGroup>
     <ClCompile Include="source\Data\Visuals\Sprite.cpp" />
     <ClCompile Include="source\Engine.cpp" />
+    <ClCompile Include="source\Engine\Input\Input.cpp" />
     <ClCompile Include="source\Engine\Renderer\Interfaces\IRenderable.cpp" />
     <ClCompile Include="source\Engine\World\Actors\ActorComponent.cpp" />
     <ClCompile Include="source\Engine\World\Actors\Actor.cpp" />
@@ -45,6 +46,7 @@
   <ItemGroup>
     <ClInclude Include="source\Data\Visuals\Sprite.hpp" />
     <ClInclude Include="source\Engine.hpp" />
+    <ClInclude Include="source\Engine\Input\Input.hpp" />
     <ClInclude Include="source\Engine\Renderer\Interfaces\IRenderable.h" />
     <ClInclude Include="source\Engine\World\Actors\ActorComponent.hpp" />
     <ClInclude Include="source\Engine\World\Actors\Actor.hpp" />

@@ -6,8 +6,12 @@
 namespace GameEngine
 {
 	void Application::Init(){
-		// TO DO: Include bool params for additional includes, like audio
-		SDL_Init(SDL_INIT_VIDEO);
+		// TODO: Include bool params for additional includes, like audio
+		if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS))
+		{
+			// TODO: Log init errors
+		}
+
 	}
 
 	void Application::Quit(){
