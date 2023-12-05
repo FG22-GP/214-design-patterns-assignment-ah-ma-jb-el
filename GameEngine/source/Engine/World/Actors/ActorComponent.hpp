@@ -10,11 +10,11 @@ namespace GameEngine
 	{
 	public:
 		virtual void Tick(float DeltaTime) {}
+		virtual void OnStart() {}
+		virtual void OnDestroy() {}
 
-		ActorComponent(std::shared_ptr<Actor> ParentActor)
-		{
-			this->Parent = ParentActor;
-		}
+		ActorComponent(std::shared_ptr<Actor> ParentActor);
+		~ActorComponent();
 
 		GAME_API std::shared_ptr<Actor> GetParent() { return Parent; }
 

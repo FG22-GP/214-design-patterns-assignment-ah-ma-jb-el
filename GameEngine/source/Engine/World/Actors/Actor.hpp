@@ -22,6 +22,8 @@ namespace GameEngine
 		// Creates an ActorComponentT of type T and adds it to the Actor's component list.
 		// Returns the newly created ActorComponentT
 		template<typename T> GAME_API std::shared_ptr<T> AddComponent();
+		GAME_API bool TryRemoveComponent(std::shared_ptr<ActorComponent> Comp);
+		template<typename T> GAME_API bool TryRemoveComponent();
 
 		GAME_API std::vector<std::shared_ptr<ActorComponent>> GetComponents() { return ChildComponents; }
 
