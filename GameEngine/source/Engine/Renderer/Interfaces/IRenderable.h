@@ -5,7 +5,7 @@
 
 namespace GameEngine
 {
-	class IRenderableSprite
+	class IRenderable
 	{
 		virtual SDL_Texture* GetTexture() = 0;
 		virtual SDL_Rect* GetCrop() = 0;
