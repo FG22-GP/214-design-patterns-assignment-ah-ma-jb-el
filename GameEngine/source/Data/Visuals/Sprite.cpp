@@ -9,9 +9,8 @@ namespace GameEngine
 {
 // CONSTRUCTORS
 
-	Sprite::Sprite(std::shared_ptr<SDL_Texture> texture){
-		m_Texture = texture;
-	}
+	Sprite::Sprite(std::shared_ptr<SDL_Texture> texture) :
+		m_Texture(texture){}
 
 	Sprite::Sprite(std::shared_ptr<Renderer> renderer, const std::string& filepath){
 		auto* surface = IMG_Load(filepath.c_str());

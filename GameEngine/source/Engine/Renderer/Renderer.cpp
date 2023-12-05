@@ -1,8 +1,8 @@
 #include "Core.hpp"
 #include "Renderer.hpp"
 
+#include "Interfaces/IRenderable.h"
 #include "Data/Vectors/Point2.hpp"
-//#include "Data/Visuals/Sprite.hpp"
 #include "Engine/Window/Window.hpp"
 #include "SDL.h"
 
@@ -59,17 +59,17 @@ namespace GameEngine
 		);
 	}
 
-	//void Renderer::DrawSprite(const Sprite& sprite){
-	//	/*SDL_RenderCopyEx(
-	//		m_Renderer.get(),
-	//		sprite.GetTexture()
-	//		sprite.GetCrop(),
-	//		sprite.GetRect(),
-	//		sprite.GetRotation(),
-	//		sprite.GetCentre(),
-	//		sprite.IsFlipped()
-	//	);*/
-	//}
+	void Renderer::Draw(IRenderable& render){
+		SDL_RenderCopyEx(
+			m_Renderer.get(),
+			render.GetTexture(),
+			render.GetCrop(),
+			render.GetRect(),
+			render.GetRotation(),
+			render.GetCentre(),
+			render.GetFlip()
+		);
+	}
 
 	void Renderer::StopDrawing(){
 		SDL_RenderPresent(
