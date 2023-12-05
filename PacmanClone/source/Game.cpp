@@ -1,21 +1,22 @@
 #include "PacmanCore.h"
 
-// Game entry
+// Game Entry
 int main(int argc, char* argv[]){
 	Application::Init();
 
-	Window::Create("Packman Clone", 800, 600);
+	auto window = Window::Create(
+		"Pack-Man Clone", 800, 600
+	);
+	while (window->IsOpened()){
+		// Update Input
+		// Update Actors
 
-	while (Window::IsOpened()){
-		Renderer::StartDrawing();
+		window->StartDrawing();
 
-		// Render objects
+		// Render Actors
 
-		Renderer::StopDrawing();
+		window->StopDrawing();
 	}
-	Window::Clean();
-	Renderer::Clean();
-
 	Application::Quit();
 	return 0;
 }

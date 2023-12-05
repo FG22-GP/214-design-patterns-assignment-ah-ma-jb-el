@@ -27,6 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\Engine.cpp" />
     <ClCompile Include="source\Engine\World\Actors\ActorComponent.cpp" />
     <ClCompile Include="source\Engine\World\Actors\Actor.cpp" />
     <ClCompile Include="source\Core.cpp" />
@@ -40,6 +41,7 @@
     <ClCompile Include="source\Engine\World\Actors\SpriteComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Engine.hpp" />
     <ClInclude Include="source\Engine\World\Actors\ActorComponent.hpp" />
     <ClInclude Include="source\Engine\World\Actors\Actor.hpp" />
     <ClInclude Include="source\Core.hpp" />
@@ -54,19 +56,6 @@
     <ClInclude Include="source\Data\Transform.hpp" />
     <ClInclude Include="source\Data\Vectors\Vector2.hpp" />
     <ClInclude Include="source\Engine\World\Actors\SpriteComponent.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <CopyFileToFolders Include="..\ext\SDL2-2.26.4\lib\x64\SDL2.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-  </ItemGroup>
-  <ItemGroup>
-    <CopyFileToFolders Include="..\ext\SDL2_ttf-2.20.2\lib\x64\SDL2_ttf.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

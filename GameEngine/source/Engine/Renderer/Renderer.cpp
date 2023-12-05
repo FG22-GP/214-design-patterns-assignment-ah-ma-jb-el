@@ -1,51 +1,75 @@
 #include "Core.hpp"
 #include "Renderer.hpp"
 
+#include "Data/Vectors/Point2.hpp"
+#include "Engine/Window/Window.hpp"
 #include "SDL.h"
 
 namespace GameEngine
 {
-// SINGLETON
-
-	Renderer& Renderer::GetInstance(){
-		static Renderer instance;
-		return instance;
-	}
-
 // CONSTRUCTORS
 
-	Renderer::Renderer() :
-		m_Renderer(nullptr){}
+	Renderer::Renderer(const Window& window){
+		auto* renderer = SDL_CreateRenderer(
+			window.m_Window.get(),
+			0, 
+			0 //SDL_HINT_RENDER_VSYNC
+		);
+		m_Renderer.reset(renderer);
 
-// RENDERER
-	
+		m_Resolution.reset(
+			new Point2(window.GetSize())
+		);
+	}
+
+// GETTERS
+
+	Point2 Renderer::GetResolution() const {
+		return Point2(
+			m_Resolution->x,
+			m_Resolution->y
+		);
+	}
+
+// SETTINGS
+
+	void Renderer::SetResolution(const uint32_t width, const uint32_t height){
+		m_Resolution->x = width;
+		m_Resolution->y = height;
+	}
+
+	void Renderer::SetResolution(const Point2& resolution){
+		SetResolution(resolution.x, resolution.y);
+	}
+
+
+	void Renderer::SetDrawColour(const uint8_t r, const uint8_t g, const uint8_t b, const uint8_t a){
+		SDL_SetRenderDrawColor(
+			m_Renderer.get(),
+			r, g, b, a
+		);
+	}
+
+// RENDERING
+
 	void Renderer::StartDrawing(){
-		auto& instance = GetInstance();
-		
 		SDL_RenderClear(
-			instance.m_Renderer.get()
+			m_Renderer.get()
 		);
 	}
 
 	void Renderer::StopDrawing(){
-		auto& instance = GetInstance();
-
 		SDL_RenderPresent(
-			instance.m_Renderer.get()
+			m_Renderer.get()
 		);
-	}
-
-	void Renderer::Clean(){
-		auto& instance = GetInstance();
-		
-		SDL_DestroyRenderer(
-			instance.m_Renderer.get()
-		);
-		instance.m_Renderer = nullptr;
 	}
 
 // OPERATORS
 
-	void Renderer::Deleter::operator()(SDL_Renderer* r) const noexcept { delete(r); }
+	void Renderer::ResDeleter::operator()(Point2* res) const noexcept { delete(res); }
+	
+	void Renderer::RendererDeleter::operator()(SDL_Renderer* r) const noexcept { 
+		SDL_DestroyRenderer(r);
+	}
 
 }

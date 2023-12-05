@@ -6,24 +6,38 @@ struct SDL_Renderer;
 
 namespace GameEngine
 {
+	struct Point2;
+	class Window;
+
 	class Renderer
 	{
 	public:
 
-		GAME_API static void StartDrawing();
-		GAME_API static void StopDrawing();
-		GAME_API static void Clean();
+		GAME_API Renderer(const Window& window);
+
+	// GETTERS
+	
+		GAME_API Point2 GetResolution() const;
+
+	// SETTERS
+
+		GAME_API void SetResolution(const uint32_t width, const uint32_t height);
+		GAME_API void SetResolution(const Point2& resolution);
+
+		GAME_API void SetDrawColour(const uint8_t r, const uint8_t g, const uint8_t b, const uint8_t a);
+
+	// RENDERER
+
+		GAME_API void StartDrawing();
+		GAME_API void StopDrawing();
 
 	private:
 
-		struct Deleter { void operator()(SDL_Renderer*) const noexcept; };
-		std::unique_ptr<SDL_Renderer, Deleter> m_Renderer;
+		struct ResDeleter { void operator()(Point2*) const noexcept; };
+		std::unique_ptr<Point2, ResDeleter> m_Resolution;
 
-		Renderer();
-		Renderer(const Renderer&) = delete;
-		void operator = (const Renderer&) = delete;
-
-		static Renderer& GetInstance();
+		struct RendererDeleter { void operator()(SDL_Renderer*) const noexcept; };
+		std::unique_ptr<SDL_Renderer, RendererDeleter> m_Renderer;
 
 	};
 }
