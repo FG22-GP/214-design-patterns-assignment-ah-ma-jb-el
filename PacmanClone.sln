@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PacmanClone", "PacmanClone\PacmanClone.vcxproj", "{6CEBD95C-F0F5-4412-8E34-030F5A509198}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "GameEngine\GameEngine.vcxproj", "{0DC4197E-4547-4E02-8D0F-0DDAADB7630D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PacmanClone", "PacmanClone\PacmanClone.vcxproj", "{6CEBD95C-F0F5-4412-8E34-030F5A509198}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

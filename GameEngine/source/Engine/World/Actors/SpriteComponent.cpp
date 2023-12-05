@@ -1,5 +1,7 @@
 #include "Core.hpp"
 #include "SpriteComponent.hpp"
+
+#include "Data/Visuals/Sprite.hpp"
 #include "Actor.hpp"
 
 namespace GameEngine
@@ -21,12 +23,5 @@ namespace GameEngine
 	float SpriteComponent::GetScale()
 	{
 		return Parent->ActorTransform.GetScale();
-	}
-
-	Sprite::Sprite(SDL_Renderer* Renderer, const char* FilePath)
-	{
-		SDL_Surface* Surface = IMG_Load(FilePath);
-		Texture = SDL_CreateTextureFromSurface(Renderer, Surface);
-		SDL_FreeSurface(Surface);
 	}
 }

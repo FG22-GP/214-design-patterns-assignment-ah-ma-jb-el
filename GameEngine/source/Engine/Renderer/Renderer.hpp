@@ -7,6 +7,7 @@ struct SDL_Renderer;
 namespace GameEngine
 {
 	struct Point2;
+	class Sprite;
 	class Window;
 
 	class Renderer
@@ -29,7 +30,12 @@ namespace GameEngine
 	// RENDERER
 
 		GAME_API void StartDrawing();
+		//GAME_API void DrawSprite(const Sprite& sprite);
 		GAME_API void StopDrawing();
+
+	// OPERATIONS
+
+		GAME_API operator SDL_Renderer* ();
 
 	private:
 

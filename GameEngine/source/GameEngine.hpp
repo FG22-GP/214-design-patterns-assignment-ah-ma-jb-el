@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Data/Vectors/Point2.hpp"
+#include "Data/Visuals/Sprite.hpp"
 
 #include "Engine/Application/Application.hpp"
 #include "Engine/Window/Window.hpp"

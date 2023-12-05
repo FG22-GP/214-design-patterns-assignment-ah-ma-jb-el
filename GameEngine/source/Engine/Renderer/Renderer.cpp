@@ -2,6 +2,7 @@
 #include "Renderer.hpp"
 
 #include "Data/Vectors/Point2.hpp"
+//#include "Data/Visuals/Sprite.hpp"
 #include "Engine/Window/Window.hpp"
 #include "SDL.h"
 
@@ -58,11 +59,27 @@ namespace GameEngine
 		);
 	}
 
+	//void Renderer::DrawSprite(const Sprite& sprite){
+	//	/*SDL_RenderCopyEx(
+	//		m_Renderer.get(),
+	//		sprite.GetTexture()
+	//		sprite.GetCrop(),
+	//		sprite.GetRect(),
+	//		sprite.GetRotation(),
+	//		sprite.GetCentre(),
+	//		sprite.IsFlipped()
+	//	);*/
+	//}
+
 	void Renderer::StopDrawing(){
 		SDL_RenderPresent(
 			m_Renderer.get()
 		);
 	}
+
+// OPERATORS
+
+	Renderer::operator SDL_Renderer* (){ return m_Renderer.get(); }
 
 // OPERATORS
 

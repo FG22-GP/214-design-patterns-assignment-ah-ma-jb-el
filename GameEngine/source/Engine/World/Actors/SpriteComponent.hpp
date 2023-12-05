@@ -2,28 +2,17 @@
 
 #include "Core.hpp"
 #include "ActorComponent.hpp"
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <SDL_render.h>
 #include <Data/Vectors/Vector2.hpp>
 
-
 namespace GameEngine
 {
 	class World;
-
-	struct Sprite
-	{
-	public:
-
-		GAME_API Sprite(SDL_Renderer* Renderer, const char* FilePath);
-
-	protected:
-
-		SDL_Texture* Texture;
-	};
-
+	class Sprite;
 
 	class SpriteComponent : public ActorComponent, public std::enable_shared_from_this<SpriteComponent>
 	{

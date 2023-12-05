@@ -23,7 +23,8 @@ namespace GameEngine
 		m_IsOpened = true;
 
 		m_renderer = std::make_shared<Renderer>(
-			Renderer(*this));
+			Renderer(*this)
+		);
 	}
 
 // STATES
@@ -67,6 +68,10 @@ namespace GameEngine
 		m_renderer->StartDrawing();
 	}
 
+	/*void Window::DrawSprite(const Sprite& sprite){
+		m_renderer->DrawSprite(sprite);
+	}*/
+
 	void Window::StopDrawing(){
 		m_renderer->StopDrawing();
 	}
@@ -76,6 +81,8 @@ namespace GameEngine
 	}
 
 // OPERATORS
+
+	Window::operator SDL_Window* (){ return m_Window.get(); }
 
 	void Window::Deleter::operator()(SDL_Window* w) const noexcept { 
 		SDL_DestroyWindow(w);

@@ -27,6 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\Data\Visuals\Sprite.cpp" />
     <ClCompile Include="source\Engine.cpp" />
     <ClCompile Include="source\Engine\World\Actors\ActorComponent.cpp" />
     <ClCompile Include="source\Engine\World\Actors\Actor.cpp" />
@@ -41,6 +42,7 @@
     <ClCompile Include="source\Engine\World\Actors\SpriteComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Data\Visuals\Sprite.hpp" />
     <ClInclude Include="source\Engine.hpp" />
     <ClInclude Include="source\Engine\World\Actors\ActorComponent.hpp" />
     <ClInclude Include="source\Engine\World\Actors\Actor.hpp" />
