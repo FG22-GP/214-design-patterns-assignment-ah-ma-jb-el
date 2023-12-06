@@ -16,8 +16,11 @@ namespace GameEngine
 		m_Rect->h = height;
 	}
 
-	Rectangle::Rectangle(const SDL_Rect& rect) : 
-		m_Rect(new SDL_Rect(rect)){}
+	Rectangle::Rectangle(const Rectangle& rectangle) :
+		m_Rect(new SDL_Rect(*rectangle.m_Rect.get())){}
+
+	Rectangle::Rectangle(const SDL_Rect& rectangle) :
+		m_Rect(new SDL_Rect(rectangle)){}
 
 // GETTERS
 

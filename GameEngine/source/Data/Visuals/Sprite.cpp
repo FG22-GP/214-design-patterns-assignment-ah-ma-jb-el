@@ -14,13 +14,13 @@ namespace GameEngine
 {
 // CONSTRUCTORS
 
-	Sprite::Sprite(std::shared_ptr<Texture> texture) :
-		m_Rotation(0), 
-		m_Flip(RenderFlip::None), 
+	Sprite::Sprite(std::shared_ptr<Texture> texture, const Rectangle& crop, const Rectangle& rect, const Point2& centre, const RenderFlip flip, const double rotation) :
 		m_Texture(texture),
-		m_Crop(new Rectangle(0, 0, 0, 0)),
-		m_Rect(new Rectangle(0, 0, 0, 0)),
-		m_Centre(new Point2({0, 0})){}
+		m_Crop(new Rectangle(crop)),
+		m_Rect(new Rectangle(rect)),
+		m_Centre(new Point2(centre)),
+		m_Flip(flip),
+		m_Rotation(rotation){}
 
 // GETTERS
 

@@ -14,7 +14,10 @@ namespace GameEngine
 	{
 	public:
 
-		GAME_API Sprite(std::shared_ptr<Texture> texture);
+		GAME_API Sprite(std::shared_ptr<Texture> texture, const Rectangle& crop, 
+			const Rectangle& rect, const Point2& centre, const RenderFlip flip, const double rotation);
+
+	// GETTERS
 
 		GAME_API double GetRotation() const;
 		GAME_API RenderFlip GetFlip() const;
