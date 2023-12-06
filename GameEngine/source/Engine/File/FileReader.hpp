@@ -7,8 +7,6 @@ class FileReader
 public:
     
     GAME_API static std::vector<std::string> ReadCSVFile(const std::string& filePath);
-
-    GAME_API static
     
 private:
     static bool FileExists(const std::string& filePath)
