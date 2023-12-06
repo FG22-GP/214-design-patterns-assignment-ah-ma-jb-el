@@ -3,6 +3,7 @@
 
 #include "Data/Visuals/Texture.hpp"
 #include "Data/Bounds/Rectangle.hpp"
+#include "Data/Vectors/Point2.hpp"
 #include "Engine/Renderer/Renderer.hpp"
 #include "SDL_image.h"
 #include "SDL.h"
@@ -15,7 +16,7 @@ namespace GameEngine
 		m_Rotation(0), m_Flip(0), m_Texture(texture),
 		m_Crop(new Rectangle(0, 0, 0, 0)),
 		m_Rect(new Rectangle(0, 0, 0, 0)),
-		m_Centre(new SDL_Point({0, 0})){}
+		m_Centre(new Point2({0, 0})){}
 
 // GETTERS
 
@@ -31,12 +32,16 @@ namespace GameEngine
 		return *m_Rect;
 	}
 
+	const Point2& Sprite::GetCentre() const {
+		return *m_Centre;
+	}
+
 // OPERATORS
 
 	void Sprite::CropDeleter::operator()(Rectangle* r) const noexcept { delete r; }
 
 	void Sprite::RectDeleter::operator()(Rectangle* r) const noexcept { delete r; }
 
-	void Sprite::CentreDeleter::operator()(SDL_Point* p) const noexcept { delete p; }
+	void Sprite::CentreDeleter::operator()(Point2* p) const noexcept { delete p; }
 
 }

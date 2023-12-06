@@ -30,7 +30,6 @@ namespace GameEngine
 	}
 	const Rectangle& SpriteComponent::GetCrop()
 	{
-		//TODO
 		return LoadedSprite->GetCrop();
 	}
 	const Rectangle& SpriteComponent::GetRect()
@@ -41,10 +40,9 @@ namespace GameEngine
 	{
 		return GetParent()->ActorTransform.GetRotation();
 	}
-	SDL_Point* SpriteComponent::GetCentre()
+	const Point2& SpriteComponent::GetCentre()
 	{
-		//TODO
-		return nullptr;
+		return LoadedSprite->GetCentre();
 	}
 	SDL_RendererFlip SpriteComponent::GetFlip()
 	{

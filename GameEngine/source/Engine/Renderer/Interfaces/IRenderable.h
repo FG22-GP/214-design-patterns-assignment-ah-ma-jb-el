@@ -7,6 +7,7 @@ namespace GameEngine
 {
 	struct Texture;
 	struct Rectangle;
+	struct Point2;
 
 	class IRenderable
 	{
@@ -16,7 +17,7 @@ namespace GameEngine
 		virtual const Rectangle& GetCrop() = 0;
 		virtual const Rectangle& GetRect() = 0;
 		virtual double GetRotation() = 0;
-		virtual SDL_Point* GetCentre() = 0;
+		virtual const Point2& GetCentre() = 0;
 		virtual SDL_RendererFlip GetFlip() = 0;
 
 	};
