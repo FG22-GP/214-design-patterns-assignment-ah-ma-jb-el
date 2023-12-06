@@ -2,7 +2,7 @@
 
 #include "Core.hpp"
 #include "ActorComponent.hpp"
-
+#include "Engine/Renderer/Interfaces/IRenderable.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
@@ -14,7 +14,7 @@ namespace GameEngine
 	class World;
 	class Sprite;
 
-	class SpriteComponent : public ActorComponent, public std::enable_shared_from_this<SpriteComponent>
+	class SpriteComponent : public ActorComponent, public IRenderable
 	{
 		friend class World;
 
@@ -30,5 +30,14 @@ namespace GameEngine
 
 		static std::vector<std::shared_ptr<SpriteComponent>> AllSpriteComponents;
 		
+
+		// Inherited via IRenderable
+		SDL_Texture* GetTexture() override;
+		SDL_Rect* GetCrop() override;
+		SDL_Rect* GetRect() override;
+		double GetRotation() override;
+		SDL_Point* GetCentre() override;
+		SDL_RendererFlip GetFlip() override;
+
 	};
 }
