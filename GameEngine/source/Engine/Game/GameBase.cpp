@@ -8,6 +8,7 @@ namespace GameEngine
 {
 	void GameBase::Initialize()
 	{
+		Application::Init();
 		m_Window = Window::Create(
 			"Pack-Man Clone", 800, 600
 		);
@@ -30,7 +31,7 @@ namespace GameEngine
 			DeltaTime = FrameStart - LastWorldTick;
 			if (DeltaTime > 0)
 			{
-				GameWorld->Tick(DeltaTime);
+				GameWorld->Tick(static_cast<float>(DeltaTime * 0.001));
 				LastWorldTick = FrameStart;
 			}
 
