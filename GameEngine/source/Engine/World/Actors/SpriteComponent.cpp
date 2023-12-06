@@ -24,7 +24,7 @@ namespace GameEngine
 	{
 		return Parent->ActorTransform.GetScale();
 	}
-	SDL_Texture* SpriteComponent::GetTexture()
+	Texture* SpriteComponent::GetTexture()
 	{
 		return LoadedSprite->GetTexture().get();
 	}
