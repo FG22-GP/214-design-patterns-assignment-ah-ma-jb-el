@@ -10,6 +10,7 @@ namespace GameEngine
 	class IRenderable;
 	struct Point2;
 	class Window;
+	struct Rectangle;
 
 	class Renderer
 	{
@@ -49,7 +50,9 @@ namespace GameEngine
 		std::unique_ptr<SDL_Renderer, RendererDeleter> m_Renderer;
 
 		Vector2 CameraSize;
-		Vector2 CameraBottomLeftLocation;
+		Vector2 CameraTopLeftLocation;
+
+		Rectangle GetScreenRectFromWorldLocation(const Vector2& WorldCenter, const Vector2& WorldScale) const;
 
 	};
 }

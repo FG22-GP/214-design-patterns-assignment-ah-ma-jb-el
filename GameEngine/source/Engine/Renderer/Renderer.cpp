@@ -53,10 +53,10 @@ namespace GameEngine
 		);
 	}
 
-	void Renderer::SetCameraProperties(const Vector2& CameraSize, const Vector2& BottomLeftLocation)
+	void Renderer::SetCameraProperties(const Vector2& CameraSize, const Vector2& TopLeftLocation)
 	{
 		this->CameraSize = CameraSize;
-		this->CameraBottomLeftLocation = BottomLeftLocation;
+		this->CameraTopLeftLocation = TopLeftLocation;
 	}
 
 // RENDERING
@@ -85,9 +85,29 @@ namespace GameEngine
 		);
 	}
 
+	Rectangle Renderer::GetScreenRectFromWorldLocation(const Vector2& WorldCenter, const Vector2& WorldScale) const
+	{
+		//Gives X=[0-1] and Y=[0-1] describing screen position for top left corner.
+		Vector2 TopLeftNormalized = Vector2::InverseAxisLerp(
+			CameraTopLeftLocation,
+			CameraTopLeftLocation + CameraSize,
+			WorldCenter - WorldScale / 2.0f
+		);
+
+		//Uses the window resolution to determine pixel position, width and height
+		return Rectangle(
+			static_cast<uint32_t>(m_Resolution.get()->x * TopLeftNormalized.X),
+			static_cast<uint32_t>(m_Resolution.get()->y * TopLeftNormalized.Y),
+			static_cast<uint32_t>(m_Resolution.get()->x * WorldScale.X / CameraSize.X),
+			static_cast<uint32_t>(m_Resolution.get()->y * WorldScale.Y / CameraSize.Y));
+	}
+
 // OPERATORS
 
 	Renderer::operator SDL_Renderer* (){ return m_Renderer.get(); }
+
+	
+
 
 // OPERATORS
 
