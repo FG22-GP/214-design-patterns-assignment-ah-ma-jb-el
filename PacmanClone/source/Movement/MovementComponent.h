@@ -8,7 +8,7 @@
 class GridLink;
 class GridCell;
 
-class GridMovement : ActorComponent
+class MovementComponent : ActorComponent
 {
     
 public:

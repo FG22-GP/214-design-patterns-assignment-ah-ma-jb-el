@@ -1,12 +1,12 @@
 ﻿#include "PacmanCore.h"
-#include "GridMovement.h"
+#include "MovementComponent.h"
 
 #include "Engine/World/Actors/Actor.hpp"
 #include "Grid/GridCell.h"
 #include "Grid/GridLink.h"
 #include "Grid/GridWrapLink.h"
 
-void GridMovement::Tick(float DeltaTime)
+void MovementComponent::Tick(float DeltaTime)
 {
     ActorComponent::Tick(DeltaTime);
 
@@ -14,7 +14,7 @@ void GridMovement::Tick(float DeltaTime)
     LerpMovement(DeltaTime);
 }
 
-void GridMovement::NextCell(std::shared_ptr<GridCell> currentCell, float DeltaTime)
+void MovementComponent::NextCell(std::shared_ptr<GridCell> currentCell, float DeltaTime)
 {
     if (StartCell != nullptr && TargetCell != nullptr) { return; }
 
@@ -39,7 +39,7 @@ void GridMovement::NextCell(std::shared_ptr<GridCell> currentCell, float DeltaTi
     }
 }
 
-void GridMovement::LerpMovement(float DeltaTime)
+void MovementComponent::LerpMovement(float DeltaTime)
 {
     if (StartCell == nullptr || TargetCell == nullptr) { return; }
     
@@ -69,24 +69,25 @@ void GridMovement::LerpMovement(float DeltaTime)
 
 }
 
-Vector2 GridMovement::WrapLerp(Vector2 start, Vector2 target, float T)
+Vector2 MovementComponent::WrapLerp(Vector2 start, Vector2 target, float T)
 {
-    return Vector2(0,0);
+    //placeholder
+    return StartCell->Coordinate;
 }
 
-bool GridMovement::IsWrapLink(std::shared_ptr<GridLink>& link)
+bool MovementComponent::IsWrapLink(std::shared_ptr<GridLink>& link)
 {
     std::shared_ptr<GridWrapLink> wraplink = std::static_pointer_cast<GridWrapLink>(link);
 
     return wraplink != nullptr;
 }
 
-void GridMovement::SetDirection(Directions direction)
+void MovementComponent::SetDirection(Directions direction)
 {
     newDirection = direction;
 }
 
-void GridMovement::SetLerpDuration(float duration)
+void MovementComponent::SetLerpDuration(float duration)
 {
     fLerpDuration = duration;
 }
