@@ -52,6 +52,12 @@ namespace GameEngine
 		);
 	}
 
+	void Renderer::SetCameraProperties(const Vector2& CameraSize, const Vector2& BottomLeftLocation)
+	{
+		this->CameraSize = CameraSize;
+		this->CameraBottomLeftLocation = BottomLeftLocation;
+	}
+
 // RENDERING
 
 	void Renderer::StartDrawing(){

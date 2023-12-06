@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core.hpp"
+#include "Data/Vectors/Vector2.hpp"
 
 struct SDL_Renderer;
 
@@ -27,6 +28,8 @@ namespace GameEngine
 
 		GAME_API void SetDrawColour(const uint8_t r, const uint8_t g, const uint8_t b, const uint8_t a);
 
+		GAME_API void SetCameraProperties(const Vector2& CameraSize, const Vector2& BottomLeftLocation);
+
 	// RENDERER
 
 		GAME_API void StartDrawing();
@@ -44,6 +47,9 @@ namespace GameEngine
 
 		struct RendererDeleter { void operator()(SDL_Renderer*) const noexcept; };
 		std::unique_ptr<SDL_Renderer, RendererDeleter> m_Renderer;
+
+		Vector2 CameraSize;
+		Vector2 CameraBottomLeftLocation;
 
 	};
 }
