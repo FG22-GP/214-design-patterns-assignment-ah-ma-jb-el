@@ -16,9 +16,7 @@ namespace GameEngine
             if (Event.type == SDL_KEYDOWN) { // If the event is a key press
                 const SDL_Keycode keyCode = Event.key.keysym.sym; // Get SDL key code from the event
                 // Find corresponding KeyDownEvent in the mapping
-                SDLKeyToKeyDownEvent.find(keyCode);
-                auto eventType = static_cast<SDL_EventType>(Event.type);
-                auto it = EventCallbacks.find(eventType);
+                auto it = EventCallbacks.find(keyCode);
                 if (it != EventCallbacks.end()) {
                     // Execute callbacks subscribed to this event type
                     for (auto& callback : it->second) {
@@ -29,7 +27,7 @@ namespace GameEngine
         }
     }
 
-    void Input::SubscribeInputEvent(const KeyDownEvent keyDownEvent, const std::function<void()>& callback)
+    void Input::RegisterInputEvent(const KeyDownEvent keyDownEvent, const std::function<void()>& callback)
     {
         // Get SDL key code from the event
         const SDL_Keycode keyCode = GetSDLKeyCodeFromEvent(keyDownEvent);
@@ -37,7 +35,7 @@ namespace GameEngine
         EventCallbacks[keyCode].push_back(callback);
     }
 
-    void Input::UnsubscribeInputEvent(const KeyDownEvent keyDownEvent, const std::function<void()>& callback)
+    void Input::UnRegisterInputEvent(const KeyDownEvent keyDownEvent, const std::function<void()>& callback)
     {
         // Get SDL key code from the event
         const SDL_Keycode keyCode = GetSDLKeyCodeFromEvent(keyDownEvent);

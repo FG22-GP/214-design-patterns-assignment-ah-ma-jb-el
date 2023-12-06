@@ -75,8 +75,8 @@ namespace GameEngine
     {
     public:
         GAME_API static void HandleInput();
-        GAME_API static void SubscribeInputEvent(const KeyDownEvent keyDownEvent, const std::function<void()>& callback);
-        GAME_API static void UnsubscribeInputEvent(const KeyDownEvent keyDownEvent, const std::function<void()>& callback);
+        GAME_API static void RegisterInputEvent(const KeyDownEvent keyDownEvent, const std::function<void()>& callback);
+        GAME_API static void UnRegisterInputEvent(const KeyDownEvent keyDownEvent, const std::function<void()>& callback);
 
         static SDL_Keycode GetSDLKeyCodeFromEvent(const KeyDownEvent& event)
         {
