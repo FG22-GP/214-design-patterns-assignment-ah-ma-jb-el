@@ -11,8 +11,6 @@ namespace GameEngine
 	void World::Tick(float DeltaTime)
 	{
 		TickAllRegisteredActors(DeltaTime);
-
-		RenderAllRegisteredActors();
 	}
 
 	void World::RegisterActor(std::shared_ptr<Actor> NewActor)

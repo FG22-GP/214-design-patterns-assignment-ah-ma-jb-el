@@ -2,6 +2,7 @@
 #include "GameBase.h"
 #include "Engine/Application/Application.hpp"
 #include "Engine/Window/Window.hpp"
+#include "Engine/Input/Input.hpp"
 #include <SDL.h>
 
 namespace GameEngine
@@ -24,10 +25,11 @@ namespace GameEngine
 
 		while (m_Window->IsOpened()) {
 
-			m_Window->StartDrawing();
+			FrameStart = SDL_GetTicks();
+
+			Input::HandleInput();
 
 			//Here we handle world ticking, which also renders all actor SpriteComponents.
-			FrameStart = SDL_GetTicks();
 			DeltaTime = FrameStart - LastWorldTick;
 			if (DeltaTime > 0)
 			{
@@ -35,6 +37,8 @@ namespace GameEngine
 				LastWorldTick = FrameStart;
 			}
 
+			m_Window->StartDrawing();
+			GameWorld->RenderAllRegisteredActors();
 			m_Window->StopDrawing();
 
 			FrameEnd = SDL_GetTicks();

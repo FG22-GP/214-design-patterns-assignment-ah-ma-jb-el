@@ -14,6 +14,7 @@ namespace GameEngine
 		template<typename T> GAME_API std::shared_ptr<T> CreateActor(Transform Transform);
 
 		void Tick(float DeltaTime);
+		void RenderAllRegisteredActors();
 
 	protected:
 
@@ -21,7 +22,6 @@ namespace GameEngine
 
 		void RegisterActor(std::shared_ptr<Actor> NewActor);
 		void TickAllRegisteredActors(float DeltaTime);
-		void RenderAllRegisteredActors();
 	};
 }
 
