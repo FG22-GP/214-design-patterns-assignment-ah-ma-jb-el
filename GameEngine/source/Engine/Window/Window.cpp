@@ -1,6 +1,7 @@
 #include "Core.hpp"
 #include "Window.hpp"
 
+#include "Engine/Renderer/Interfaces/IRenderable.h"
 #include "Data/Vectors/Point2.hpp"
 #include "Engine/Renderer/Renderer.hpp"
 #include "SDL.h"
@@ -68,9 +69,9 @@ namespace GameEngine
 		m_renderer->StartDrawing();
 	}
 
-	/*void Window::DrawSprite(const Sprite& sprite){
-		m_renderer->DrawSprite(sprite);
-	}*/
+	void Window::Draw(IRenderable& render){
+		m_renderer->Draw(render);
+	}
 
 	void Window::StopDrawing(){
 		m_renderer->StopDrawing();

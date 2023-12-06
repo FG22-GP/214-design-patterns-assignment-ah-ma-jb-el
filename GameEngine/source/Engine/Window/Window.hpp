@@ -7,6 +7,7 @@ struct SDL_Window;
 namespace GameEngine
 {
 	struct Point2;
+	class IRenderable;
 	class Renderer;
 
 	class Window
@@ -33,7 +34,7 @@ namespace GameEngine
 			const std::string& title, const uint32_t width, const uint32_t height
 		);
 		GAME_API void StartDrawing();
-		//GAME_API void DrawSprite(const Sprite& sprite);
+		GAME_API void Draw(IRenderable& sprite);
 		GAME_API void StopDrawing();
 		GAME_API void Close();
 
