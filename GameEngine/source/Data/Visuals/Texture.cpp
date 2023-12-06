@@ -16,9 +16,12 @@ namespace GameEngine
 		m_Texture.reset(texture);
 	}
 
+	Texture::Texture(SDL_Texture* texture) :
+		m_Texture(texture){}
+
 // GETTERS
 
-	SDL_Texture* Texture::GetSDL() const { 
+	SDL_Texture* Texture::ToSDL() const { 
 		return m_Texture.get();
 	}
 

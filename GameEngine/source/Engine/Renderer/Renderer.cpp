@@ -4,6 +4,7 @@
 #include "Interfaces/IRenderable.h"
 #include "Data/Vectors/Point2.hpp"
 #include "Data/Visuals/Texture.hpp"
+#include "Data/Bounds/Rectangle.hpp"
 #include "Engine/Window/Window.hpp"
 #include "SDL.h"
 
@@ -69,9 +70,9 @@ namespace GameEngine
 	void Renderer::Draw(IRenderable& render){
 		SDL_RenderCopyEx(
 			m_Renderer.get(),
-			(*render.GetTexture()),
-			render.GetCrop(),
-			render.GetRect(),
+			render.GetTexture().ToSDL(),
+			render.GetCrop().ToSDL(),
+			render.GetRect().ToSDL(),
 			render.GetRotation(),
 			render.GetCentre(),
 			render.GetFlip()

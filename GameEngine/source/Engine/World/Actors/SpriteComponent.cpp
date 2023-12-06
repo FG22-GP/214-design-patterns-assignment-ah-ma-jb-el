@@ -24,19 +24,18 @@ namespace GameEngine
 	{
 		return Parent->ActorTransform.GetScale();
 	}
-	Texture* SpriteComponent::GetTexture()
+	const Texture& SpriteComponent::GetTexture()
 	{
-		return LoadedSprite->GetTexture().get();
+		return LoadedSprite->GetTexture();
 	}
-	SDL_Rect* SpriteComponent::GetCrop()
+	const Rectangle& SpriteComponent::GetCrop()
 	{
 		//TODO
-		return nullptr;
+		return LoadedSprite->GetCrop();
 	}
-	SDL_Rect* SpriteComponent::GetRect()
+	const Rectangle& SpriteComponent::GetRect()
 	{
-		//TODO
-		return nullptr;
+		return LoadedSprite->GetRect();
 	}
 	double SpriteComponent::GetRotation()
 	{

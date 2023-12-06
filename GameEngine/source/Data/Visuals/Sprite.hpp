@@ -8,6 +8,7 @@ struct SDL_Point;
 namespace GameEngine
 {
 	struct Texture;
+	struct Rectangle;
 	class Renderer;
 
 	class Sprite
@@ -16,7 +17,9 @@ namespace GameEngine
 
 		GAME_API Sprite(std::shared_ptr<Texture> texture);
 
-		GAME_API std::shared_ptr<Texture> GetTexture() const;
+		GAME_API const Texture& GetTexture() const;
+		GAME_API const Rectangle& GetCrop() const;
+		GAME_API const Rectangle& GetRect() const;
 
 	private:
 
@@ -25,11 +28,11 @@ namespace GameEngine
 
 		std::shared_ptr<Texture> m_Texture;
 
-		struct CropDeleter { void operator()(SDL_Rect*) const noexcept; };
-		std::unique_ptr<SDL_Rect> m_Crop;
+		struct CropDeleter { void operator()(Rectangle*) const noexcept; };
+		std::unique_ptr<Rectangle> m_Crop;
 
-		struct RectDeleter { void operator()(SDL_Rect*) const noexcept; };
-		std::unique_ptr<SDL_Rect> m_Rect;
+		struct RectDeleter { void operator()(Rectangle*) const noexcept; };
+		std::unique_ptr<Rectangle> m_Rect;
 
 		struct CentreDeleter { void operator()(SDL_Point*) const noexcept; };
 		std::unique_ptr<SDL_Point> m_Centre;

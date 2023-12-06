@@ -32,9 +32,9 @@ namespace GameEngine
 		
 
 		// Inherited via IRenderable
-		Texture* GetTexture() override;
-		SDL_Rect* GetCrop() override;
-		SDL_Rect* GetRect() override;
+		const Texture& GetTexture() override;
+		const Rectangle& GetCrop() override;
+		const Rectangle& GetRect() override;
 		double GetRotation() override;
 		SDL_Point* GetCentre() override;
 		SDL_RendererFlip GetFlip() override;

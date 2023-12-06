@@ -27,6 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\Data\Bounds\Rectangle.cpp" />
     <ClCompile Include="source\Data\Visuals\Sprite.cpp" />
     <ClCompile Include="source\Data\Visuals\Texture.cpp" />
     <ClCompile Include="source\Engine.cpp" />
@@ -45,6 +46,7 @@
     <ClCompile Include="source\Engine\World\Actors\SpriteComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Data\Bounds\Rectangle.hpp" />
     <ClInclude Include="source\Data\Visuals\Sprite.hpp" />
     <ClInclude Include="source\Data\Visuals\Texture.hpp" />
     <ClInclude Include="source\Engine.hpp" />
