@@ -4,34 +4,45 @@
 #include "Engine/World/Actors/Actor.hpp"
 #include "Grid/GridCell.h"
 #include "Grid/GridLink.h"
+#include "Grid/GridWrapLink.h"
 
 void GridMovement::Tick(float DeltaTime)
 {
     ActorComponent::Tick(DeltaTime);
 
-    // NextCell(nullptr, DeltaTime);
+    NextCell(nullptr, DeltaTime);
+    LerpMovement(DeltaTime);
 }
 
 void GridMovement::NextCell(std::shared_ptr<GridCell> currentCell, float DeltaTime)
 {
-    std::shared_ptr<GridCell> target = currentCell->Links[newDirection]->Target;
-    if (target != nullptr && target->bIsWalkable)
+    if (StartCell != nullptr && TargetCell != nullptr) { return; }
+
+    //should be something like StartCell = actor->GetComponent->GetCurrentCell in future !
+    StartCell = currentCell;
+    std::shared_ptr<GridLink> targetLink = StartCell->Links[newDirection];
+    std::shared_ptr<GridCell> targetCell = targetLink->Target;
+    if (targetLink->Target != nullptr && targetLink->Target->bIsWalkable)
     {
-        // window-pixel-coordinates, somehow?
-        LerpMovement(Vector2(0,0), Vector2(1,1), DeltaTime);
-        
+        bWrapLerp = IsWrapLink(targetLink);
+        TargetCell = targetCell;
         currentDirection = newDirection;
+        return;
     }
-    target = currentCell->Links[currentDirection]->Target;
-    if (target != nullptr && target->bIsWalkable)
+    
+    targetLink = StartCell->Links[newDirection];
+    targetCell = targetLink->Target;
+    if (targetCell != nullptr && targetCell->bIsWalkable)
     {
-        // window-pixel-coordinates, somehow?
-        LerpMovement(Vector2(0,0), Vector2(1,1), DeltaTime);
+        bWrapLerp = IsWrapLink(targetLink);
+        TargetCell = targetCell;
     }
 }
 
-void GridMovement::LerpMovement(Vector2 start, Vector2 target, float DeltaTime)
+void GridMovement::LerpMovement(float DeltaTime)
 {
+    if (StartCell == nullptr || TargetCell == nullptr) { return; }
+    
     if (fTimeElapsed < fLerpDuration)
     {
         fTimeElapsed += DeltaTime;
@@ -42,27 +53,32 @@ void GridMovement::LerpMovement(Vector2 start, Vector2 target, float DeltaTime)
             //event here: half way through lerp !!
         }
 
-        Vector2 newPosition = LerpVector2(start, target, fTimeElapsed/fLerpDuration);
+        Vector2 newPosition = bWrapLerp?
+            WrapLerp(StartCell->Coordinate, TargetCell->Coordinate, fTimeElapsed/fLerpDuration) :
+            Vector2::Lerp(StartCell->Coordinate, TargetCell->Coordinate, fTimeElapsed/fLerpDuration);
+        
         Parent->ActorTransform.SetLocation(newPosition);
     }
+    else
+    {
+        Parent->ActorTransform.SetLocation(TargetCell->Coordinate);
+        StartCell = nullptr;
+        TargetCell = nullptr;
+        fTimeElapsed = 0;
+    }
 
-    fTimeElapsed = 0;
 }
 
-Point2 GridMovement::LerpPoint2(Point2 p1, Point2 p2, float T)
+Vector2 GridMovement::WrapLerp(Vector2 start, Vector2 target, float T)
 {
-    Point2 Result;
-    Result.x = static_cast<int>((1 - T) * p1.x + T * p2.x);
-    Result.y = static_cast<int>((1 - T) * p1.y + T * p2.y);
-    return Result;
+    return Vector2(0,0);
 }
 
-Vector2 GridMovement::LerpVector2(Vector2 v1, Vector2 v2, float T)
+bool GridMovement::IsWrapLink(std::shared_ptr<GridLink>& link)
 {
-    Vector2 Result;
-    Result.X = ((1 - T) * v1.X + T * v2.X);
-    Result.Y = ((1 - T) * v1.Y + T * v2.Y);
-    return Result;
+    std::shared_ptr<GridWrapLink> wraplink = std::static_pointer_cast<GridWrapLink>(link);
+
+    return wraplink != nullptr;
 }
 
 void GridMovement::SetDirection(Directions direction)

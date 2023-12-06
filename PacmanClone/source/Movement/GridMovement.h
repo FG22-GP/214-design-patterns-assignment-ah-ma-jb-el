@@ -5,6 +5,7 @@
 #include "Engine/World/Actors/ActorComponent.hpp"
 #include "Data/Vectors/Vector2.hpp"
 
+class GridLink;
 class GridCell;
 
 class GridMovement : ActorComponent
@@ -26,9 +27,12 @@ protected:
 private:
     float fTimeElapsed = 0;
     float fLerpDuration = 1;
+    bool bWrapLerp = false;
+    std::shared_ptr<GridCell> StartCell;
+    std::shared_ptr<GridCell> TargetCell;
 
-    void LerpMovement(Vector2 start, Vector2 target, float DeltaTime);
+    void LerpMovement(float DeltaTime);
+    Vector2 WrapLerp(Vector2 start, Vector2 target, float T);
 
-    Point2 LerpPoint2(Point2 p1, Point2 p2, float T);
-    Vector2 LerpVector2(Vector2 v1, Vector2 v2, float T);
+    bool IsWrapLink(std::shared_ptr<GridLink>& link);
 };
