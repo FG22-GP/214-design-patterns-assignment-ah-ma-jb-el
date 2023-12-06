@@ -6,36 +6,43 @@
 
 namespace GameEngine
 {
-    //  TODO: Maybe remove use of SDL_EventType and use a custom enum class instead
     
-    std::unordered_map<SDL_EventType, std::vector<std::function<void(SDL_Event)>>> Input::EventCallbacks;
+    std::unordered_map<SDL_Keycode, std::vector<std::function<void()>>> Input::EventCallbacks;
 
     void Input::HandleInput()
     {
-        // Retrieve events and handle subscriptions
         SDL_Event Event;
-        while (SDL_PollEvent(&Event)) {
-            auto eventType = static_cast<SDL_EventType>(Event.type); // Convert SDL event type
-            auto it = EventCallbacks.find(eventType); // Find event type in subscriptions
-            if (it != EventCallbacks.end()) {
-                // Execute callbacks subscribed to this event type
-                for (auto& callback : it->second) {
-                    callback(Event);
+        while (SDL_PollEvent(&Event) != 0) {
+            if (Event.type == SDL_KEYDOWN) { // If the event is a key press
+                const SDL_Keycode keyCode = Event.key.keysym.sym; // Get SDL key code from the event
+                // Find corresponding KeyDownEvent in the mapping
+                SDLKeyToKeyDownEvent.find(keyCode);
+                auto eventType = static_cast<SDL_EventType>(Event.type);
+                auto it = EventCallbacks.find(eventType);
+                if (it != EventCallbacks.end()) {
+                    // Execute callbacks subscribed to this event type
+                    for (auto& callback : it->second) {
+                        callback();
+                    }
                 }
             }
         }
     }
 
-    void Input::SubscribeInputEvent(const SDL_EventType eventType, const std::function<void(SDL_Event)>& callback)
+    void Input::SubscribeInputEvent(const KeyDownEvent keyDownEvent, const std::function<void()>& callback)
     {
+        // Get SDL key code from the event
+        const SDL_Keycode keyCode = GetSDLKeyCodeFromEvent(keyDownEvent);
         // Subscribe a callback function to a specific event type
-        EventCallbacks[eventType].push_back(callback);
+        EventCallbacks[keyCode].push_back(callback);
     }
 
-    void Input::UnsubscribeInputEvent(const SDL_EventType eventType, const std::function<void(SDL_Event)>& callback)
+    void Input::UnsubscribeInputEvent(const KeyDownEvent keyDownEvent, const std::function<void()>& callback)
     {
+        // Get SDL key code from the event
+        const SDL_Keycode keyCode = GetSDLKeyCodeFromEvent(keyDownEvent);
         // Unsubscribe a callback function from a specific event type
-        const auto it = EventCallbacks.find(eventType);
+        const auto it = EventCallbacks.find(keyCode);
         if (it != EventCallbacks.end()) {
             auto& callbacks = it->second;
             // Search for the callback in the subscribed list and remove it if found
@@ -47,6 +54,5 @@ namespace GameEngine
             }
         }
     }
-
 
 }
