@@ -3,6 +3,8 @@
 #include "Actors/Actor.hpp"
 #include "Data/Transform.hpp"
 #include "Actors/SpriteComponent.hpp"
+#include "Engine/Window/Window.hpp"
+#include "Engine/Renderer/Renderer.hpp"
 
 namespace GameEngine
 {
@@ -28,9 +30,12 @@ namespace GameEngine
 
 	void World::RenderAllRegisteredActors()
 	{
+		auto Renderer = Window::GetMain()->GetRenderer();
+		if (Renderer == nullptr) return;
 		for (auto Comp : SpriteComponent::AllSpriteComponents)
 		{
 			//TODO At this point, Comp->GetPosition() is in grid-space, not pixel-space.
+			Renderer->Draw(*Comp);
 		}
 		
 	}
