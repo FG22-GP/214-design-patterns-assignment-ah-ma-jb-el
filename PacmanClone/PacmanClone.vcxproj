@@ -150,6 +150,7 @@
     <ClCompile Include="source\Ghosts\States\AIState_Dead.cpp" />
     <ClCompile Include="source\Ghosts\States\AIState_Frightened.cpp" />
     <ClCompile Include="source\Ghosts\States\AIState_Scatter.cpp" />
+    <ClCompile Include="source\Ghosts\States\StateMachine_Component.cpp" />
     <ClCompile Include="source\Grid\GridWrapLink.cpp" />
     <ClCompile Include="source\Grid\GridGenerator.cpp" />
     <ClCompile Include="source\Grid\GridCellContent.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="source\Ghosts\States\AIState_Dead.h" />
     <ClInclude Include="source\Ghosts\States\AIState_Frightened.h" />
     <ClInclude Include="source\Ghosts\States\AIState_Scatter.h" />
+    <ClInclude Include="source\Ghosts\States\StateMachine_Component.h" />
     <ClInclude Include="source\Grid\GridWrapLink.h" />
     <ClInclude Include="source\Grid\GridGenerator.h" />
     <ClInclude Include="source\Grid\GridCellContent.h" />

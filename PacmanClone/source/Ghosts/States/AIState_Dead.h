@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "AIState_Base.h"
 
-class AIState_Dead : AIState_Base
+class AIState_Dead : public AIState_Base
 {
 public:
     void OnStateEnter() override;

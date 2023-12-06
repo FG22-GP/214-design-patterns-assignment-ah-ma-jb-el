@@ -51,7 +51,7 @@ void MovementComponent::LerpMovement(float DeltaTime)
         fTimeElapsed += DeltaTime;
 
         if (fTimeElapsed > fLerpDuration / 2 - DeltaTime / 2 &&
-            fTimeElapsed < fLerpDuration / 2 + DeltaTime / 2)
+            fTimeElapsed <= fLerpDuration / 2 + DeltaTime / 2)
         {
             //event here: half way through lerp !!
         }
