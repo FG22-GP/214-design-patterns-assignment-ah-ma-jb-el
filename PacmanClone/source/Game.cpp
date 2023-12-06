@@ -1,22 +1,12 @@
 #include "PacmanCore.h"
+#include "Game/PacmanGame.h"
 
 // Game Entry
 int main(int argc, char* argv[]){
-	Application::Init();
-
-	auto window = Window::Create(
-		"Pack-Man Clone", 800, 600
-	);
-	while (window->IsOpened()){
-		// Update Input
-		// Update Actors
-
-		window->StartDrawing();
-
-		// Render Actors
-
-		window->StopDrawing();
-	}
-	Application::Quit();
+	
+	std::unique_ptr<PacmanGame> Game = std::make_unique<PacmanGame>();
+	Game->Initialize();
+	Game->Run();
+	Game->Exit();
 	return 0;
 }

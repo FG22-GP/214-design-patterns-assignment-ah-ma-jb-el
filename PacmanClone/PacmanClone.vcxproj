@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\Game\PacmanGame.cpp" />
     <ClCompile Include="source\Ghosts\States\AIState_Base.cpp" />
     <ClCompile Include="source\Ghosts\States\AIState_Chasing.cpp" />
     <ClCompile Include="source\Ghosts\States\AIState_Dead.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="source\Game.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Game\PacmanGame.h" />
     <ClInclude Include="source\Ghosts\States\AIState_Base.h" />
     <ClInclude Include="source\Ghosts\States\AIState_Chasing.h" />
     <ClInclude Include="source\Ghosts\States\AIState_Dead.h" />

@@ -39,7 +39,25 @@
     <ClCompile Include="source\Grid\GridWrapLink.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Movement\GridMovement.cpp">
+    <ClCompile Include="source\Ghosts\States\AIState_Base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Ghosts\States\AIState_Chasing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Ghosts\States\AIState_Dead.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Ghosts\States\AIState_Frightened.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Ghosts\States\AIState_Scatter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Movement\MovementComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Game\PacmanGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,7 +83,25 @@
     <ClInclude Include="source\Grid\GridWrapLink.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\Movement\GridMovement.h">
+    <ClInclude Include="source\Ghosts\States\AIState_Base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Ghosts\States\AIState_Chasing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Ghosts\States\AIState_Dead.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Ghosts\States\AIState_Frightened.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Ghosts\States\AIState_Scatter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Movement\MovementComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Game\PacmanGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
