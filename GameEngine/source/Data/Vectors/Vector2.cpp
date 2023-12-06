@@ -1,8 +1,22 @@
 #include "Core.hpp"
 #include "Vector2.hpp"
+#include "Point2.hpp"
 
 namespace GameEngine
 {
+	Vector2::Vector2()
+	{
+	}
+	Vector2::Vector2(const Point2& Point)
+	{
+		X = static_cast<float>(Point.x);
+		Y = static_cast<float>(Point.y);
+	}
+	Vector2::Vector2(int X, int Y)
+	{
+		this->X = static_cast<float>(X);
+		this->Y = static_cast<float>(Y);
+	}
 	Vector2 Vector2::operator+(const Vector2& other) const
 	{
 		Vector2 Result;

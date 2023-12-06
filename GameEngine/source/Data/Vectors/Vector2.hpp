@@ -4,9 +4,15 @@
 
 namespace GameEngine
 {
+	struct Point2;
+
 	struct Vector2
 	{
 		float X, Y;
+
+		GAME_API Vector2();
+		GAME_API Vector2(const Point2& Point);
+		GAME_API Vector2(int X, int Y);
 
 		GAME_API Vector2 operator+(const Vector2& other) const;
 
