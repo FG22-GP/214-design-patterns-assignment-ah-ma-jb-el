@@ -6,7 +6,6 @@
 #include "AIState_Frightened.h"
 #include "AIState_Scatter.h"
 
-
 void StateMachine_Component::OnStart()
 {
     ActorComponent::OnStart();
@@ -25,4 +24,13 @@ void StateMachine_Component::Tick(float DeltaTime)
     ActorComponent::Tick(DeltaTime);
 
     CurrentState->OnStateRunning();
+}
+
+void StateMachine_Component::PushNewState(std::shared_ptr<AIState_Base> newState)
+{
+    if (newState == nullptr || newState == CurrentState) { return; }
+    
+    CurrentState->OnStateExit();
+    newState->OnStateEnter();
+    CurrentState = newState;
 }

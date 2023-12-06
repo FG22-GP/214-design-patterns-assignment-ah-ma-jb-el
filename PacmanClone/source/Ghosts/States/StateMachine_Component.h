@@ -11,8 +11,11 @@ class StateMachine_Component : ActorComponent
 {
 public:
     StateMachine_Component();
+    
     std::shared_ptr<AIState_Base> CurrentState;
 
+    void PushNewState(std::shared_ptr<AIState_Base> newState);
+    
 protected:
     void OnStart() override;
     void Tick(float DeltaTime) override;
