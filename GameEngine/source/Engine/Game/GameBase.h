@@ -16,8 +16,6 @@ namespace GameEngine
 
 	protected:
 		std::unique_ptr<World> GameWorld;
-
-	private:
 		std::shared_ptr<Window> m_Window;
 
 	};

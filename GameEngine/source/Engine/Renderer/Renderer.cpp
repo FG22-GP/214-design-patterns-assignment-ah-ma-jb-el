@@ -72,7 +72,7 @@ namespace GameEngine
 			m_Renderer.get(),
 			render.GetTexture().ToSDL(),
 			render.GetCrop().ToSDL(),
-			render.GetRect().ToSDL(),
+			GetScreenRectFromWorldLocation(render.GetWorldLocation(), render.GetWorldScale()).ToSDL(),
 			render.GetRotation(),
 			render.GetCentre().ToSDL(),
 			(SDL_RendererFlip)render.GetFlip()

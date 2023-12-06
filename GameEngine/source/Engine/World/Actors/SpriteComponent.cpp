@@ -4,6 +4,11 @@
 #include "Data/Visuals/Sprite.hpp"
 #include "Actor.hpp"
 
+#include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+#include <SDL_render.h>
+
 namespace GameEngine
 {
 	std::vector<std::shared_ptr<SpriteComponent>> SpriteComponent::AllSpriteComponents;
@@ -20,10 +25,6 @@ namespace GameEngine
 		return Parent->ActorTransform.GetLocation();
 	}
 
-	float SpriteComponent::GetScale()
-	{
-		return Parent->ActorTransform.GetScale();
-	}
 	const Texture& SpriteComponent::GetTexture()
 	{
 		return LoadedSprite->GetTexture();
@@ -32,10 +33,7 @@ namespace GameEngine
 	{
 		return LoadedSprite->GetCrop();
 	}
-	const Rectangle& SpriteComponent::GetRect()
-	{
-		return LoadedSprite->GetRect();
-	}
+
 	double SpriteComponent::GetRotation()
 	{
 		return GetParent()->ActorTransform.GetRotation() + 
@@ -48,5 +46,13 @@ namespace GameEngine
 	RenderFlip SpriteComponent::GetFlip()
 	{
 		return LoadedSprite->GetFlip();
+	}
+	const Vector2& SpriteComponent::GetWorldLocation()
+	{
+		return Parent->ActorTransform.GetLocation();
+	}
+	const Vector2& SpriteComponent::GetWorldScale()
+	{
+		return Parent->ActorTransform.GetScale();
 	}
 }

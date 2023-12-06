@@ -3,11 +3,10 @@
 #include "Core.hpp"
 #include "ActorComponent.hpp"
 #include "Engine/Renderer/Interfaces/IRenderable.h"
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
-#include <SDL_render.h>
+
 #include <Data/Vectors/Vector2.hpp>
+
+
 
 namespace GameEngine
 {
@@ -23,7 +22,6 @@ namespace GameEngine
 
 
 		GAME_API Vector2 GetPosition();
-		GAME_API float GetScale();
 
 	protected:
 		std::shared_ptr<Sprite> LoadedSprite;
@@ -34,10 +32,11 @@ namespace GameEngine
 		// Inherited via IRenderable
 		const Texture& GetTexture() override;
 		const Rectangle& GetCrop() override;
-		const Rectangle& GetRect() override;
 		const Point2& GetCentre() override;
 		double GetRotation() override;
 		RenderFlip GetFlip() override;
+		const Vector2& GetWorldLocation() override;
+		const Vector2& GetWorldScale() override;
 
 	};
 }

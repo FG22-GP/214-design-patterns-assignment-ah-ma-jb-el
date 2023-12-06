@@ -12,7 +12,7 @@ namespace GameEngine
 	ActorComponent::~ActorComponent()
 	{
 		if (Parent != nullptr && 
-			Parent->TryRemoveComponent(std::shared_ptr<ActorComponent>(this)))
+			Parent->TryRemoveComponentRef(std::shared_ptr<ActorComponent>(this)))
 		{
 			//TryRemoveComponent() calls OnDestroy() if it succeeds
 		}
