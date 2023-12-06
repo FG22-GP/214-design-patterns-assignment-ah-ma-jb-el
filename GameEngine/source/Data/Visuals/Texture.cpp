@@ -14,14 +14,38 @@ namespace GameEngine
 			*renderer, surface
 		);
 		m_Texture.reset(texture);
+		int width, height;
+
+		SDL_QueryTexture(
+			texture, NULL, NULL, 
+			&width, &height
+		);
+		m_Width = width;
+		m_Height = height;
 	}
 
-	Texture::Texture(SDL_Texture* texture) :
-		m_Texture(texture){}
+	Texture::Texture(SDL_Texture* texture) : m_Texture(texture){
+		int width, height;
+
+		SDL_QueryTexture(
+			texture, NULL, NULL, 
+			&width, &height
+		);
+		m_Width = width;
+		m_Height = height;
+	}
 
 // GETTERS
 
-	SDL_Texture* Texture::ToSDL() const { 
+	uint32_t Texture::GetWidth() const {
+		return m_Width;
+	}
+
+	uint32_t Texture::GetHeight() const {
+		return m_Height;
+	}
+
+	SDL_Texture* Texture::ToSDL() const {
 		return m_Texture.get();
 	}
 

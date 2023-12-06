@@ -7,7 +7,7 @@ class AIState_Frightened;
 class AIState_Scatter;
 class AIState_Dead;
 
-class StateMachine_Component : ActorComponent
+class StateMachine_Component : public ActorComponent, public std::enable_shared_from_this<StateMachine_Component>
 {
 public:
     StateMachine_Component();
