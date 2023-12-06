@@ -146,5 +146,8 @@
     <ClInclude Include="source\Engine\Game\GameBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\Data\Enums\RenderFlip.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

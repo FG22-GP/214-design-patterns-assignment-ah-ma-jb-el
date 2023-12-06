@@ -35,9 +35,9 @@ namespace GameEngine
 		const Texture& GetTexture() override;
 		const Rectangle& GetCrop() override;
 		const Rectangle& GetRect() override;
-		double GetRotation() override;
 		const Point2& GetCentre() override;
-		SDL_RendererFlip GetFlip() override;
+		double GetRotation() override;
+		RenderFlip GetFlip() override;
 
 	};
 }

@@ -4,6 +4,7 @@
 
 namespace GameEngine
 {
+	enum class RenderFlip : uint8_t;
 	struct Texture;
 	struct Rectangle;
 	struct Point2;
@@ -15,6 +16,8 @@ namespace GameEngine
 
 		GAME_API Sprite(std::shared_ptr<Texture> texture);
 
+		GAME_API double GetRotation() const;
+		GAME_API RenderFlip GetFlip() const;
 		GAME_API const Texture& GetTexture() const;
 		GAME_API const Rectangle& GetCrop() const;
 		GAME_API const Rectangle& GetRect() const;
@@ -23,7 +26,7 @@ namespace GameEngine
 	private:
 
 		double m_Rotation;
-		uint32_t m_Flip;
+		RenderFlip m_Flip;
 
 		std::shared_ptr<Texture> m_Texture;
 

@@ -48,6 +48,7 @@
     <ClCompile Include="source\Engine\World\Actors\SpriteComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Data\Enums\RenderFlip.hpp" />
     <ClInclude Include="source\Engine\Game\GameBase.h" />
     <ClInclude Include="source\Data\Bounds\Rectangle.hpp" />
     <ClInclude Include="source\Data\Visuals\Sprite.hpp" />

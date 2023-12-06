@@ -75,7 +75,7 @@ namespace GameEngine
 			render.GetRect().ToSDL(),
 			render.GetRotation(),
 			render.GetCentre().ToSDL(),
-			render.GetFlip()
+			(SDL_RendererFlip)render.GetFlip()
 		);
 	}
 

@@ -38,15 +38,15 @@ namespace GameEngine
 	}
 	double SpriteComponent::GetRotation()
 	{
-		return GetParent()->ActorTransform.GetRotation();
+		return GetParent()->ActorTransform.GetRotation() + 
+			   LoadedSprite->GetRotation();
 	}
 	const Point2& SpriteComponent::GetCentre()
 	{
 		return LoadedSprite->GetCentre();
 	}
-	SDL_RendererFlip SpriteComponent::GetFlip()
+	RenderFlip SpriteComponent::GetFlip()
 	{
-		//TODO
-		return SDL_RendererFlip();
+		return LoadedSprite->GetFlip();
 	}
 }
