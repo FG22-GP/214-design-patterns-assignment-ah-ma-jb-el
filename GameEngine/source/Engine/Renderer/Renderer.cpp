@@ -29,20 +29,20 @@ namespace GameEngine
 
 	Point2 Renderer::GetResolution() const {
 		return Point2(
-			m_Resolution->x,
-			m_Resolution->y
+			m_Resolution->GetX(),
+			m_Resolution->GetY()
 		);
 	}
 
 // SETTINGS
 
 	void Renderer::SetResolution(const uint32_t width, const uint32_t height){
-		m_Resolution->x = width;
-		m_Resolution->y = height;
+		m_Resolution->SetX(width);
+		m_Resolution->SetY(height);
 	}
 
 	void Renderer::SetResolution(const Point2& resolution){
-		SetResolution(resolution.x, resolution.y);
+		SetResolution(resolution.GetX(), resolution.GetY());
 	}
 
 
@@ -99,10 +99,10 @@ namespace GameEngine
 
 		//Uses the window resolution to determine pixel position, width and height
 		return Rectangle(
-			static_cast<uint32_t>(m_Resolution.get()->x * TopLeftNormalized.X),
-			static_cast<uint32_t>(m_Resolution.get()->y * TopLeftNormalized.Y),
-			static_cast<uint32_t>(m_Resolution.get()->x * WorldScale.X / CameraSize.X),
-			static_cast<uint32_t>(m_Resolution.get()->y * WorldScale.Y / CameraSize.Y));
+			static_cast<uint32_t>(m_Resolution.get()->GetX() * TopLeftNormalized.X),
+			static_cast<uint32_t>(m_Resolution.get()->GetY() * TopLeftNormalized.Y),
+			static_cast<uint32_t>(m_Resolution.get()->GetX() * WorldScale.X / CameraSize.X),
+			static_cast<uint32_t>(m_Resolution.get()->GetY() * WorldScale.Y / CameraSize.Y));
 	}
 
 // OPERATORS

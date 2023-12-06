@@ -90,8 +90,8 @@ namespace GameEngine
 		return *m_Rect;
 	}
 
-	void Rectangle::Deleter::operator()(SDL_Rect*) const noexcept {
-
+	void Rectangle::Deleter::operator()(SDL_Rect* r) const noexcept {
+		r = nullptr;
 	}
 
 }

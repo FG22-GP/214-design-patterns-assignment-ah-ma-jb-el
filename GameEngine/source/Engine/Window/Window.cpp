@@ -45,14 +45,12 @@ namespace GameEngine
 	}
 
 	Point2 Window::GetSize() const {
-		Point2 point;
+		int x, y;
 
 		SDL_GetWindowSize(
-			m_Window.get(),
-			&point.x,
-			&point.y
+			m_Window.get(), &x, &y
 		);
-		return point;
+		return Point2(x, y);
 	}
 
 // WINDOW

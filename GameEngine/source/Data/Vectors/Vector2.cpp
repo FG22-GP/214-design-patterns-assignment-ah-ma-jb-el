@@ -11,8 +11,8 @@ namespace GameEngine
 	}
 	Vector2::Vector2(const Point2& Point)
 	{
-		X = static_cast<float>(Point.x);
-		Y = static_cast<float>(Point.y);
+		X = static_cast<float>(Point.GetX());
+		Y = static_cast<float>(Point.GetY());
 	}
 	Vector2::Vector2(int X, int Y)
 	{

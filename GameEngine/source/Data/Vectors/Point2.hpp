@@ -2,52 +2,62 @@
 
 #include "Core.hpp"
 
+struct SDL_Point;
+
 namespace GameEngine
 {
 	enum Directions
 	{
-		Up = 0,
-		Down = 1,
+		Up	  = 0,
+		Down  = 1,
 		Right = 2,
-		Left = 3
+		Left  = 3
 	};
-
-	struct GAME_API Point2
+	struct Point2
 	{
-		int32_t x;
-		int32_t y;
+	public:
 
-#pragma region Static Directions
+		GAME_API Point2();
+		GAME_API Point2(const uint32_t x, const uint32_t y);
+		GAME_API Point2(const SDL_Point& point);
+		GAME_API Point2(const Point2&);
+		GAME_API ~Point2();
 
-		static Point2 Up();
-		static Point2 Down();
-		static Point2 Right();
-		static Point2 Left();
-		static Point2 DirectionVector(Directions Dir);
-		static std::vector<Point2> AllDirections();
+	// PRESETS
 
-#pragma endregion
+		GAME_API static Point2 Up();
+		GAME_API static Point2 Down();
+		GAME_API static Point2 Right();
+		GAME_API static Point2 Left();
+		GAME_API static Point2 DirectionVector(Directions Dir);
+		GAME_API static std::vector<Point2> AllDirections();
 
-		bool operator==(const Point2& other) const
-		{
-			return (x == other.x) && (y == other.y);
-		}
+	// GETTERS
+	
+		GAME_API int32_t GetX() const;
+		GAME_API int32_t GetY() const;
 
-		Point2 operator+(const Point2& other) const
-		{
-			Point2 result;
-			result.x = x + other.x;
-			result.y = y + other.y;
-			return result;
-		}
+		GAME_API SDL_Point* ToSDL() const;
 
-		Point2 operator-(const Point2& other) const
-		{
-			Point2 result;
-			result.x = x - other.x;
-			result.y = y - other.y;
-			return result;
-		}
+	// SETTERS
+	
+		GAME_API void SetX(const uint32_t x);
+		GAME_API void SetY(const uint32_t y);
+		GAME_API void Set(const uint32_t x, const uint32_t y);
+
+	// OPERATORS
+
+		GAME_API bool operator == (const Point2& other) const;
+		GAME_API Point2 operator + (const Point2& other) const;
+		GAME_API Point2 operator - (const Point2& other) const;
+		GAME_API Point2& operator = (const Point2& other);
+
+		GAME_API operator SDL_Point* ();
+
+	private:
+
+		struct Deleter { void operator ()(SDL_Point*) const noexcept; };
+		std::unique_ptr<SDL_Point, Deleter> m_Point;
 
 	};
 }

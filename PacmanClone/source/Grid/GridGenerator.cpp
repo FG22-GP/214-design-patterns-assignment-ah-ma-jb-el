@@ -14,9 +14,7 @@ std::shared_ptr<GameGrid> GridGenerator::GenerateGrid(uint16_t Width, uint16_t H
 	for (int i = 0; i < Width * Height; i++)
 	{
 		std::shared_ptr<GridCell> NewCell = std::make_shared<GridCell>(Grid);
-		Point2 Coordinate;
-		Coordinate.x = i / Width;
-		Coordinate.y = i % Width;
+		Point2 Coordinate(i / Width, i % Width);
 		NewCell->Coordinate = Coordinate;
 
 		switch (CellRules[i])
@@ -70,14 +68,14 @@ std::shared_ptr<GameGrid> GridGenerator::GenerateGrid(uint16_t Width, uint16_t H
 
 			// Ugly vector modulo operations for wrapping the board's edges
 			bool bIsEdge = true;
-			if (NeighbourCoord.x < 0)
-				NeighbourCoord.x += Width;
-			else if (NeighbourCoord.x >= Width)
-				NeighbourCoord.x -= Width;
-			else if (NeighbourCoord.y < 0)
-				NeighbourCoord.y += Height;
-			else if (NeighbourCoord.y >= Height)
-				NeighbourCoord.y -= Height;
+			if (NeighbourCoord.GetX() < 0)
+				NeighbourCoord.SetX(NeighbourCoord.GetX() + Width);
+			else if (NeighbourCoord.GetX() >= Width)
+				NeighbourCoord.SetX(NeighbourCoord.GetX() - Width);
+			else if (NeighbourCoord.GetY() < 0)
+				NeighbourCoord.SetY(NeighbourCoord.GetY() + Height);
+			else if (NeighbourCoord.GetY() >= Height)
+				NeighbourCoord.SetY(NeighbourCoord.GetY() - Height);
 			else
 				bIsEdge = false;
 
