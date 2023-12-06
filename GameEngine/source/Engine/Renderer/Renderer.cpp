@@ -87,8 +87,11 @@ namespace GameEngine
 
 	Rectangle Renderer::GetScreenRectFromWorldLocation(const Vector2& WorldCenter, const Vector2& WorldScale) const
 	{
+		if (m_Resolution == nullptr || CameraSize.X == 0 || CameraSize.Y == 0)
+			return Rectangle(0, 0, 0, 0);
+
 		//Gives X=[0-1] and Y=[0-1] describing screen position for top left corner.
-		Vector2 TopLeftNormalized = Vector2::InverseAxisLerp(
+		Vector2 TopLeftNormalized = Vector2::InverseLerpByAxis(
 			CameraTopLeftLocation,
 			CameraTopLeftLocation + CameraSize,
 			WorldCenter - WorldScale / 2.0f

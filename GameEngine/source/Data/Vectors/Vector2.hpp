@@ -31,6 +31,6 @@ namespace GameEngine
 		GAME_API static Vector2 Lerp(const Vector2& A, const Vector2& B, float Alpha);
 		
 		// Gives you a Vector where X and Y are individually inverselerped. No clamping.
-		GAME_API static Vector2 InverseAxisLerp(const Vector2& A, const Vector2& B, const Vector2& Point);
+		GAME_API static Vector2 InverseLerpByAxis(const Vector2& A, const Vector2& B, const Vector2& Point);
 	};
 }
