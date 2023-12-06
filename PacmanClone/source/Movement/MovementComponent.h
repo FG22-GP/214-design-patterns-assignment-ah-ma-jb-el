@@ -12,8 +12,6 @@ class MovementComponent : ActorComponent
 {
     
 public:
-    void NextCell(std::shared_ptr<GridCell> currentCell, float DeltaTime);
-    
     void SetDirection(Directions direction);
     void SetLerpDuration(float duration);
 
@@ -31,8 +29,8 @@ private:
     std::shared_ptr<GridCell> StartCell;
     std::shared_ptr<GridCell> TargetCell;
 
+    void NextCell();
     void LerpMovement(float DeltaTime);
     Vector2 WrapLerp(Vector2 start, Vector2 target, float T);
-
     bool IsWrapLink(std::shared_ptr<GridLink>& link);
 };

@@ -10,16 +10,19 @@ void MovementComponent::Tick(float DeltaTime)
 {
     ActorComponent::Tick(DeltaTime);
 
-    NextCell(nullptr, DeltaTime);
+    NextCell();
     LerpMovement(DeltaTime);
 }
 
-void MovementComponent::NextCell(std::shared_ptr<GridCell> currentCell, float DeltaTime)
+void MovementComponent::NextCell()
 {
     if (StartCell != nullptr && TargetCell != nullptr) { return; }
 
-    //should be something like StartCell = actor->GetComponent->GetCurrentCell in future !
-    StartCell = currentCell;
+    /*
+    Should be something like
+    StartCell = actor->GetComponent->GetCurrentCell
+    */
+    
     std::shared_ptr<GridLink> targetLink = StartCell->Links[newDirection];
     std::shared_ptr<GridCell> targetCell = targetLink->Target;
     if (targetLink->Target != nullptr && targetLink->Target->bIsWalkable)
