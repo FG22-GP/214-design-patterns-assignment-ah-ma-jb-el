@@ -9,12 +9,17 @@
 void StateMachine_Component::OnStart()
 {
     ActorComponent::OnStart();
-    
+
+    std::shared_ptr<StateMachine_Component> thisMachine = shared_from_this();
     
     ChaseState = std::make_shared<AIState_Chasing>();
+    ChaseState->SetMachine(thisMachine);
     FrightenedState = std::make_shared<AIState_Frightened>();
+    FrightenedState->SetMachine(thisMachine);
     ScatterState = std::make_shared<AIState_Scatter>();
+    ScatterState->SetMachine(thisMachine);
     DeadState = std::make_shared<AIState_Dead>();
+    DeadState->SetMachine(thisMachine);
 
     CurrentState = ChaseState;
 }
