@@ -7,6 +7,7 @@
 #include "Game\PacmanLevelInfoParser.h"
 #include "Engine\File\FileReader.hpp"
 #include "Grid\GridGenerator.h"
+#include "ZakuMan/ZakuMan.hpp"
 
 void PacmanGame::Initialize()
 {
@@ -20,7 +21,7 @@ void PacmanGame::Initialize()
 	std::shared_ptr<GameGrid> Grid;
 	if (LevelInfo.bIsValid)
 		Grid = GridGenerator::GenerateGrid(GameWorld, LevelInfo.Width, LevelInfo.Height, LevelInfo.Content, LevelInfo.Rules);
-
+	
 	bUseTestFunctions = false;
 	if (bUseTestFunctions)
 		TEST_Init();
@@ -71,7 +72,27 @@ void PacmanGame::TEST_Init()
 	SpriteComp->Initialize(TestSprite);
 
 	//Grabs a test level info struct, just to check that it's valid
-	PacmanLevelInfo Info = PacmanLevelInfoParser::GetTestLevelInfo();	
+	PacmanLevelInfo Info = PacmanLevelInfoParser::GetTestLevelInfo();
+
+	/* ----ZAKU TEST STUFF ---- 
+	std::shared_ptr<ZakuMan> Zaku = GameWorld->CreateActor<ZakuMan>();
+	Zaku->ActorTransform.SetLocation(Vector2(1.5f, 1.5f));
+	
+	std::shared_ptr<Texture> TestTexture = std::make_shared<Texture>(
+	m_Window->GetRenderer(),
+	TestPath
+	);
+
+	std::shared_ptr<Sprite> TestSprite = std::make_shared<Sprite>(
+		TestTexture,
+		Rectangle(0, 0, TestTexture->GetWidth(), TestTexture->GetHeight()),
+		Rectangle(0, 0, 0, 0),
+		Point2(0, 0),
+		RenderFlip::None,
+		0.0f
+	);
+	Zaku->GetSpriteComponent()->Initialize(TestSprite);
+	*/
 }
 
 void PacmanGame::TEST_Tick(float DeltaTime)
