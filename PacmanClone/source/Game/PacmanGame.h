@@ -25,7 +25,7 @@ protected:
     void TEST_Tick(float DeltaTime);
     std::shared_ptr<Actor> TestActor;
     std::string TestPath = 
-        "C:/Users/lunne/Desktop/Unreal Projects/214-design-patterns-assignment-ah-ma-jb-el/PacmanClone/Sprites/TestSprite.png";
+        "Sprites/TestSprite.png";
 
 };
 

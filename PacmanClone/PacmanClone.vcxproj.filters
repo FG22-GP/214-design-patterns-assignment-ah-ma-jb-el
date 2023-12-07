@@ -195,4 +195,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="MapGenFiles\LevelInfo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Sprites\TestSprite.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

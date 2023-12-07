@@ -207,6 +207,12 @@
     <ClInclude Include="source\World\Actors\SpriteComponent.hpp" />
     <ClInclude Include="source\World\World.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="MapGenFiles\LevelInfo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Sprites\TestSprite.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

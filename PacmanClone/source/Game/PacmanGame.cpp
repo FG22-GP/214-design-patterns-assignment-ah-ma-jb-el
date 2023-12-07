@@ -5,15 +5,18 @@
 #include "World\Actors\Actor.hpp"
 #include "World\Actors\SpriteComponent.hpp"
 #include "Game\PacmanLevelInfoParser.h"
+#include "Engine\File\FileReader.hpp"
 
 void PacmanGame::Initialize()
 {
 	GameBase::Initialize();
 
 	GameWorld = std::make_unique<World>();
-	
-	bUseTestFunctions = false;
 
+	std::vector<std::string> CSVStrings = FileReader::ReadCSVFile("MapGenFiles/LevelInfo.txt");
+	PacmanLevelInfo LevelInfo = PacmanLevelInfoParser::ParseFromStringVector(CSVStrings);
+	
+	bUseTestFunctions = true;
 	if (bUseTestFunctions)
 		TEST_Init();
 }
@@ -63,7 +66,7 @@ void PacmanGame::TEST_Init()
 	SpriteComp->Initialize(TestSprite);
 
 	//Grabs a test level info struct, just to check that it's valid
-	PacmanLevelInfo Info = PacmanLevelInfoParser::GetTestLevelInfo();
+	PacmanLevelInfo Info = PacmanLevelInfoParser::GetTestLevelInfo();	
 }
 
 void PacmanGame::TEST_Tick(float DeltaTime)
