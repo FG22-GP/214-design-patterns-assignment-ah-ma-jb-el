@@ -33,8 +33,6 @@ void StateMachine_Component::Tick(float DeltaTime)
     CurrentState->OnStateRunning();
 }
 
-
-
 void StateMachine_Component::PushNewState(std::shared_ptr<IAIState> newState)
 {
     if (newState == nullptr || newState == CurrentState) { return; }
