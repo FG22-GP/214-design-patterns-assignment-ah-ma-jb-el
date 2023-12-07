@@ -1,2 +1,2 @@
 #include "PacmanCore.h"
-#include "IGhost.h"
+#include "IPickUp.h"

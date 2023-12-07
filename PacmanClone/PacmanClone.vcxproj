@@ -166,6 +166,10 @@
     <ClCompile Include="source\Grid\GridCell.cpp" />
     <ClCompile Include="source\Grid\GameGrid.cpp" />
     <ClCompile Include="source\Game.cpp" />
+    <ClCompile Include="source\PickUps\Cookie.cpp" />
+    <ClCompile Include="source\PickUps\Dot.cpp" />
+    <ClCompile Include="source\PickUps\Fruit.cpp" />
+    <ClCompile Include="source\PickUps\IPickUp.cpp" />
     <ClCompile Include="source\World\Actors\Actor.cpp" />
     <ClCompile Include="source\World\Actors\ActorComponent.cpp" />
     <ClCompile Include="source\World\Actors\SpriteComponent.cpp" />
@@ -192,6 +196,10 @@
     <ClInclude Include="source\Grid\GridLink.h" />
     <ClInclude Include="source\Grid\GridCell.h" />
     <ClInclude Include="source\Grid\GameGrid.h" />
+    <ClInclude Include="source\PickUps\Cookie.h" />
+    <ClInclude Include="source\PickUps\Dot.h" />
+    <ClInclude Include="source\PickUps\Fruit.h" />
+    <ClInclude Include="source\PickUps\IPickUp.h" />
     <ClInclude Include="source\World\Actors\Actor.hpp" />
     <ClInclude Include="source\World\Actors\ActorComponent.hpp" />
     <ClInclude Include="source\World\Actors\SpriteComponent.hpp" />
