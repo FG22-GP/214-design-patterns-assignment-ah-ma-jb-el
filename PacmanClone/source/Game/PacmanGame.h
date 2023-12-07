@@ -16,7 +16,7 @@ public:
     virtual void HandleRendering() override;
 
 protected:
-    std::unique_ptr<World> GameWorld;
+    std::shared_ptr<World> GameWorld;
 
     //TESTING
     //This is test code to show how to make textures, sprites, actors and sprite components.

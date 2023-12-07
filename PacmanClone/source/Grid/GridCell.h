@@ -2,20 +2,24 @@
 
 #include "PacmanCore.h"
 #include "GridLink.h"
+#include "World\Actors\Actor.hpp"
 
 class GridCellContent;
 class GameGrid;
 
-class GridCell
+class GridCell : public Actor
 {
 
 public:
-	GridCell(std::shared_ptr<GameGrid> ParentGrid);
+	GridCell(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTransform) :
+		Actor(ParentWorld, StartTransform) {}
+
+	void Initialize(std::shared_ptr<GameGrid> ParentGrid);
 	
-	bool bIsWalkable;
-	bool bIsGhostWalkable;
-	bool bGhostCannotWalkUp;
-	bool bGhostIsSlowed;
+	bool bIsWalkable = false;
+	bool bIsGhostWalkable = false;
+	bool bGhostCannotWalkUp = false;
+	bool bGhostIsSlowed = false;
 
 	//Use Directions from Point2.hpp to keep track of indices
 	std::vector<std::shared_ptr<GridLink>> Links;

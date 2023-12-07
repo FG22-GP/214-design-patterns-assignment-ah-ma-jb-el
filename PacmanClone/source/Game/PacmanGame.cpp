@@ -12,14 +12,14 @@ void PacmanGame::Initialize()
 {
 	GameBase::Initialize();
 
-	GameWorld = std::make_unique<World>();
+	GameWorld = std::make_shared<World>();
 
 	std::vector<std::string> CSVStrings = FileReader::ReadCSVFile("MapGenFiles/LevelInfo.txt");
 	PacmanLevelInfo LevelInfo = PacmanLevelInfoParser::ParseFromStringVector(CSVStrings);
 	
 	std::shared_ptr<GameGrid> Grid;
 	if (LevelInfo.bIsValid)
-		Grid = GridGenerator::GenerateGrid(LevelInfo.Width, LevelInfo.Height, LevelInfo.Content, LevelInfo.Rules);
+		Grid = GridGenerator::GenerateGrid(GameWorld, LevelInfo.Width, LevelInfo.Height, LevelInfo.Content, LevelInfo.Rules);
 
 	bUseTestFunctions = false;
 	if (bUseTestFunctions)

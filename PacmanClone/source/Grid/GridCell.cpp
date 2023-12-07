@@ -1,7 +1,7 @@
 #include "PacmanCore.h"
 #include "GridCell.h"
 
-GridCell::GridCell(std::shared_ptr<GameGrid> ParentGrid)
+void GridCell::Initialize(std::shared_ptr<GameGrid> ParentGrid)
 {
 	Grid = ParentGrid;
 	bIsWalkable = false;

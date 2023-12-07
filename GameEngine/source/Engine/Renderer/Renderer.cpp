@@ -25,7 +25,7 @@ namespace GameEngine
 		);
 
 		CameraSize = Vector2(28, 36);
-		CameraTopLeftLocation = Vector2(0, 0);
+		CameraTopLeftLocation = Vector2(-0.5f, -0.5f);
 	}
 
 // GETTERS

@@ -5,17 +5,19 @@
 #include "GridLink.h"
 #include "GridWrapLink.h"
 #include "GridCellContent.h"
+#include "World\World.hpp"
 
-std::shared_ptr<GameGrid> GridGenerator::GenerateGrid(uint16_t Width, uint16_t Height, std::vector<CellContent> CellContents, std::vector<CellRule> CellRules)
+std::shared_ptr<GameGrid> GridGenerator::GenerateGrid(std::shared_ptr<World> ParentWorld, uint16_t Width, uint16_t Height, std::vector<CellContent> CellContents, std::vector<CellRule> CellRules)
 {
 	std::shared_ptr<GameGrid> Grid = std::make_shared<GameGrid>(Width, Height);
 
 	// Generate all cells with coordinates, walkable rules and spawn food content.
 	for (int i = 0; i < Width * Height; i++)
 	{
-		std::shared_ptr<GridCell> NewCell = std::make_shared<GridCell>(Grid);
-		Point2 Coordinate(i / Width, i % Width);
+		std::shared_ptr<GridCell> NewCell = ParentWorld->CreateActor<GridCell>();
+		Point2 Coordinate(i % Width, i / Width);
 		NewCell->Coordinate = Coordinate;
+		NewCell->ActorTransform.SetLocation(Coordinate);
 
 		switch (CellRules[i])
 		{
