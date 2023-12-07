@@ -10,7 +10,8 @@ void PacmanGame::Initialize()
 	GameBase::Initialize();
 
 	GameWorld = std::make_unique<World>();
-	/*
+
+	/* This is test code to show how to make textures, sprites, actors and sprite components.
 	std::shared_ptr<Texture> TestTexture = std::make_shared<Texture>(
 		m_Window->GetRenderer(),
 		"C:/Users/lunne/Desktop/Unreal Projects/214-design-patterns-assignment-ah-ma-jb-el/PacmanClone/Sprites/TestSprite.png"
@@ -26,7 +27,7 @@ void PacmanGame::Initialize()
 	);
 
 	std::shared_ptr<Actor> TestActor = GameWorld->CreateActor<Actor>();
-	TestActor->ActorTransform.SetLocation(Vector2(2, 2));
+	TestActor->ActorTransform.SetLocation(Vector2(5, 5));
 	auto SpriteComp = TestActor->AddComponent<SpriteComponent>();
 	SpriteComp->Initialize(TestSprite);*/
 }

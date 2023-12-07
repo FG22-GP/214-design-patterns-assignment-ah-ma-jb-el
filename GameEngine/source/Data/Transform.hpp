@@ -9,7 +9,7 @@ namespace GameEngine
 	{
 	public:
 		//Default constructor
-		Transform() : Location(Vector2(0, 0)), Rotation(0.0f), Scale(Vector2(0, 0)) {}
+		Transform() : Location(Vector2(0, 0)), Rotation(0.0f), Scale(Vector2(1, 1)) {}
 
 		const Vector2& GetLocation() const { return Location; }
 		float GetRotation() const { return Rotation; }

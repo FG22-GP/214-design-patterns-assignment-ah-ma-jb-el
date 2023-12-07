@@ -23,6 +23,9 @@ namespace GameEngine
 		m_Resolution.reset(
 			new Point2(window.GetSize())
 		);
+
+		CameraSize = Vector2(28, 36);
+		CameraTopLeftLocation = Vector2(0, 0);
 	}
 
 // GETTERS
@@ -68,11 +71,13 @@ namespace GameEngine
 	}
 
 	void Renderer::Draw(IRenderable& render){
+		Rectangle rect = GetScreenRectFromWorldLocation(render.GetWorldLocation(), render.GetWorldScale());
+
 		SDL_RenderCopyEx(
 			m_Renderer.get(),
 			render.GetTexture().ToSDL(),
 			render.GetCrop().ToSDL(),
-			GetScreenRectFromWorldLocation(render.GetWorldLocation(), render.GetWorldScale()).ToSDL(),
+			rect.ToSDL(),
 			render.GetRotation(),
 			render.GetCentre().ToSDL(),
 			(SDL_RendererFlip)render.GetFlip()
