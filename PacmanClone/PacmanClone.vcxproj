@@ -146,7 +146,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\Game\PacmanGame.cpp" />
-    <ClCompile Include="source\Ghosts\States\AIState_Base.cpp" />
+    <ClCompile Include="source\Ghosts\Ghost_Anton.cpp" />
+    <ClCompile Include="source\Ghosts\Ghost_Erik.cpp" />
+    <ClCompile Include="source\Ghosts\Ghost_Johan.cpp" />
+    <ClCompile Include="source\Ghosts\Ghost_Magnus.cpp" />
+    <ClCompile Include="source\Ghosts\IGhost.cpp" />
+    <ClCompile Include="source\Ghosts\States\IAIState.cpp" />
     <ClCompile Include="source\Ghosts\States\AIState_Chasing.cpp" />
     <ClCompile Include="source\Ghosts\States\AIState_Dead.cpp" />
     <ClCompile Include="source\Ghosts\States\AIState_Frightened.cpp" />
@@ -161,10 +166,19 @@
     <ClCompile Include="source\Grid\GridCell.cpp" />
     <ClCompile Include="source\Grid\GameGrid.cpp" />
     <ClCompile Include="source\Game.cpp" />
+    <ClCompile Include="source\World\Actors\Actor.cpp" />
+    <ClCompile Include="source\World\Actors\ActorComponent.cpp" />
+    <ClCompile Include="source\World\Actors\SpriteComponent.cpp" />
+    <ClCompile Include="source\World\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Game\PacmanGame.h" />
-    <ClInclude Include="source\Ghosts\States\AIState_Base.h" />
+    <ClInclude Include="source\Ghosts\Ghost_Anton.h" />
+    <ClInclude Include="source\Ghosts\Ghost_Erik.h" />
+    <ClInclude Include="source\Ghosts\Ghost_Johan.h" />
+    <ClInclude Include="source\Ghosts\Ghost_Magnus.h" />
+    <ClInclude Include="source\Ghosts\IGhost.h" />
+    <ClInclude Include="source\Ghosts\States\IAIState.h" />
     <ClInclude Include="source\Ghosts\States\AIState_Chasing.h" />
     <ClInclude Include="source\Ghosts\States\AIState_Dead.h" />
     <ClInclude Include="source\Ghosts\States\AIState_Frightened.h" />
@@ -178,6 +192,10 @@
     <ClInclude Include="source\Grid\GridLink.h" />
     <ClInclude Include="source\Grid\GridCell.h" />
     <ClInclude Include="source\Grid\GameGrid.h" />
+    <ClInclude Include="source\World\Actors\Actor.hpp" />
+    <ClInclude Include="source\World\Actors\ActorComponent.hpp" />
+    <ClInclude Include="source\World\Actors\SpriteComponent.hpp" />
+    <ClInclude Include="source\World\World.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -19,6 +19,11 @@ namespace GameEngine
 		this->X = static_cast<float>(X);
 		this->Y = static_cast<float>(Y);
 	}
+	Vector2::Vector2(float X, float Y)
+	{
+		this->X = X;
+		this->Y = Y;
+	}
 	Vector2 Vector2::operator+(const Vector2& other) const
 	{
 		Vector2 Result;

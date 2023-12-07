@@ -15,6 +15,7 @@ namespace GameEngine
 		GAME_API Rectangle(const uint32_t x, const uint32_t y, const uint32_t width, const uint32_t height);
 		GAME_API Rectangle(const Rectangle& rectangle);
 		GAME_API Rectangle(const SDL_Rect& rectangle);
+		GAME_API ~Rectangle();
 
 	// GETTERS
 

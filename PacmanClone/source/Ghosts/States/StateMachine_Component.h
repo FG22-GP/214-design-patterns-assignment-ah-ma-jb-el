@@ -1,20 +1,18 @@
 ﻿#pragma once
-#include "Engine/World/Actors/ActorComponent.hpp"
+#include "World\Actors\ActorComponent.hpp"
 
-class AIState_Base;
+class IAIState;
 class AIState_Chasing;
 class AIState_Frightened;
 class AIState_Scatter;
 class AIState_Dead;
 
-class StateMachine_Component : public ActorComponent, public std::enable_shared_from_this<StateMachine_Component>
+class StateMachine_Component : public ActorComponent
 {
 public:
-    StateMachine_Component();
-    
-    std::shared_ptr<AIState_Base> CurrentState;
+    std::shared_ptr<IAIState> CurrentState;
 
-    void PushNewState(std::shared_ptr<AIState_Base> newState);
+    void PushNewState(std::shared_ptr<IAIState> newState);
     
 protected:
     void OnStart() override;

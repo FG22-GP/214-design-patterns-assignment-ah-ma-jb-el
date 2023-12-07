@@ -13,7 +13,6 @@ namespace GameEngine
 		m_Window = Window::Create(
 			"Pack-Man Clone", 800, 600
 		);
-		GameWorld = std::make_unique<World>();
 	}
 
 	void GameBase::Run()
@@ -33,12 +32,12 @@ namespace GameEngine
 			DeltaTime = FrameStart - LastWorldTick;
 			if (DeltaTime > 0)
 			{
-				GameWorld->Tick(static_cast<float>(DeltaTime * 0.001));
+				HandleTick(static_cast<float>(DeltaTime * 0.001));
 				LastWorldTick = FrameStart;
 			}
 
 			m_Window->StartDrawing();
-			GameWorld->RenderAllRegisteredActors();
+			HandleRendering();
 			m_Window->StopDrawing();
 
 			FrameEnd = SDL_GetTicks();

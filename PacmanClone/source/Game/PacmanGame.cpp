@@ -2,17 +2,49 @@
 #include "PacmanGame.h"
 #include "Data/Visuals/Texture.hpp"
 #include "Data/Visuals/Sprite.hpp"
-#include "Engine/World/Actors/Actor.hpp"
-#include "Engine/World/World.hpp"
-#include "Engine/World/Actors/SpriteComponent.hpp"
+#include "World\Actors\Actor.hpp"
+#include "World\Actors\SpriteComponent.hpp"
 
 void PacmanGame::Initialize()
 {
 	GameBase::Initialize();
-	/*
+
+	GameWorld = std::make_unique<World>();
+	
+	bUseTestFunctions = false;
+
+	if (bUseTestFunctions)
+		TEST_Init();
+}
+
+void PacmanGame::Run()
+{
+	GameBase::Run();
+}
+
+void PacmanGame::Exit()
+{
+	GameBase::Exit();
+}
+
+void PacmanGame::HandleTick(float DeltaTime)
+{
+	GameWorld->Tick(DeltaTime);
+	if (bUseTestFunctions)
+		TEST_Tick(DeltaTime);
+}
+
+void PacmanGame::HandleRendering()
+{
+	GameWorld->RenderAllRegisteredActors();
+}
+
+//This is test code to show how to make textures, sprites, actors and sprite components.
+void PacmanGame::TEST_Init()
+{
 	std::shared_ptr<Texture> TestTexture = std::make_shared<Texture>(
 		m_Window->GetRenderer(),
-		"C:/Users/anton.hedlund/UnrealProjects/214-design-patterns-assignment-ah-ma-jb-el/PacmanClone/Sprites/TestSprite.png"
+		TestPath
 	);
 
 	std::shared_ptr<Sprite> TestSprite = std::make_shared<Sprite>(
@@ -24,17 +56,13 @@ void PacmanGame::Initialize()
 		0.0f
 	);
 
-	auto TestActor = GameWorld->CreateActor<Actor>();
-	TestActor->AddComponent<SpriteComponent>();
-	*/
+	TestActor = GameWorld->CreateActor<Actor>();
+	TestActor->ActorTransform.SetLocation(Vector2(0.5f, 0.5f));
+	auto SpriteComp = TestActor->AddComponent<SpriteComponent>();
+	SpriteComp->Initialize(TestSprite);
 }
 
-void PacmanGame::Run()
+void PacmanGame::TEST_Tick(float DeltaTime)
 {
-	GameBase::Run();
-}
-
-void PacmanGame::Exit()
-{
-	GameBase::Exit();
+	TestActor->ActorTransform.AddLocation(Vector2(1, 1) * DeltaTime);
 }

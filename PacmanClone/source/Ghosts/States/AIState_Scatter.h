@@ -1,9 +1,10 @@
 ﻿#pragma once
-#include "AIState_Base.h"
+#include "IAIState.h"
 
-class AIState_Scatter : public AIState_Base
+class AIState_Scatter : public IAIState
 {
 public:
+    AIState_Scatter(const std::shared_ptr<IGhost>& ghost);
     void OnStateEnter() override;
     void OnStateRunning() override;
     void OnStateExit() override;
