@@ -22,6 +22,16 @@ namespace GameEngine
 		m_Flip(flip),
 		m_Rotation(rotation){}
 
+	Sprite::Sprite(const Sprite& sprite) :
+		m_Texture(sprite.m_Texture),
+		m_Crop(new Rectangle(*sprite.m_Crop.get())),
+		m_Rect(new Rectangle(*sprite.m_Rect.get())),
+		m_Centre(new Point2(*sprite.m_Centre.get())),
+		m_Flip(sprite.m_Flip),
+		m_Rotation(sprite.m_Rotation){}
+
+	Sprite::~Sprite() = default;
+
 // GETTERS
 
 	double Sprite::GetRotation() const {
@@ -50,10 +60,29 @@ namespace GameEngine
 
 // OPERATORS
 
-	void Sprite::CropDeleter::operator()(Rectangle* r) const noexcept { delete r; }
+	Sprite& Sprite::operator=(const Sprite& other){
+		m_Texture = other.m_Texture;
 
-	void Sprite::RectDeleter::operator()(Rectangle* r) const noexcept { delete r; }
+		m_Crop.release();
+		m_Crop.reset(new Rectangle(*other.m_Crop));	
+		
+		m_Rect.release();
+		m_Rect.reset(new Rectangle(*other.m_Rect));
 
-	void Sprite::CentreDeleter::operator()(Point2* p) const noexcept { delete p; }
+		m_Centre.release();
+		m_Centre.reset(new Point2(*other.m_Centre));
+
+		m_Flip	   = other.m_Flip;
+		m_Rotation = other.m_Rotation;
+
+		return *this;
+	}
+
+
+	void Sprite::CropDeleter::operator()(Rectangle* r) const noexcept { delete(r); }
+
+	void Sprite::RectDeleter::operator()(Rectangle* r) const noexcept { delete(r); }
+
+	void Sprite::CentreDeleter::operator()(Point2* p) const noexcept { delete(p); }
 
 }

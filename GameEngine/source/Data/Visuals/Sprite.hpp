@@ -17,6 +17,9 @@ namespace GameEngine
 		GAME_API Sprite(std::shared_ptr<Texture> texture, const Rectangle& crop, 
 			const Rectangle& rect, const Point2& centre, const RenderFlip flip, const double rotation);
 
+		GAME_API Sprite(const Sprite& sprite);
+		GAME_API ~Sprite();
+
 	// GETTERS
 
 		GAME_API double GetRotation() const;
@@ -25,6 +28,10 @@ namespace GameEngine
 		GAME_API const Rectangle& GetCrop() const;
 		GAME_API const Rectangle& GetRect() const;
 		GAME_API const Point2& GetCentre() const;
+
+	// OPERATORS
+
+		GAME_API Sprite& operator = (const Sprite& other);
 
 	private:
 

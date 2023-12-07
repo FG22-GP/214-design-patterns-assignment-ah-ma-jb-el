@@ -13,7 +13,9 @@ namespace GameEngine
 	public:
 
 		GAME_API Texture(std::shared_ptr<Renderer> renderer, const std::string& filepath);
+		GAME_API Texture(const Texture& texture);
 		GAME_API Texture(SDL_Texture* texture);
+		GAME_API ~Texture();
 
 	// GETTERS
 

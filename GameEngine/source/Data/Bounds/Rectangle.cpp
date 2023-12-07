@@ -85,6 +85,16 @@ namespace GameEngine
 
 // OPERATORS
 
+	Rectangle& Rectangle::operator = (const Rectangle& other){
+		m_Rect.release();
+
+		m_Rect.reset(
+			new SDL_Rect(*other.m_Rect)
+		);
+		return *this;
+	}
+
+
 	Rectangle::operator struct SDL_Rect* (){
 		return m_Rect.get();
 	}
@@ -93,8 +103,7 @@ namespace GameEngine
 		return *m_Rect;
 	}
 
-	void Rectangle::Deleter::operator()(SDL_Rect* r) const noexcept {
-		r = nullptr;
-	}
+
+	void Rectangle::Deleter::operator()(SDL_Rect* r) const noexcept { delete(r); }
 
 }

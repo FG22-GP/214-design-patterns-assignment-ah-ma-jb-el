@@ -40,6 +40,8 @@ namespace GameEngine
 
 	// OPERATORS
 
+		GAME_API Rectangle& operator = (const Rectangle& other);
+
 		GAME_API operator struct SDL_Rect* ();
 		GAME_API operator struct SDL_Rect& ();
 

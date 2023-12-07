@@ -24,7 +24,21 @@ namespace GameEngine
 		m_Height = height;
 	}
 
-	Texture::Texture(SDL_Texture* texture) : m_Texture(texture){
+	Texture::Texture(const Texture& texture) : 
+		m_Texture(texture.m_Texture.get()){
+		int width, height;
+
+		SDL_QueryTexture(
+			texture.m_Texture.get(), 
+			NULL, NULL,
+			&width, &height
+		);
+		m_Width = width;
+		m_Height = height;
+	}
+
+	Texture::Texture(SDL_Texture* texture) : 
+		m_Texture(texture){
 		int width, height;
 
 		SDL_QueryTexture(
@@ -34,6 +48,8 @@ namespace GameEngine
 		m_Width = width;
 		m_Height = height;
 	}
+
+	Texture::~Texture() = default;
 
 // GETTERS
 
