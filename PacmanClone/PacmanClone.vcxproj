@@ -146,6 +146,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\Game\PacmanGame.cpp" />
+    <ClCompile Include="source\Ghosts\Ghost_Anton.cpp" />
+    <ClCompile Include="source\Ghosts\Ghost_Erik.cpp" />
+    <ClCompile Include="source\Ghosts\Ghost_Johan.cpp" />
+    <ClCompile Include="source\Ghosts\Ghost_Magnus.cpp" />
     <ClCompile Include="source\Ghosts\IGhost.cpp" />
     <ClCompile Include="source\Ghosts\States\IAIState.cpp" />
     <ClCompile Include="source\Ghosts\States\AIState_Chasing.cpp" />
@@ -169,6 +173,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Game\PacmanGame.h" />
+    <ClInclude Include="source\Ghosts\Ghost_Anton.h" />
+    <ClInclude Include="source\Ghosts\Ghost_Erik.h" />
+    <ClInclude Include="source\Ghosts\Ghost_Johan.h" />
+    <ClInclude Include="source\Ghosts\Ghost_Magnus.h" />
     <ClInclude Include="source\Ghosts\IGhost.h" />
     <ClInclude Include="source\Ghosts\States\IAIState.h" />
     <ClInclude Include="source\Ghosts\States\AIState_Chasing.h" />
