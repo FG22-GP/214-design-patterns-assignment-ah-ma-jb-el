@@ -14,6 +14,8 @@ void AIState_Dead::OnStateEnter()
 
 void AIState_Dead::OnStateRunning()
 {
+    if (Ghost == nullptr) { return; }
+    
     Ghost->Scatter(nullptr);
 }
 

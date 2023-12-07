@@ -14,6 +14,8 @@ void AIState_Frightened::OnStateEnter()
 
 void AIState_Frightened::OnStateRunning()
 {
+    if (Ghost == nullptr) { return; }
+    
     Ghost->Flee();
 }
 

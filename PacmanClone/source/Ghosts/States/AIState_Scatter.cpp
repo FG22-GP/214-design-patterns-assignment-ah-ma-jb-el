@@ -13,6 +13,8 @@ void AIState_Scatter::OnStateEnter()
 
 void AIState_Scatter::OnStateRunning()
 {
+    if (Ghost == nullptr) { return; }
+    
     Ghost->Scatter(nullptr);
 }
 

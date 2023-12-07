@@ -13,6 +13,8 @@ void AIState_Chasing::OnStateEnter()
 
 void AIState_Chasing::OnStateRunning()
 {
+    if (Ghost == nullptr) { return; }
+    
     Ghost->ChasePlayer();
 }
 

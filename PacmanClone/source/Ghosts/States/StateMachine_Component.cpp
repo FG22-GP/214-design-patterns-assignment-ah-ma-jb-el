@@ -21,16 +21,20 @@ void StateMachine_Component::OnStart()
         FrightenedState = std::make_shared<AIState_Frightened>(ghost);
         ScatterState = std::make_shared<AIState_Scatter>(ghost);
         DeadState = std::make_shared<AIState_Dead>(ghost);
+        
+        CurrentState = ChaseState;
     }
     
-    CurrentState = ChaseState;
 }
 
 void StateMachine_Component::Tick(float DeltaTime)
 {
     ActorComponent::Tick(DeltaTime);
 
-    CurrentState->OnStateRunning();
+    if (CurrentState != nullptr)
+    {
+        CurrentState->OnStateRunning();
+    }
 }
 
 void StateMachine_Component::PushNewState(std::shared_ptr<IAIState> newState)
