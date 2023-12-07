@@ -4,6 +4,7 @@
 #include "Data/Visuals/Sprite.hpp"
 #include "World\Actors\Actor.hpp"
 #include "World\Actors\SpriteComponent.hpp"
+#include "Game\PacmanLevelInfoParser.h"
 
 void PacmanGame::Initialize()
 {
@@ -60,6 +61,9 @@ void PacmanGame::TEST_Init()
 	TestActor->ActorTransform.SetLocation(Vector2(0.5f, 0.5f));
 	auto SpriteComp = TestActor->AddComponent<SpriteComponent>();
 	SpriteComp->Initialize(TestSprite);
+
+	//Grabs a test level info struct, just to check that it's valid
+	PacmanLevelInfo Info = PacmanLevelInfoParser::GetTestLevelInfo();
 }
 
 void PacmanGame::TEST_Tick(float DeltaTime)

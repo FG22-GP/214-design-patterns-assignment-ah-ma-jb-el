@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\Game\PacmanGame.cpp" />
+    <ClCompile Include="source\Game\PacmanLevelInfoParser.cpp" />
     <ClCompile Include="source\Ghosts\Ghost_Anton.cpp" />
     <ClCompile Include="source\Ghosts\Ghost_Erik.cpp" />
     <ClCompile Include="source\Ghosts\Ghost_Johan.cpp" />
@@ -177,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Game\PacmanGame.h" />
+    <ClInclude Include="source\Game\PacmanLevelInfoParser.h" />
     <ClInclude Include="source\Ghosts\Ghost_Anton.h" />
     <ClInclude Include="source\Ghosts\Ghost_Erik.h" />
     <ClInclude Include="source\Ghosts\Ghost_Johan.h" />
