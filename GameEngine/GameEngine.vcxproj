@@ -35,17 +35,13 @@
     <ClCompile Include="source\Engine\File\FileReader.cpp" />
     <ClCompile Include="source\Engine\Input\Input.cpp" />
     <ClCompile Include="source\Engine\Renderer\Interfaces\IRenderable.cpp" />
-    <ClCompile Include="source\Engine\World\Actors\ActorComponent.cpp" />
-    <ClCompile Include="source\Engine\World\Actors\Actor.cpp" />
     <ClCompile Include="source\Core.cpp" />
     <ClCompile Include="source\Data\Vectors\Point2.cpp" />
     <ClCompile Include="source\Engine\Application\Application.cpp" />
     <ClCompile Include="source\Engine\Renderer\Renderer.cpp" />
     <ClCompile Include="source\Engine\Window\Window.cpp" />
-    <ClCompile Include="source\Engine\World\World.cpp" />
     <ClCompile Include="source\Data\Transform.cpp" />
     <ClCompile Include="source\Data\Vectors\Vector2.cpp" />
-    <ClCompile Include="source\Engine\World\Actors\SpriteComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Data\Enums\RenderFlip.hpp" />
@@ -57,8 +53,6 @@
     <ClInclude Include="source\Engine\File\FileReader.hpp" />
     <ClInclude Include="source\Engine\Input\Input.hpp" />
     <ClInclude Include="source\Engine\Renderer\Interfaces\IRenderable.h" />
-    <ClInclude Include="source\Engine\World\Actors\ActorComponent.hpp" />
-    <ClInclude Include="source\Engine\World\Actors\Actor.hpp" />
     <ClInclude Include="source\Core.hpp" />
     <ClInclude Include="source\Core\API.hpp" />
     <ClInclude Include="source\Core\Includes.hpp" />
@@ -67,10 +61,8 @@
     <ClInclude Include="source\Engine\Renderer\Renderer.hpp" />
     <ClInclude Include="source\Engine\Window\Window.hpp" />
     <ClInclude Include="source\GameEngine.hpp" />
-    <ClInclude Include="source\Engine\World\World.hpp" />
     <ClInclude Include="source\Data\Transform.hpp" />
     <ClInclude Include="source\Data\Vectors\Vector2.hpp" />
-    <ClInclude Include="source\Engine\World\Actors\SpriteComponent.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

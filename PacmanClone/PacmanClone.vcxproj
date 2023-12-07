@@ -161,6 +161,10 @@
     <ClCompile Include="source\Grid\GridCell.cpp" />
     <ClCompile Include="source\Grid\GameGrid.cpp" />
     <ClCompile Include="source\Game.cpp" />
+    <ClCompile Include="source\World\Actors\Actor.cpp" />
+    <ClCompile Include="source\World\Actors\ActorComponent.cpp" />
+    <ClCompile Include="source\World\Actors\SpriteComponent.cpp" />
+    <ClCompile Include="source\World\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Game\PacmanGame.h" />
@@ -178,6 +182,10 @@
     <ClInclude Include="source\Grid\GridLink.h" />
     <ClInclude Include="source\Grid\GridCell.h" />
     <ClInclude Include="source\Grid\GameGrid.h" />
+    <ClInclude Include="source\World\Actors\Actor.hpp" />
+    <ClInclude Include="source\World\Actors\ActorComponent.hpp" />
+    <ClInclude Include="source\World\Actors\SpriteComponent.hpp" />
+    <ClInclude Include="source\World\World.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

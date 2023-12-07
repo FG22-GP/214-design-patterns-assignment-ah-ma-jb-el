@@ -2,7 +2,7 @@
 
 #include "PacmanCore.h"
 
-#include "Engine/World/Actors/ActorComponent.hpp"
+#include "World\Actors\ActorComponent.hpp"
 #include "Data/Vectors/Vector2.hpp"
 
 class GridLink;

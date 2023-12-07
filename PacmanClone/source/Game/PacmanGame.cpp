@@ -2,13 +2,15 @@
 #include "PacmanGame.h"
 #include "Data/Visuals/Texture.hpp"
 #include "Data/Visuals/Sprite.hpp"
-#include "Engine/World/Actors/Actor.hpp"
-#include "Engine/World/World.hpp"
-#include "Engine/World/Actors/SpriteComponent.hpp"
+#include "World\Actors\Actor.hpp"
+#include "World\Actors\SpriteComponent.hpp"
 
 void PacmanGame::Initialize()
 {
 	GameBase::Initialize();
+
+	GameWorld = std::make_unique<World>();
+
 	/*
 	std::shared_ptr<Texture> TestTexture = std::make_shared<Texture>(
 		m_Window->GetRenderer(),
@@ -37,4 +39,14 @@ void PacmanGame::Run()
 void PacmanGame::Exit()
 {
 	GameBase::Exit();
+}
+
+void PacmanGame::HandleTick(float DeltaTime)
+{
+	GameWorld->Tick(DeltaTime);
+}
+
+void PacmanGame::HandleRendering()
+{
+	GameWorld->RenderAllRegisteredActors();
 }
