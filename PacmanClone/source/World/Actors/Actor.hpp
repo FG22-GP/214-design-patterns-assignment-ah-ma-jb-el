@@ -11,6 +11,8 @@ class Actor
 {
 
 public:
+	Actor() = default;
+	virtual ~Actor() = default;
 	virtual void Tick(float DeltaTime);
 
 	//Do not call this manually, instead use the CreateActor() function in the World
