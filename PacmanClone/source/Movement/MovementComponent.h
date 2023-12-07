@@ -8,10 +8,13 @@
 class GridLink;
 class GridCell;
 
-class MovementComponent : ActorComponent
+class MovementComponent : public ActorComponent
 {
     
 public:
+    MovementComponent(std::shared_ptr<Actor> ParentActor) : 
+        ActorComponent(ParentActor) {}
+    
     void SetDirection(Directions direction);
     void SetLerpDuration(float duration);
 
