@@ -1,9 +1,10 @@
 ﻿#pragma once
-#include "AIState_Base.h"
+#include "IAIState.h"
 
-class AIState_Frightened : public AIState_Base
+class AIState_Frightened : public IAIState
 {
 public:
+    AIState_Frightened(const std::shared_ptr<IGhost>& ghost);
     void OnStateEnter() override;
     void OnStateRunning() override;
     void OnStateExit() override;

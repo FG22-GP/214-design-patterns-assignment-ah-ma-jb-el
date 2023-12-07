@@ -1,11 +1,13 @@
 ﻿#pragma once
 
+class IGhost;
 class StateMachine_Component;
 
-class AIState_Base
+class IAIState
 {
 public:
-    virtual ~AIState_Base() = default;
+    explicit IAIState(const std::shared_ptr<IGhost>& ghost);
+    virtual ~IAIState() = default;
     
     virtual void OnStateEnter() = 0;
     virtual void OnStateRunning() = 0;
@@ -14,5 +16,5 @@ public:
     void SetMachine(std::shared_ptr<StateMachine_Component> machine);
 
 protected:
-    std::shared_ptr<StateMachine_Component> StateMachine;
+    std::shared_ptr<IGhost> Ghost;
 };
