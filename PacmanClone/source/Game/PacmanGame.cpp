@@ -6,6 +6,7 @@
 #include "World\Actors\SpriteComponent.hpp"
 #include "Game\PacmanLevelInfoParser.h"
 #include "Engine\File\FileReader.hpp"
+#include "Grid\GridGenerator.h"
 
 void PacmanGame::Initialize()
 {
@@ -16,7 +17,11 @@ void PacmanGame::Initialize()
 	std::vector<std::string> CSVStrings = FileReader::ReadCSVFile("MapGenFiles/LevelInfo.txt");
 	PacmanLevelInfo LevelInfo = PacmanLevelInfoParser::ParseFromStringVector(CSVStrings);
 	
-	bUseTestFunctions = true;
+	std::shared_ptr<GameGrid> Grid;
+	if (LevelInfo.bIsValid)
+		Grid = GridGenerator::GenerateGrid(LevelInfo.Width, LevelInfo.Height, LevelInfo.Content, LevelInfo.Rules);
+
+	bUseTestFunctions = false;
 	if (bUseTestFunctions)
 		TEST_Init();
 }

@@ -3,8 +3,12 @@
 
 GridCell::GridCell(std::shared_ptr<GameGrid> ParentGrid)
 {
-	Links.resize(4);
 	Grid = ParentGrid;
+	bIsWalkable = false;
+	bIsGhostWalkable = false;
+	bGhostIsSlowed = false;
+	bGhostCannotWalkUp = false;
+
 }
 
 std::shared_ptr<GridLink> GridCell::GetLinkInDirection(GameEngine::Directions Direction)

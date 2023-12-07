@@ -25,6 +25,6 @@ class GridGenerator
 {
 
 public:
-	std::shared_ptr<GameGrid> GenerateGrid(uint16_t Width, uint16_t Height, std::vector<CellContent> CellContents, std::vector<CellRule> CellRules);
+	static std::shared_ptr<GameGrid> GenerateGrid(uint16_t Width, uint16_t Height, std::vector<CellContent> CellContents, std::vector<CellRule> CellRules);
 };
 
