@@ -16,7 +16,8 @@ void MovementComponent::Tick(float DeltaTime)
 
 void MovementComponent::NextCell()
 {
-    if (StartCell != nullptr && TargetCell != nullptr) { return; }
+    // Null check
+    if (!StartCell || !TargetCell ) { return; }
 
     /*
     Should be something like
@@ -25,7 +26,7 @@ void MovementComponent::NextCell()
     
     std::shared_ptr<GridLink> targetLink = StartCell->Links[newDirection];
     std::shared_ptr<GridCell> targetCell = targetLink->Target;
-    if (targetLink->Target != nullptr && targetLink->Target->bIsWalkable)
+    if (targetLink->Target && targetLink->Target->bIsWalkable)
     {
         bWrapLerp = IsWrapLink(targetLink);
         TargetCell = targetCell;
@@ -35,7 +36,7 @@ void MovementComponent::NextCell()
     
     targetLink = StartCell->Links[newDirection];
     targetCell = targetLink->Target;
-    if (targetCell != nullptr && targetCell->bIsWalkable)
+    if (targetCell && targetCell->bIsWalkable)
     {
         bWrapLerp = IsWrapLink(targetLink);
         TargetCell = targetCell;
