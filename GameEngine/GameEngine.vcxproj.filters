@@ -66,6 +66,9 @@
     <ClCompile Include="source\Engine\Game\GameBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Data\Visuals\Interfaces\IAlignedSpriteMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\GameEngine.hpp">
@@ -123,6 +126,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Data\Enums\RenderFlip.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Data\Visuals\Interfaces\IAlignedSpriteMap.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

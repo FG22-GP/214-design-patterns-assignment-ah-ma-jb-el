@@ -27,6 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\Data\Visuals\Interfaces\IAlignedSpriteMap.cpp" />
     <ClCompile Include="source\Engine\Game\GameBase.cpp" />
     <ClCompile Include="source\Data\Bounds\Rectangle.cpp" />
     <ClCompile Include="source\Data\Visuals\Sprite.cpp" />
@@ -44,6 +45,7 @@
     <ClCompile Include="source\Data\Vectors\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Data\Visuals\Interfaces\IAlignedSpriteMap.hpp" />
     <ClInclude Include="source\Data\Enums\RenderFlip.hpp" />
     <ClInclude Include="source\Engine\Game\GameBase.h" />
     <ClInclude Include="source\Data\Bounds\Rectangle.hpp" />

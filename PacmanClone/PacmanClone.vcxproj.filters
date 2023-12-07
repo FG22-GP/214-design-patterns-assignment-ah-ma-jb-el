@@ -105,6 +105,9 @@
     <ClCompile Include="source\Game\PacmanLevelInfoParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Grid\CellSpriteGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Grid\GameGrid.h">
@@ -192,6 +195,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Game\PacmanLevelInfoParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Grid\CellSpriteGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
