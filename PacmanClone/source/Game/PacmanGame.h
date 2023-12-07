@@ -20,10 +20,12 @@ protected:
 
     //TESTING
     //This is test code to show how to make textures, sprites, actors and sprite components.
-    bool bUseTestFunctions = false;
+    bool bUseTestFunctions;
     void TEST_Init(); 
     void TEST_Tick(float DeltaTime);
     std::shared_ptr<Actor> TestActor;
+    std::string TestPath = 
+        "C:/Users/lunne/Desktop/Unreal Projects/214-design-patterns-assignment-ah-ma-jb-el/PacmanClone/Sprites/TestSprite.png";
 
 };
 

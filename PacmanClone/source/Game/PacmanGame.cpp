@@ -11,6 +11,8 @@ void PacmanGame::Initialize()
 
 	GameWorld = std::make_unique<World>();
 	
+	bUseTestFunctions = false;
+
 	if (bUseTestFunctions)
 		TEST_Init();
 }
@@ -42,7 +44,7 @@ void PacmanGame::TEST_Init()
 {
 	std::shared_ptr<Texture> TestTexture = std::make_shared<Texture>(
 		m_Window->GetRenderer(),
-		"C:/Users/lunne/Desktop/Unreal Projects/214-design-patterns-assignment-ah-ma-jb-el/PacmanClone/Sprites/TestSprite.png"
+		TestPath
 	);
 
 	std::shared_ptr<Sprite> TestSprite = std::make_shared<Sprite>(
@@ -55,7 +57,7 @@ void PacmanGame::TEST_Init()
 	);
 
 	TestActor = GameWorld->CreateActor<Actor>();
-	TestActor->ActorTransform.SetLocation(Vector2(5, 5));
+	TestActor->ActorTransform.SetLocation(Vector2(0.5f, 0.5f));
 	auto SpriteComp = TestActor->AddComponent<SpriteComponent>();
 	SpriteComp->Initialize(TestSprite);
 }
