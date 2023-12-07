@@ -10,11 +10,10 @@ void PacmanGame::Initialize()
 	GameBase::Initialize();
 
 	GameWorld = std::make_unique<World>();
-
 	/*
 	std::shared_ptr<Texture> TestTexture = std::make_shared<Texture>(
 		m_Window->GetRenderer(),
-		"C:/Users/anton.hedlund/UnrealProjects/214-design-patterns-assignment-ah-ma-jb-el/PacmanClone/Sprites/TestSprite.png"
+		"C:/Users/lunne/Desktop/Unreal Projects/214-design-patterns-assignment-ah-ma-jb-el/PacmanClone/Sprites/TestSprite.png"
 	);
 
 	std::shared_ptr<Sprite> TestSprite = std::make_shared<Sprite>(
@@ -26,9 +25,10 @@ void PacmanGame::Initialize()
 		0.0f
 	);
 
-	auto TestActor = GameWorld->CreateActor<Actor>();
-	TestActor->AddComponent<SpriteComponent>();
-	*/
+	std::shared_ptr<Actor> TestActor = GameWorld->CreateActor<Actor>();
+	TestActor->ActorTransform.SetLocation(Vector2(2, 2));
+	auto SpriteComp = TestActor->AddComponent<SpriteComponent>();
+	SpriteComp->Initialize(TestSprite);*/
 }
 
 void PacmanGame::Run()

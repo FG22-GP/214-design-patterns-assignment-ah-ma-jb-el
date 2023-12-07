@@ -17,6 +17,8 @@ class SpriteComponent : public ActorComponent, public IRenderable
 public:
 	void Initialize(std::shared_ptr<Sprite> SpriteObject);
 
+	SpriteComponent(std::shared_ptr<Actor> ParentActor) : 
+		ActorComponent(ParentActor) {}
 
 	Vector2 GetPosition();
 

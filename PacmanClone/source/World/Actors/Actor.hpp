@@ -39,7 +39,7 @@ template<typename T> std::shared_ptr<T> Actor::AddComponent()
 {
 	static_assert(std::is_base_of<ActorComponent, T>::value,
 		"T must be derived from ActorComponent");
-	std::shared_ptr<T> NewComp = std::make_shared<T>();
+	std::shared_ptr<T> NewComp = std::make_shared<T>(std::shared_ptr<Actor>(this));
 	ChildComponents.push_back(NewComp);
 	NewComp->OnStart();
 	return NewComp;

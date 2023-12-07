@@ -22,6 +22,8 @@ namespace GameEngine
 	Rectangle::Rectangle(const SDL_Rect& rectangle) :
 		m_Rect(new SDL_Rect(rectangle)){}
 
+	Rectangle::~Rectangle() = default;
+
 // GETTERS
 
 	uint32_t Rectangle::GetX() const {
