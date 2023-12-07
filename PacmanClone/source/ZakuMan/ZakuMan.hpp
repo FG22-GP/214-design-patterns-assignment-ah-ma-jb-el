@@ -9,6 +9,9 @@ class ZakuMan : public Actor
 {
 public:
     ZakuMan(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTransform);
+
+
+    std::shared_ptr<SpriteComponent> GetSpriteComponent() const { return SpriteComp; }
     
 private:
     std::shared_ptr<MovementComponent> MoveComp;
