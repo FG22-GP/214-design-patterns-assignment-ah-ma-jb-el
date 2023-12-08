@@ -1,6 +1,8 @@
 #pragma once
 
 #include "PacmanCore.h"
+
+#include "PacmanLevelInfoParser.h"
 #include "Engine/Game/GameBase.h"
 #include "World\World.hpp"
 
@@ -22,6 +24,7 @@ protected:
     
     std::shared_ptr<World> GameWorld;
     std::shared_ptr<GameGrid> Grid;
+    PacmanLevelInfo LevelInfo;
 
     //TESTING
     //This is test code to show how to make textures, sprites, actors and sprite components.

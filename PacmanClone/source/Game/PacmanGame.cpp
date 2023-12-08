@@ -7,7 +7,9 @@
 #include "Game\PacmanLevelInfoParser.h"
 #include "Engine\File\FileReader.hpp"
 #include "Grid/GameGrid.h"
+#include "Grid/GridCellContent.h"
 #include "Grid\GridGenerator.h"
+#include "Movement/MovementComponent.h"
 #include "ZakuMan/ZakuMan.hpp"
 
 void PacmanGame::Initialize()
@@ -17,28 +19,32 @@ void PacmanGame::Initialize()
 	GameWorld = std::make_shared<World>();
 
 	LoadLevel();
-	//
-	//
-	// // Create the player
-	// std::shared_ptr<ZakuMan> Zaku = GameWorld->CreateActor<ZakuMan>();
-	// Zaku->ActorTransform.SetLocation(Vector2(1.5f, 1.5f));
-	//
-	// std::shared_ptr<Texture> ZakuTexture = std::make_shared<Texture>(
-	// m_Window->GetRenderer(),
-	// TestPath
-	// );
-	//
-	// std::shared_ptr<Sprite> ZakuSprite = std::make_shared<Sprite>(
-	// 	ZakuTexture,
-	// 	Rectangle(0, 0, ZakuTexture->GetWidth(), ZakuTexture->GetHeight()),
-	// 	Rectangle(0, 0, 0, 0),
-	// 	Point2(0, 0),
-	// 	RenderFlip::None,
-	// 	0.0f
-	// );
-	// Zaku->GetSpriteComponent()->Initialize(ZakuSprite);
-	//
-	// Grid->GetCellAt(Point2(1, 1))->Contents.push_back(Zaku );
+	
+	
+	// Create the player
+	std::shared_ptr<ZakuMan> Zaku = GameWorld->CreateActor<ZakuMan>();
+	Zaku->ActorTransform.SetLocation(Vector2(1.5f, 1.5f));
+	
+	std::shared_ptr<Texture> ZakuTexture = std::make_shared<Texture>(
+	m_Window->GetRenderer(),
+	"Sprites/StolenFromInterwebsPacMan.png"
+	);
+	
+	std::shared_ptr<Sprite> ZakuSprite = std::make_shared<Sprite>(
+		ZakuTexture,
+		Rectangle(0, 0, ZakuTexture->GetWidth(), ZakuTexture->GetHeight()),
+		Rectangle(0, 0, 0, 0),
+		Point2(0, 0),
+		RenderFlip::None,
+		0.0f
+	);
+	Zaku->GetSpriteComponent()->Initialize(ZakuSprite);
+	if(LevelInfo.bIsValid)
+	{
+		Zaku->GetCellContent()->SetCell(Grid->GetCellAt(LevelInfo.PlayerSpawn));
+		Zaku->ActorTransform.SetLocation(LevelInfo.PlayerSpawn);
+		Zaku->GetMovementComponent()->Init(Grid->GetCellAt(LevelInfo.PlayerSpawn));
+	}
 
 	
 	bUseTestFunctions = false;
@@ -72,7 +78,7 @@ void PacmanGame::LoadLevel()
 {
 	// Load the level info from the file
 	const std::vector<std::string> CSVStrings = FileReader::ReadCSVFile("MapGenFiles/LevelInfo.txt");
-	const PacmanLevelInfo LevelInfo = PacmanLevelInfoParser::ParseFromStringVector(CSVStrings);
+	LevelInfo = PacmanLevelInfoParser::ParseFromStringVector(CSVStrings);
 	if (!LevelInfo.bIsValid)
 	{
 		throw std::runtime_error("Level info is invalid!");
