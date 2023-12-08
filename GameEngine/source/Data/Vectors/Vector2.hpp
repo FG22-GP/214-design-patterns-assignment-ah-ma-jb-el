@@ -42,6 +42,18 @@ namespace GameEngine
 				return Zero();
 			}
 		}
+		GAME_API static void Normalize(Vector2& Vector)
+		{
+			// Calculate the length of the vector using Pythagorean theorem
+			const float length = std::sqrt(Vector.X * Vector.X + Vector.Y * Vector.Y);
+
+			// Avoid division by zero
+			if (length != 0.0f) {
+				// Normalize the vector by dividing each component by its length
+				Vector.X /= length;
+				Vector.Y /= length;
+			}
+		}
 
 		GAME_API Vector2 operator+(const Vector2& other) const;
 
