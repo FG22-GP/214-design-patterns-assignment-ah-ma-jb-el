@@ -36,10 +36,10 @@ namespace GameEngine
 
 	// PRESETS
 
-		GAME_API static Point2 Up();
-		GAME_API static Point2 Down();
-		GAME_API static Point2 Right();
-		GAME_API static Point2 Left();
+		GAME_API static Point2 Up() { return {0, static_cast<uint32_t>(-1)}; }
+		GAME_API static Point2 Down() { return {0, static_cast<uint32_t>(1)}; }
+		GAME_API static Point2 Right() { return {static_cast<uint32_t>(1), 0}; }
+		GAME_API static Point2 Left() { return {static_cast<uint32_t>(-1), 0}; }
 		GAME_API static Point2 DirectionVector(Directions Dir);
 		GAME_API static std::vector<Point2> AllDirections();
 

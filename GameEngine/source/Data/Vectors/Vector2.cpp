@@ -84,5 +84,18 @@ namespace GameEngine
 		NormalizedVector.Y = (Point.Y - A.Y) / (B.Y - A.Y);
 		return NormalizedVector;
 	}
+
+	float Vector2::Distance(const Vector2& A, const Vector2& B)
+	{
+		const float dSquared = DistanceSquared(A, B);
+		return sqrtf(dSquared);
+	}
+
+	float Vector2::DistanceSquared(const Vector2& A, const Vector2& B)
+	{
+		const float dx = A.X - B.X;
+		const float dy = A.Y - B.Y;
+		return dx * dx + dy * dy;
+	}
 }
 

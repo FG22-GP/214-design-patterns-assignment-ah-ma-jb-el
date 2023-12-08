@@ -26,22 +26,6 @@ namespace GameEngine
 
 // PRESETS
 
-	Point2 Point2::Up(){
-		return Point2(0, 1);
-	}
-
-	Point2 Point2::Down(){
-		return Point2(0, -1);
-	}
-
-	Point2 Point2::Right(){
-		return Point2(1, 0);
-	}
-
-	Point2 Point2::Left(){
-		return Point2(-1, 0);
-	}
-
 	Point2 Point2::DirectionVector(Directions Dir){
 		switch (Dir)
 		{
