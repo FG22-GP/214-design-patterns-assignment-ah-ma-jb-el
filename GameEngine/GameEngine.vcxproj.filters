@@ -131,5 +131,8 @@
     <ClInclude Include="source\Engine\Asset\AssetLoader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\Engine\Input\KeyboardKey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

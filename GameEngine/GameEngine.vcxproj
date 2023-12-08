@@ -54,6 +54,7 @@
     <ClInclude Include="source\Data\Visuals\Texture.hpp" />
     <ClInclude Include="source\Engine\File\FileReader.hpp" />
     <ClInclude Include="source\Engine\Input\Input.hpp" />
+    <ClInclude Include="source\Engine\Input\KeyboardKey.h" />
     <ClInclude Include="source\Engine\Renderer\Interfaces\IRenderable.h" />
     <ClInclude Include="source\Core.hpp" />
     <ClInclude Include="source\Core\API.hpp" />
