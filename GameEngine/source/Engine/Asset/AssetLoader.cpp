@@ -87,7 +87,7 @@ namespace GameEngine
 				uint32_t index = (y * width) + x;
 				if (index > names.size() - 1) break;
 
-				auto crop   = Rectangle(x, y, width, height);
+				auto crop   = Rectangle(x * width, y * height, width, height);
 				auto rect   = Rectangle(0, 0, width, height);
 				auto centre = Point2(width / 2, height / 2);
 
