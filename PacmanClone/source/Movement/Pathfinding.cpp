@@ -50,7 +50,7 @@ float Pathfinding::Calculate_Distance(std::shared_ptr<GridCell> start, std::shar
     int x_sq = (startX - goalX) * (startX - goalX);
     int y_sq = (startY - goalY) * (startY - goalY);
 
-    float sqrt = std::sqrt(x_sq + y_sq);
+    float sqrt = static_cast<float>(std::sqrt(x_sq + y_sq));
 
     return sqrt;
 }
