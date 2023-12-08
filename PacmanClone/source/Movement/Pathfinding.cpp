@@ -6,73 +6,51 @@
 #include "Grid/GridCell.h"
 #include "Grid/GridLink.h"
 
-std::vector<std::shared_ptr<GridCell>> Pathfinding::Dijkstra(
-    std::shared_ptr<GridCell> start,
-    std::shared_ptr<GridCell> goal,
-    std::shared_ptr<GameGrid> grid)
+
+Point2 Pathfinding::Chase_GetDirection(std::shared_ptr<GridCell> nextCell, std::shared_ptr<GridCell> targetCell)
 {
-    std::list<Node> open;
-    std::unordered_set<std::shared_ptr<GridCell>> closed;
-
-    std::vector<std::shared_ptr<GridCell>> path;
-
-    /*
-    open.push_back({start, 0, nullptr});
-    
-    while (!open.empty())
+    float lowestDistance = 999.f;
+    int index {};
+    for (int i = 0; i < nextCell->Links.size(); i++)
     {
-        Node current {};
-        for (Node node : open)
-        {
-            int currentLowest = 999;
-            if (node.totalCost < currentLowest)
-            {
-                currentLowest = node.totalCost;
-                current = node;
-            }
-        }
-    
-        if (current.cell == goal)
-        {
-            while (current.cell != start)
-            {
-                path.push_back(current.cell);
-                current.cell = current.parent->cell;
-            }
-            std::ranges::reverse(path);
-            return path;
-        }
-    
+        std::shared_ptr<GridCell> cell = nextCell->Links[i]->Target;
+        if (!cell->bIsGhostWalkable) { continue; }
         
-        closed.insert(current.cell);
-    
-        for (std::shared_ptr<GridLink> link : current.cell->Links)
+        const float newDistance = Calculate_Distance(cell, targetCell);
+        if (newDistance < lowestDistance)
         {
-            Node neighbour = {link->Target, 0, nullptr};
-            if (!neighbour.cell->bIsWalkable || closed.contains(neighbour.cell)) { continue; }
-    
-            int currentTotal = current.totalCost + 1;
-    
-            bool isNew = false;
-    
-            auto iterator = std::find(open.begin(), open.end(), neighbour);
-            
-            if (iterator != open.end()) { isNew = true; }
-    
-            if (isNew || currentTotal < current.totalCost)
-            {
-                std::shared_ptr<Node> neighbourPtr(&current, [](Node*){});
-                neighbour.parent = neighbourPtr;
-                neighbour.totalCost = currentTotal;
-    
-                if (isNew)
-                {
-                    open.push_back(neighbour);
-                }
-            }
+            lowestDistance = newDistance;
+            index = i;
         }
     }
 
-    */
-    return path;
+    switch (index)
+    {
+    case Up:
+        return Point2::Up();
+    case Down:
+        return Point2::Down();
+    case Right:
+        return Point2::Right();
+    case Left:
+        return Point2::Left();
+    default:
+        return Point2{};
+    }
+    
+}
+
+float Pathfinding::Calculate_Distance(std::shared_ptr<GridCell> start, std::shared_ptr<GridCell> goal)
+{
+    int startX = start->Coordinate.GetX();
+    int startY = start->Coordinate.GetY();
+    int goalX = goal->Coordinate.GetX();
+    int goalY = goal->Coordinate.GetX();
+
+    int x_sq = (startX - goalX) * (startX - goalX);
+    int y_sq = (startY - goalY) * (startY - goalY);
+
+    float sqrt = std::sqrt(x_sq + y_sq);
+
+    return sqrt;
 }
