@@ -12,7 +12,7 @@ public:
 	virtual void OnDestroy() {}
 
 	ActorComponent(std::shared_ptr<Actor> ParentActor);
-	~ActorComponent();
+	virtual ~ActorComponent();
 
 	std::shared_ptr<Actor> GetParent() { return Parent; }
 
