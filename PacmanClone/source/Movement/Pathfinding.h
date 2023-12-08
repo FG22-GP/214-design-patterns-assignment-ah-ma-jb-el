@@ -6,18 +6,8 @@ class GridCell;
 class Pathfinding
 {
 public:
-    std::vector<std::shared_ptr<GridCell>> Dijkstra(std::shared_ptr<GridCell> start, std::shared_ptr<GridCell> goal, std::shared_ptr<GameGrid> grid);
+    static Point2 Chase_GetDirection(std::shared_ptr<GridCell> nextCell, std::shared_ptr<GridCell> targetCell); 
 
 private:
-    struct Node
-    {
-        std::shared_ptr<GridCell> cell;
-        int totalCost;
-        std::shared_ptr<Node> parent;
-
-        bool operator>(const Node& other) const
-        {
-            return totalCost > other.totalCost;
-        }
-    };
+    static float Calculate_Distance(std::shared_ptr<GridCell> start, std::shared_ptr<GridCell> goal);
 };

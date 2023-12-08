@@ -86,6 +86,18 @@ bool MovementComponent::IsWrapLink(std::shared_ptr<GridLink>& link)
     return wraplink != nullptr;
 }
 
+#pragma region GettersSetters 
+
+std::shared_ptr<GridCell> MovementComponent::GetTargetCell()
+{
+    return TargetCell;
+}
+
+std::shared_ptr<GridCell> MovementComponent::GetCurrentCell()
+{
+    return StartCell;
+}
+
 void MovementComponent::SetDirection(Directions direction)
 {
     newDirection = direction;
@@ -96,3 +108,4 @@ void MovementComponent::SetLerpDuration(float duration)
     fLerpDuration = duration;
 }
 
+#pragma endregion 

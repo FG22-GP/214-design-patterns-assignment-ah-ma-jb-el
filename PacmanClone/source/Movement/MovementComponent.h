@@ -18,6 +18,9 @@ public:
     void SetDirection(Directions direction);
     void SetLerpDuration(float duration);
 
+    std::shared_ptr<GridCell> GetTargetCell();
+    std::shared_ptr<GridCell> GetCurrentCell();
+
 protected:
     Directions currentDirection {};
     Directions newDirection {};
