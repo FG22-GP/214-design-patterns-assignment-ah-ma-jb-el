@@ -1,5 +1,9 @@
 #include "Core.hpp"
 #include "GameBase.h"
+
+#include "Data/Visuals/Texture.hpp"
+#include "Data/Visuals/Sprite.hpp"
+#include "Engine/Asset/AssetLoader.hpp"
 #include "Engine/Application/Application.hpp"
 #include "Engine/Window/Window.hpp"
 #include "Engine/Input/Input.hpp"
@@ -10,6 +14,7 @@ namespace GameEngine
 	void GameBase::Initialize()
 	{
 		Application::Init();
+
 		m_Window = Window::Create(
 			"Pack-Man Clone", 800, 600
 		);
