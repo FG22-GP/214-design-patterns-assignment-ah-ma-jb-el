@@ -9,7 +9,7 @@ class GridCellContent
 public:
 
 	std::shared_ptr<GridCell> GetCell() { return ParentCell; }
-	void SetCell(std::shared_ptr<GridCell> NewParent) { ParentCell = NewParent; }
+	void SetCell(std::shared_ptr<GridCell> NewParent);
 
 private:
 
