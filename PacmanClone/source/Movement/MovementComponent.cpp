@@ -1,6 +1,5 @@
 ﻿#include "PacmanCore.h"
 #include "MovementComponent.h"
-
 #include "World\Actors\Actor.hpp"
 #include "Grid/GridCell.h"
 #include "Grid/GridLink.h"
@@ -9,68 +8,38 @@
 void MovementComponent::Tick(float DeltaTime)
 {
     ActorComponent::Tick(DeltaTime);
-
-    NextCell();
-    LerpMovement(DeltaTime);
+    if(currentDirection != cachedDirection)
+        TrySetNewTargetCell();
+    Move(DeltaTime);
 }
 
-void MovementComponent::NextCell()
+void MovementComponent::TrySetNewTargetCell()
 {
-    // Null check
-    if (!StartCell || !TargetCell ) { return; }
-
-    /*
-    Should be something like
-    StartCell = actor->GetComponent->GetCurrentCell
-    */
-    
-    std::shared_ptr<GridLink> targetLink = StartCell->Links[newDirection];
-    std::shared_ptr<GridCell> targetCell = targetLink->Target;
-    if (targetLink->Target && targetLink->Target->bIsPlayerWalkable)
+    const auto NewTarget = GetCurrentCell()->GetLinkInDirection(cachedDirection)->Target;
+    if(NewTarget->bIsPlayerWalkable)
     {
-        bWrapLerp = IsWrapLink(targetLink);
-        TargetCell = targetCell;
-        currentDirection = newDirection;
-        return;
-    }
-    
-    targetLink = StartCell->Links[newDirection];
-    targetCell = targetLink->Target;
-    if (targetCell && targetCell->bIsPlayerWalkable)
-    {
-        bWrapLerp = IsWrapLink(targetLink);
-        TargetCell = targetCell;
+        TargetCell = NewTarget;
+        currentDirection = cachedDirection;
     }
 }
 
-void MovementComponent::LerpMovement(float DeltaTime)
+void MovementComponent::Move(float DeltaTime)
 {
-    if (StartCell == nullptr || TargetCell == nullptr) { return; }
-    
-    if (fTimeElapsed < fLerpDuration)
-    {
-        fTimeElapsed += DeltaTime;
-
-        if (fTimeElapsed > fLerpDuration / 2 - DeltaTime / 2 &&
-            fTimeElapsed <= fLerpDuration / 2 + DeltaTime / 2)
-        {
-            //event here: half way through lerp !!
-        }
-
-        Vector2 newPosition = bWrapLerp?
-            WrapLerp(StartCell->Coordinate, TargetCell->Coordinate, fTimeElapsed/fLerpDuration) :
-            Vector2::Lerp(StartCell->Coordinate, TargetCell->Coordinate, fTimeElapsed/fLerpDuration);
-        
-        Parent->ActorTransform.SetLocation(newPosition);
-    }
-    else
-    {
-        Parent->ActorTransform.SetLocation(TargetCell->Coordinate);
-        StartCell = nullptr;
-        TargetCell = nullptr;
-        fTimeElapsed = 0;
-    }
-
+    if (!TargetCell) { return; }
+    //
+    // const float DistanceToTarget = Vector2::Distance(GetCurrentCell()->Coordinate, TargetCell->Coordinate);
+    // if (DistanceToTarget < 0.01f)
+    // {
+    //     return; // We're already there.
+    // }
+    //
+    // Vector2 MoveVector = GetCurrentCell()->Coordinate - TargetCell->Coordinate;
+    // Vector2::Normalize(MoveVector);
+    //
+    // const float MoveSpeed = 1.0f; // Adjust this speed as needed
+    // const Vector2 DeltaPosition = MoveVector * MoveSpeed * DeltaTime;
+    // const Vector2 NewPosition = GetParent()->ActorTransform.GetLocation() + DeltaPosition;
+    // GetParent()->ActorTransform.SetLocation(NewPosition);
 }
 
 Vector2 MovementComponent::WrapLerp(Vector2 start, Vector2 target, float T)
@@ -86,26 +55,18 @@ bool MovementComponent::IsWrapLink(std::shared_ptr<GridLink>& link)
     return wraplink != nullptr;
 }
 
-#pragma region GettersSetters 
-
-std::shared_ptr<GridCell> MovementComponent::GetTargetCell()
+void MovementComponent::SetDirection(Directions newDirection)
 {
-    return TargetCell;
+    cachedDirection = newDirection;
+    if(DirectionHelpers::IsOpposingDirection(currentDirection, newDirection)) 
+    {
+        TrySetNewTargetCell();
+    }
 }
 
-std::shared_ptr<GridCell> MovementComponent::GetCurrentCell()
+void MovementComponent::Init(std::shared_ptr<GridCell> startCell)
 {
-    return StartCell;
+    StartCell = std::move(startCell);
+    SetDirection(Directions::Right);
+    TargetCell = StartCell->Links[Directions::Right]->Target;
 }
-
-void MovementComponent::SetDirection(Directions direction)
-{
-    newDirection = direction;
-}
-
-void MovementComponent::SetLerpDuration(float duration)
-{
-    fLerpDuration = duration;
-}
-
-#pragma endregion 

@@ -10,23 +10,26 @@ class GridCell;
 
 class MovementComponent : public ActorComponent
 {
-    
 public:
-    MovementComponent(std::shared_ptr<Actor> ParentActor) : 
-        ActorComponent(ParentActor) {}
-    
-    void SetDirection(Directions direction);
-    void SetLerpDuration(float duration);
+    MovementComponent(std::shared_ptr<Actor> ParentActor) :
+        ActorComponent(ParentActor), currentDirection(Directions::Right), cachedDirection(Directions::Right)
+    {
+    }
 
-    std::shared_ptr<GridCell> GetTargetCell();
-    std::shared_ptr<GridCell> GetCurrentCell();
+    void SetDirection(Directions newDirection);
+
+    void SetLerpDuration(float duration) { fLerpDuration = duration; }
+    void Init(std::shared_ptr<GridCell> startCell);
+
+    std::shared_ptr<GridCell> GetTargetCell() { return TargetCell; }
+    std::shared_ptr<GridCell> GetCurrentCell() { return StartCell; }
 
 protected:
-    Directions currentDirection {};
-    Directions newDirection {};
+    Directions currentDirection;
+    Directions cachedDirection;
+
 
     void Tick(float DeltaTime) override;
-
 
 private:
     float fTimeElapsed = 0;
@@ -35,8 +38,8 @@ private:
     std::shared_ptr<GridCell> StartCell;
     std::shared_ptr<GridCell> TargetCell;
 
-    void NextCell();
-    void LerpMovement(float DeltaTime);
+    void TrySetNewTargetCell();
+    void Move(float DeltaTime);
     Vector2 WrapLerp(Vector2 start, Vector2 target, float T);
     bool IsWrapLink(std::shared_ptr<GridLink>& link);
 };
