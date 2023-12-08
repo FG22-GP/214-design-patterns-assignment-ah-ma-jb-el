@@ -13,6 +13,17 @@ namespace GameEngine
 		Right = 2,
 		Left  = 3
 	};
+
+	class DirectionHelpers {  // TODO: Move to a more appropriate place
+	public:
+		static bool IsOpposingDirection(Directions dir1, Directions dir2) {
+			return (dir1 == Up && dir2 == Down) ||
+				(dir1 == Down && dir2 == Up) ||
+				(dir1 == Right && dir2 == Left) ||
+				(dir1 == Left && dir2 == Right);
+		}
+	};
+	
 	struct Point2
 	{
 	public:
