@@ -26,11 +26,21 @@ namespace GameEngine
 
 
 	std::shared_ptr<Texture> AssetLoader::GetTexture(const std::string& name){
-		return s_Textures[name];
+		if (s_Textures.contains(name))
+			return s_Textures[name];
+		
+		throw std::runtime_error(
+			std::format("No texture with name {} found in assets", name)
+		);
 	}
 
 	std::shared_ptr<Sprite> AssetLoader::GetSprite(const std::string& name){
-		return s_Sprites[name];
+		if (s_Sprites.contains(name))
+			return s_Sprites[name];
+
+		throw std::runtime_error(
+			std::format("No sprite with name {} found in assets", name)
+		);
 	}
 
 
@@ -42,6 +52,14 @@ namespace GameEngine
 		);
 		auto name  = std::filesystem::path(path).filename().string();
 		return name.substr(0, name.find_first_of('.'));
+	}
+
+	std::string AssetLoader::GetAssetPath(const std::string& filename){
+		return std::format("{}{}{}",
+			GetApplicationPath(),
+			"\\Assets\\",
+			filename
+		);
 	}
 
 	std::string AssetLoader::GetApplicationPath(){
@@ -60,7 +78,7 @@ namespace GameEngine
 		s_Textures.insert(std::pair(name, texture));
 	}
 
-	void AssetLoader::LoadSprites(const std::shared_ptr<Texture> texture, const std::vector<std::string>& names, const uint32_t columns, const uint32_t rows){
+	void AssetLoader::LoadSprites(const std::shared_ptr<Texture> texture, const std::vector<std::string>& names, const uint16_t columns, const uint16_t rows){
 		uint32_t width  = texture->GetWidth()  / columns;
 		uint32_t height = texture->GetHeight() / rows;
 

@@ -16,10 +16,20 @@ namespace GameEngine
 		GAME_API static uint16_t GetTextureCount();
 		GAME_API static uint16_t GetSpriteCount();
 
+		// Returns a loaded texture from name, without file extension
 		GAME_API static std::shared_ptr<Texture> GetTexture(const std::string& name);
+
+		// Returns a loaded sprite from assigned name
 		GAME_API static std::shared_ptr<Sprite> GetSprite(const std::string& name);
 		
+		// Returns the name of the asset at absolute path
 		GAME_API static std::string GetAssetName(const std::string& path);
+		
+		// Returns the absolute path to the asset in the Asssets directory
+		// Filename must include its file type extension (filename.type)
+		GAME_API static std::string GetAssetPath(const std::string& filename);
+		
+		// Returns the absolute path to the application directory
 		GAME_API static std::string GetApplicationPath();
 
 	// ASSETS
@@ -29,7 +39,7 @@ namespace GameEngine
 
 		// Loads and stores the sprites from the texture, going from top left to bottom right
 		// Names need to be specified for all of the tiles (columns * rows)
-		GAME_API static void LoadSprites(const std::shared_ptr<Texture> texture, const std::vector<std::string>& names, const uint32_t columns, const uint32_t rows);
+		GAME_API static void LoadSprites(const std::shared_ptr<Texture> texture, const std::vector<std::string>& names, const uint16_t columns, const uint16_t rows);
 
 	private:
 

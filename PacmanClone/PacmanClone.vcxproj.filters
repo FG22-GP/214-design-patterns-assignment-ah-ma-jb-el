@@ -108,6 +108,9 @@
     <ClCompile Include="source\Grid\CellSpriteGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Movement\Pathfinding.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Grid\GameGrid.h">
@@ -200,12 +203,18 @@
     <ClInclude Include="source\Grid\CellSpriteGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\Movement\Pathfinding.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="MapGenFiles\LevelInfo.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Sprites\TestSprite.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\SpriteAtlas.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

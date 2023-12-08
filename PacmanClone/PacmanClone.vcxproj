@@ -123,6 +123,10 @@
       <AdditionalDependencies>Game.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Builds\Game-$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist "$(TargetDir)Assets" mkdir "$(TargetDir)Assets"
+copy /Y "$(SolutionDir)$(ProjectName)\Sprites\SpriteAtlas.png" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\Assets\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -143,6 +147,10 @@
       <AdditionalDependencies>Game.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Builds\Game-$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>if not exist "$(TargetDir)Assets" mkdir "$(TargetDir)Assets"
+copy /Y "$(SolutionDir)$(ProjectName)\Sprites\SpriteAtlas.png" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\Assets\"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\Grid\CellSpriteGenerator.cpp" />
@@ -215,6 +223,7 @@
     <Text Include="MapGenFiles\LevelInfo.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Sprites\SpriteAtlas.png" />
     <Image Include="Sprites\TestSprite.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
