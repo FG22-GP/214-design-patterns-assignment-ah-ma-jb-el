@@ -26,7 +26,7 @@ void MovementComponent::NextCell()
     
     std::shared_ptr<GridLink> targetLink = StartCell->Links[newDirection];
     std::shared_ptr<GridCell> targetCell = targetLink->Target;
-    if (targetLink->Target && targetLink->Target->bIsWalkable)
+    if (targetLink->Target && targetLink->Target->bIsPlayerWalkable)
     {
         bWrapLerp = IsWrapLink(targetLink);
         TargetCell = targetCell;
@@ -36,7 +36,7 @@ void MovementComponent::NextCell()
     
     targetLink = StartCell->Links[newDirection];
     targetCell = targetLink->Target;
-    if (targetCell && targetCell->bIsWalkable)
+    if (targetCell && targetCell->bIsPlayerWalkable)
     {
         bWrapLerp = IsWrapLink(targetLink);
         TargetCell = targetCell;

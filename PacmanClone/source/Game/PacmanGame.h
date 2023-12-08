@@ -5,6 +5,8 @@
 #include "World\World.hpp"
 
 
+class GameGrid;
+
 class PacmanGame :
     public GameEngine::GameBase
 {
@@ -16,7 +18,10 @@ public:
     virtual void HandleRendering() override;
 
 protected:
+    void LoadLevel();
+    
     std::shared_ptr<World> GameWorld;
+    std::shared_ptr<GameGrid> Grid;
 
     //TESTING
     //This is test code to show how to make textures, sprites, actors and sprite components.

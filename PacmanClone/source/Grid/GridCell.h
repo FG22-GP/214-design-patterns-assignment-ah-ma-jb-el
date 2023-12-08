@@ -16,11 +16,11 @@ public:
 
 	void Initialize(std::shared_ptr<GameGrid> ParentGrid);
 	
-	bool bIsWalkable = false;
+	bool bIsPlayerWalkable = false;
 	bool bIsGhostWalkable = false;
 	bool bGhostCannotWalkUp = false;
 	bool bGhostIsSlowed = false;
-
+	
 	//Use Directions from Point2.hpp to keep track of indices
 	std::vector<std::shared_ptr<GridLink>> Links;
 

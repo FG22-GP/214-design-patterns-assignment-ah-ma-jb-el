@@ -4,7 +4,7 @@
 void GridCell::Initialize(std::shared_ptr<GameGrid> ParentGrid)
 {
 	Grid = ParentGrid;
-	bIsWalkable = false;
+	bIsPlayerWalkable = false;
 	bIsGhostWalkable = false;
 	bGhostIsSlowed = false;
 	bGhostCannotWalkUp = false;

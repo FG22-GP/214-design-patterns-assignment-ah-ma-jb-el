@@ -15,20 +15,6 @@ PacmanLevelInfo PacmanLevelInfoParser::ParseFromStringVector(const std::vector<s
 	ParsedInfo.Width = std::stoi(*it); it++;
 	CheckIterator();
 	ParsedInfo.Height = std::stoi(*it); it++;
-	
-	//Parse Cell Contents
-	for (int j = 0; j < ParsedInfo.Height; j++)
-	{
-		CheckIterator();
-		std::string Line = *it; it++;
-		if (Line.length() != ParsedInfo.Width) return ParsedInfo;
-		for (int i = 0; i < ParsedInfo.Width; i++)
-		{
-			char CharDigit = Line[i];
-			int Digit = CharDigit - '0';
-			ParsedInfo.Content.push_back((CellContent)(Digit));
-		}
-	}
 
 	//Parse Cell Rules
 	for (int j = 0; j < ParsedInfo.Height; j++)
@@ -42,6 +28,20 @@ PacmanLevelInfo PacmanLevelInfoParser::ParseFromStringVector(const std::vector<s
 			int Digit = CharDigit - '0';
 			if (Digit < 0 || Digit > 9) return ParsedInfo;
 			ParsedInfo.Rules.push_back((CellRule)(Digit));
+		}
+	}
+
+	//Parse Cell Contents
+	for (int j = 0; j < ParsedInfo.Height; j++)
+	{
+		CheckIterator();
+		std::string Line = *it; it++;
+		if (Line.length() != ParsedInfo.Width) return ParsedInfo;
+		for (int i = 0; i < ParsedInfo.Width; i++)
+		{
+			char CharDigit = Line[i];
+			int Digit = CharDigit - '0';
+			ParsedInfo.Content.push_back((CellContent)(Digit));
 		}
 	}
 

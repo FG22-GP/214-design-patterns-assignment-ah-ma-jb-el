@@ -22,20 +22,32 @@ std::shared_ptr<GameGrid> GridGenerator::GenerateGrid(std::shared_ptr<World> Par
 		switch (CellRules[i])
 		{
 		case CR_Wall:
+			NewCell->bIsPlayerWalkable = false;
+			NewCell->bIsGhostWalkable = false;
+			NewCell->bGhostCannotWalkUp = false;
+			NewCell->bGhostIsSlowed = false;
 			break;
 		case CR_Standard:
-			NewCell->bIsWalkable = true;
-		case CR_Ghost:
+			NewCell->bIsPlayerWalkable = true; 
 			NewCell->bIsGhostWalkable = true;
+			NewCell->bGhostCannotWalkUp = false;
+			NewCell->bGhostIsSlowed = false;
+		case CR_Ghost:
+			NewCell->bIsPlayerWalkable = false; 
+			NewCell->bIsGhostWalkable = true;
+			NewCell->bGhostCannotWalkUp = false;
+			NewCell->bGhostIsSlowed = false;
 			break;
 		case CR_GhostNoUp:
-			NewCell->bIsWalkable = true;
+			NewCell->bIsPlayerWalkable = true;
 			NewCell->bIsGhostWalkable = true;
 			NewCell->bGhostCannotWalkUp = true;
+			NewCell->bGhostIsSlowed = false;
 			break;
 		case CR_GhostSlow:
-			NewCell->bIsWalkable = true;
+			NewCell->bIsPlayerWalkable = true;
 			NewCell->bIsGhostWalkable = true;
+			NewCell->bGhostCannotWalkUp = false;
 			NewCell->bGhostIsSlowed = true;
 			break;
 		}
