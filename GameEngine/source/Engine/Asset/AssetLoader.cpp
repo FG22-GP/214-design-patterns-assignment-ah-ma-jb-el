@@ -81,6 +81,8 @@ namespace GameEngine
 	void AssetLoader::LoadSprites(const std::shared_ptr<Texture> texture, const std::vector<std::string>& names, const uint16_t columns, const uint16_t rows){
 		uint32_t width  = texture->GetWidth()  / columns;
 		uint32_t height = texture->GetHeight() / rows;
+		uint32_t halfW  = width / 2;
+		uint32_t halfH  = width / 2;
 
 		for (uint32_t y = 0; y < rows; y++){
 			for (uint32_t x = 0; x < columns; x++){
@@ -89,7 +91,7 @@ namespace GameEngine
 
 				auto crop   = Rectangle(x * width, y * height, width, height);
 				auto rect   = Rectangle(0, 0, width, height);
-				auto centre = Point2(width / 2, height / 2);
+				auto centre = Point2(halfW, halfH);
 
 				std::shared_ptr<Sprite> sprite(
 					new Sprite(texture, crop, rect, centre, RenderFlip::None, 0)
