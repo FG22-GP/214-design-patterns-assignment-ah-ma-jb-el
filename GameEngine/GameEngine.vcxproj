@@ -96,7 +96,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -225,7 +225,8 @@ copy /Y "$(SolutionDir)ext\SDL2_image-2.6.3\lib\x86\SDL2_image.dll" "$(TargetDir
       <AdditionalLibraryDirectories>$(SolutionDir)\ext\SDL2_image-2.6.3\lib\x64\;$(SolutionDir)\ext\SDL2-2.26.4\lib\x64\;$(SolutionDir)\ext\SDL2_ttf-2.20.2\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"
+      <Command>if not exist "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\" mkdir "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"
+copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"
 copy /Y "$(SolutionDir)ext\SDL2_image-2.6.3\lib\x64\SDL2_image.dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"
 copy /Y "$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x64\SDL2_ttf.dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"
 copy /Y "$(SolutionDir)ext\SDL2-2.26.4\lib\x64\SDL2.dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"</Command>
@@ -253,7 +254,8 @@ copy /Y "$(SolutionDir)ext\SDL2-2.26.4\lib\x64\SDL2.dll" "$(SolutionDir)Builds\P
       <AdditionalLibraryDirectories>$(SolutionDir)\ext\SDL2_image-2.6.3\lib\x64\;$(SolutionDir)\ext\SDL2-2.26.4\lib\x64\;$(SolutionDir)\ext\SDL2_ttf-2.20.2\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"
+      <Command>if not exist "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\" mkdir "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"
+copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"
 copy /Y "$(SolutionDir)ext\SDL2_image-2.6.3\lib\x64\SDL2_image.dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"
 copy /Y "$(SolutionDir)ext\SDL2_ttf-2.20.2\lib\x64\SDL2_ttf.dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"
 copy /Y "$(SolutionDir)ext\SDL2-2.26.4\lib\x64\SDL2.dll" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\"</Command>

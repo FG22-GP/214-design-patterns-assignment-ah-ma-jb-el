@@ -111,6 +111,9 @@
     <ClCompile Include="source\Movement\Pathfinding.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\ZakuMan\ZakuMan.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Grid\GameGrid.h">
@@ -204,6 +207,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Movement\Pathfinding.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ZakuMan\ZakuMan.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

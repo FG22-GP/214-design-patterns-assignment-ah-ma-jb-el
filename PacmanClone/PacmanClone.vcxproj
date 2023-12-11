@@ -140,7 +140,7 @@ copy /Y "$(SolutionDir)$(ProjectName)\Sprites\SpriteAtlas.png" "$(SolutionDir)Bu
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
