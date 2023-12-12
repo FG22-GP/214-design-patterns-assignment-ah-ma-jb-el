@@ -12,7 +12,7 @@ class MovementComponent : public ActorComponent
 {
 public:
     MovementComponent(std::shared_ptr<Actor> ParentActor) :
-        ActorComponent(ParentActor), currentDirection(Directions::Right), cachedDirection(Directions::Right)
+        ActorComponent(ParentActor)
     {
     }
 
@@ -23,11 +23,11 @@ public:
 
     std::shared_ptr<GridCell> GetTargetCell() { return TargetCell; }
     std::shared_ptr<GridCell> GetCurrentCell() { return StartCell; }
+    Directions GetCurrentDirection() const { return currentDirection; }
 
 protected:
-    Directions currentDirection;
-    Directions cachedDirection;
-
+    Directions currentDirection = Directions::None;
+    Directions cachedDirection = Directions::None;
 
     void Tick(float DeltaTime) override;
 
@@ -35,8 +35,8 @@ private:
     float fTimeElapsed = 0;
     float fLerpDuration = 1;
     bool bWrapLerp = false;
-    std::shared_ptr<GridCell> StartCell;
-    std::shared_ptr<GridCell> TargetCell;
+    std::shared_ptr<GridCell> StartCell = nullptr;
+    std::shared_ptr<GridCell> TargetCell = nullptr;
 
     void TrySetNewTargetCell();
     void Move(float DeltaTime);
