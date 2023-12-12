@@ -11,7 +11,8 @@ namespace GameEngine
 		Up	  = 0,
 		Down  = 1,
 		Right = 2,
-		Left  = 3
+		Left  = 3,
+		None  = 4
 	};
 
 	class DirectionHelpers {  // TODO: Move to a more appropriate place
@@ -65,6 +66,8 @@ namespace GameEngine
 
 		GAME_API operator SDL_Point* ();
 
+	// FUNC
+		GAME_API std::string ToString() const { return "(" + std::to_string(GetX()) + ", " + std::to_string(GetY()) + ")"; }
 	private:
 
 		struct Deleter { void operator ()(SDL_Point*) const noexcept; };
