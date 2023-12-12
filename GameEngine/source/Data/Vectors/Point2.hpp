@@ -23,6 +23,20 @@ namespace GameEngine
 				(dir1 == Right && dir2 == Left) ||
 				(dir1 == Left && dir2 == Right);
 		}
+		static Directions GetOppositeDirection(Directions dir) {
+			switch (dir) {
+			case Up:
+				return Down;
+			case Down:
+				return Up;
+			case Right:
+				return Left;
+			case Left:
+				return Right;
+			default:
+				return None;
+			}
+		}
 	};
 	
 	struct Point2
