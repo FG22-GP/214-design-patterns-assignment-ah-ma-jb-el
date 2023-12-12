@@ -8,11 +8,9 @@
 
 
 ZakuMan::ZakuMan(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTransform)
-    : Actor(ParentWorld, StartTransform) {
+    : Actor(ParentWorld, StartTransform)
+{
     MoveComp = AddComponent<MovementComponent>();
-    SpriteComp = AddComponent<SpriteComponent>();
-    
-    CellContent = std::make_shared<GridCellContent>();
 
     // Register Input Events
     Input::RegisterInputEvent(KEY_DOWN_EVENT, KeyboardKey::W, [this] { MoveComp->SetDirection(Up); });
@@ -23,5 +21,23 @@ ZakuMan::ZakuMan(std::shared_ptr<World> ParentWorld, GameEngine::Transform Start
     Input::RegisterInputEvent(KEY_DOWN_EVENT, KeyboardKey::ArrowLeft, [this] { MoveComp->SetDirection(Left); });
     Input::RegisterInputEvent(KEY_DOWN_EVENT, KeyboardKey::ArrowDown, [this] { MoveComp->SetDirection(Down); });
     Input::RegisterInputEvent(KEY_DOWN_EVENT, KeyboardKey::ArrowRight, [this] { MoveComp->SetDirection(Right); });
+
+    // Set Spite Component and init sprite
+    //  TODO: Clean this up
+    SpriteComp = AddComponent<SpriteComponent>();
+    const char* const SpriteName = "Pacman.png";
+    
+    std::vector<std::string> names;
+    names.emplace_back("Pacman");
+    
+    AssetLoader::LoadTexture(AssetLoader::GetAssetPath(SpriteName));
+
+    const auto texture = AssetLoader::GetTexture(names[0]);
+
+    AssetLoader::LoadSprites(texture, names, 1,1);
+
+    const auto sprite = AssetLoader::GetSprite(names[0]);
+
+    SpriteComp->Initialize(sprite);
 }
 
