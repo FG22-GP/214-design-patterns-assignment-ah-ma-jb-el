@@ -74,9 +74,9 @@ void PacmanGame::LoadSprites(){
 	names[8] = "Vertical_Left";
 	names[9] = "Empty";
 	names[10] = "Vertical_Right";
-	names[11] = "Vertical_Left2";
+	names[11] = "Vertical_Right2";
 	names[12] = "Filled";
-	names[13] = "Vertical_Right2";
+	names[13] = "Vertical_Left2";
 	names[14] = "Ghost_1";
 	names[15] = "Ghost_2";
 	names[16] = "SW_Inner";
