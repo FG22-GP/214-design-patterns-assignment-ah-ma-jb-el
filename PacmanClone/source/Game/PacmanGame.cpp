@@ -31,10 +31,6 @@ void PacmanGame::Initialize()
 		Zaku->GetMovementComponent()->Init(Grid->GetCellAt(PlayerSpawn));
 	}
 
-	
-	bUseTestFunctions = false;
-	if (bUseTestFunctions)
-		TEST_Init();
 }
 
 void PacmanGame::Run()
@@ -50,8 +46,6 @@ void PacmanGame::Exit()
 void PacmanGame::HandleTick(float DeltaTime)
 {
 	GameWorld->Tick(DeltaTime);
-	if (bUseTestFunctions)
-		TEST_Tick(DeltaTime);
 }
 
 void PacmanGame::HandleRendering()
@@ -106,81 +100,4 @@ void PacmanGame::LoadLevel()
 		
 	// Generate the grid from the level info 
 	Grid = GridGenerator::GenerateGrid(GameWorld, LevelInfo.Width, LevelInfo.Height, LevelInfo.Content, LevelInfo.Rules);
-
-	// Create Textures for each cell type
-	/*
-	std::shared_ptr<Texture> WallTexture = std::make_shared<Texture>( 
-		m_Window->GetRenderer(),
-		"Sprites/TestBlueSquare.png"
-	);
-
-	std::shared_ptr<Texture> FloorTexture = std::make_shared<Texture>(
-		m_Window->GetRenderer(),
-		"Sprites/TestWhiteSquare.png"
-	);
-
-	// Create Sprites for each cell type
-	std::shared_ptr<Sprite> WallSprite = std::make_shared<Sprite>(
-		WallTexture,
-		Rectangle(0, 0, WallTexture->GetWidth(), WallTexture->GetHeight()),
-		Rectangle(0, 0, 0, 0),
-		Point2(0, 0),
-		RenderFlip::None,
-		0.0f
-	);
-
-	std::shared_ptr<Sprite> FloorSprite = std::make_shared<Sprite>(
-		FloorTexture,
-		Rectangle(0, 0, FloorTexture->GetWidth(), FloorTexture->GetHeight()),
-		Rectangle(0, 0, 0, 0),
-		Point2(0, 0),
-		RenderFlip::None,
-		0.0f
-	);
-
-	// Loop through each cell, initialize a sprite component for it and set its location 
-	for (const std::shared_ptr<GridCell> cell : Grid->Cells)
-	{
-		const std::shared_ptr<SpriteComponent> SpriteComp = cell->AddComponent<SpriteComponent>();
-		if (cell->bIsPlayerWalkable)
-			SpriteComp->Initialize(FloorSprite);
-		else
-			SpriteComp->Initialize(WallSprite);
-
-		cell->ActorTransform.SetLocation(cell->Coordinate);
-	}
-	*/
-}
-
-//This is test code to show how to make textures, sprites, actors and sprite components.
-void PacmanGame::TEST_Init()
-{
-	std::shared_ptr<Texture> TestTexture = std::make_shared<Texture>(
-		m_Window->GetRenderer(),
-		TestPath
-	);
-
-	std::shared_ptr<Sprite> TestSprite = std::make_shared<Sprite>(
-		TestTexture,
-		Rectangle(0, 0, TestTexture->GetWidth(), TestTexture->GetHeight()),
-		Rectangle(0, 0, 0, 0),
-		Point2(0, 0),
-		RenderFlip::None,
-		0.0f
-	);
-
-	TestActor = GameWorld->CreateActor<Actor>();
-	TestActor->ActorTransform.SetLocation(Vector2(0.5f, 0.5f));
-	auto SpriteComp = TestActor->AddComponent<SpriteComponent>();
-	SpriteComp->Initialize(TestSprite);
-
-	//Grabs a test level info struct, just to check that it's valid
-	PacmanLevelInfo Info = PacmanLevelInfoParser::GetTestLevelInfo();
-
-
-}
-
-void PacmanGame::TEST_Tick(float DeltaTime)
-{
-	TestActor->ActorTransform.AddLocation(Vector2(1, 1) * DeltaTime);
 }

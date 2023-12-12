@@ -27,14 +27,5 @@ protected:
     std::shared_ptr<GameGrid> Grid;
     PacmanLevelInfo LevelInfo;
 
-    //TESTING
-    //This is test code to show how to make textures, sprites, actors and sprite components.
-    bool bUseTestFunctions;
-    void TEST_Init(); 
-    void TEST_Tick(float DeltaTime);
-    std::shared_ptr<Actor> TestActor;
-    std::string TestPath = 
-        "Sprites/TestSprite.png";
-
 };
 
