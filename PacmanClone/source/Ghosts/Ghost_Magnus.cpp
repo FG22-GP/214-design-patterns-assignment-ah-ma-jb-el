@@ -1,27 +1,29 @@
 #include "PacmanCore.h"
 #include "Ghost_Magnus.h"
 
+#include "Grid/GridCell.h"
 #include "Movement/MovementComponent.h"
 #include "Movement/Pathfinding.h"
 #include "ZakuMan/ZakuMan.hpp"
 
 
-std::shared_ptr<GridCell> Ghost_Magnus::GetTargetCell()
+Point2 Ghost_Magnus::GetTargetCoord()
 {
-    const std::shared_ptr<GridCell> startCell = MovementComp->GetTargetCell();
-    const std::shared_ptr<GridCell> targetCell = ZakuMan->GetCell();
-
-    if (startCell == nullptr || targetCell  == nullptr)
-    {
-        return nullptr;
-    }
+    //initial null-checks
+    if (MovementComp == nullptr || ZakuMan == nullptr) { return Point2{}; }
     
-    const float distance = Pathfinding::Calculate_Distance(startCell, targetCell);
+    const std::shared_ptr<GridCell> startCell = MovementComp->GetTargetCell();
+    std::shared_ptr<GridCell> targetCell = ZakuMan->GetCell();
+
+    //secondary null-checks
+    if (startCell == nullptr || targetCell  == nullptr) { return Point2{}; }
+    
+    const float distance = Pathfinding::Calculate_Distance(startCell, targetCell->Coordinate);
     
     if (distance > 8)
     {
-        return nullptr; // <- method here
+        return targetCell->Coordinate;
     }
 
-    return nullptr; // <- method here
+    return ScatterCell->Coordinate;
 }

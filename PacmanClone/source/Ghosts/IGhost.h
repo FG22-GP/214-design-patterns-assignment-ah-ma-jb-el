@@ -23,6 +23,8 @@ public:
     std::shared_ptr<GridCell> GetDeathCell();
     std::shared_ptr<ZakuMan> GetTarget();
 
+    std::shared_ptr<MovementComponent> GetMovementComponent();
+
 protected:
     std::shared_ptr<GridCell> ScatterCell;
     std::shared_ptr<GridCell> DeathCell;
@@ -32,5 +34,5 @@ protected:
     std::shared_ptr<MovementComponent> MovementComp;
     std::shared_ptr<SpriteComponent> SpriteComp;
     
-    virtual std::shared_ptr<GridCell> GetTargetCell();
+    virtual Point2 GetTargetCoord();
 };

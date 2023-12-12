@@ -15,7 +15,7 @@ IGhost::IGhost(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTr
 
 void IGhost::ChasePlayer()
 {
-    const Directions newDir = Pathfinding::GetDirection(MovementComp->GetTargetCell(), GetTargetCell());
+    const Directions newDir = Pathfinding::GetDirection(MovementComp->GetCurrentCell(), MovementComp->GetTargetCell(), GetTargetCoord());
     MovementComp->SetDirection(newDir);
 }
 
@@ -33,7 +33,7 @@ void IGhost::Flee()
 
 void IGhost::Scatter(std::shared_ptr<GridCell> scatterCell)
 {
-    const Directions newDir = Pathfinding::GetDirection(MovementComp->GetTargetCell() ,scatterCell);
+    const Directions newDir = Pathfinding::GetDirection(MovementComp->GetCurrentCell(), MovementComp->GetTargetCell() ,scatterCell->Coordinate);
     MovementComp->SetDirection(newDir);
 }
 
@@ -53,8 +53,13 @@ std::shared_ptr<ZakuMan> IGhost::GetTarget()
     return ZakuMan;
 }
 
-std::shared_ptr<GridCell> IGhost::GetTargetCell()
+std::shared_ptr<MovementComponent> IGhost::GetMovementComponent()
 {
-    return nullptr;
+    return MovementComp;
+}
+
+Point2 IGhost::GetTargetCoord()
+{
+    return Point2{};
 }
 #pragma endregion 

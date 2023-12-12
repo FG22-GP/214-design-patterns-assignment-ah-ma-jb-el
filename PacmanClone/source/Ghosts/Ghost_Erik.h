@@ -5,7 +5,6 @@
 class Ghost_Erik : public IGhost
 {
 protected:
-    std::shared_ptr<GridCell> GetTargetCell() override;
-
+    Point2 GetTargetCoord() override;
     
 };
