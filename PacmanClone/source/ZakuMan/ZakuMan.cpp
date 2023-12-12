@@ -23,18 +23,13 @@ ZakuMan::ZakuMan(std::shared_ptr<World> ParentWorld, GameEngine::Transform Start
     Input::RegisterInputEvent(KEY_DOWN_EVENT, KeyboardKey::ArrowRight, [this] { MoveComp->SetDirection(Right); });
 
     // Set Spite Component and init sprite
+    
     //  TODO: Clean this up
+    
     SpriteComp = AddComponent<SpriteComponent>();
-    const char* const SpriteName = "Pacman.png";
-    
+
     std::vector<std::string> names;
-    names.emplace_back("Pacman");
-    
-    AssetLoader::LoadTexture(AssetLoader::GetAssetPath(SpriteName));
-
-    const auto texture = AssetLoader::GetTexture(names[0]);
-
-    AssetLoader::LoadSprites(texture, names, 1,1);
+    names.emplace_back("Zacuman_Opened");
 
     const auto sprite = AssetLoader::GetSprite(names[0]);
 
