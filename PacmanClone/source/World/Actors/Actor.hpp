@@ -25,6 +25,8 @@ public:
 	template<typename T> std::shared_ptr<T> AddComponent();
 	bool TryRemoveComponentRef(std::shared_ptr<ActorComponent> Comp);
 	template<typename T> bool TryRemoveComponent();
+	template<typename T> std::shared_ptr<T> GetComponent();
+	template<typename T> bool TryGetComponent(std::shared_ptr<T>& OutPtr);
 
 	std::vector<std::shared_ptr<ActorComponent>> GetComponents() { return ChildComponents; }
 
@@ -62,5 +64,41 @@ bool Actor::TryRemoveComponent()
 		}
 
 	}
+	return false;
+}
+
+template<typename T>
+inline std::shared_ptr<T> Actor::GetComponent()
+{
+	static_assert(std::is_base_of<ActorComponent, T>::value,
+		"T must be derived from ActorComponent");
+	for (size_t i = 0; i < ChildComponents.size(); i++)
+	{
+		auto CastComp = dynamic_cast<T*>(ChildComponents[i]);
+		if (CastComp != nullptr)
+		{
+			return CastComp;
+		}
+
+	}
+	return nullptr;
+}
+
+template<typename T>
+inline bool Actor::TryGetComponent(std::shared_ptr<T>& OutPtr)
+{
+	static_assert(std::is_base_of<ActorComponent, T>::value,
+		"T must be derived from ActorComponent");
+	for (size_t i = 0; i < ChildComponents.size(); i++)
+	{
+		auto CastComp = dynamic_cast<T*>(ChildComponents[i]);
+		if (CastComp != nullptr)
+		{
+			OutPtr = CastComp;
+			return true;
+		}
+
+	}
+	OutPtr = nullptr;
 	return false;
 }

@@ -2,7 +2,7 @@
 #include "IGhost.h"
 #include "World/Actors/Actor.hpp"
 
-class Ghost_Johan : public Actor, public IGhost
+class Ghost_Johan : public IGhost
 {
 public:
     void ChasePlayer() override;
