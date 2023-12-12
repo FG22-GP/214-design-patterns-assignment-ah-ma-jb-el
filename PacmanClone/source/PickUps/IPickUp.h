@@ -19,7 +19,4 @@ public:
 private:
     Event<std::shared_ptr<GridCellContent>>::CallbackPtr EventCallback;
     void UnbindEvent();
- 
-    //std::shared_ptr<GridCellContent> CellContentComponent;
-    //std::shared_ptr<SpriteComponent> SpriteComponent;
 };
