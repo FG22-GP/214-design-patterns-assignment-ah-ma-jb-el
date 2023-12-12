@@ -33,6 +33,7 @@ namespace GameEngine
 		GAME_API static std::shared_ptr<Window> Create(
 			const std::string& title, const uint32_t width, const uint32_t height
 		);
+		GAME_API void Update();
 		GAME_API void StartDrawing();
 		GAME_API void Draw(IRenderable& sprite);
 		GAME_API void StopDrawing();

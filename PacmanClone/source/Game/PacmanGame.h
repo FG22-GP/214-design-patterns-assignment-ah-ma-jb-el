@@ -20,6 +20,7 @@ public:
     virtual void HandleRendering() override;
 
 protected:
+    void LoadSprites();
     void LoadLevel();
     
     std::shared_ptr<World> GameWorld;

@@ -1,6 +1,8 @@
 #include "Core.hpp"
 #include "Window.hpp"
 
+#include "Engine/Input/Input.hpp"
+#include "Engine/Input/KeyboardKey.h"
 #include "Engine/Renderer/Interfaces/IRenderable.h"
 #include "Data/Vectors/Point2.hpp"
 #include "Engine/Renderer/Renderer.hpp"
@@ -61,6 +63,14 @@ namespace GameEngine
 		);
 		s_Main.reset(window);
 		return s_Main;
+	}
+
+	void Window::Update(){
+		//SDL_Event event;
+
+		//while(SDL_PollEvent(&event))
+		//	if (event.type == SDL_QUIT) ???
+		//		Close();
 	}
 
 	void Window::StartDrawing(){
