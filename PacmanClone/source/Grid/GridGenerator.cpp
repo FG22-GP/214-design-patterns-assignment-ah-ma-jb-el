@@ -6,6 +6,10 @@
 #include "GridWrapLink.h"
 #include "GridCellContent.h"
 #include "World\World.hpp"
+#include "PickUps\Dot.h"
+#include "PickUps\Cookie.h"
+#include "CellSpriteGenerator.h"
+#include "SpriteMap.hpp"
 
 std::shared_ptr<GameGrid> GridGenerator::GenerateGrid(std::shared_ptr<World> ParentWorld, uint16_t Width, uint16_t Height, std::vector<CellContent> CellContents, std::vector<CellRule> CellRules)
 {
@@ -45,20 +49,7 @@ std::shared_ptr<GameGrid> GridGenerator::GenerateGrid(std::shared_ptr<World> Par
 
 		std::cout << "Cell " << NewCell->Coordinate.ToString() << " is " << (NewCell->bIsPlayerWalkable ? "walkable" : "not walkable") << std::endl;
 		
-		switch (CellContents[i])
-		{
-		case CC_Empty:
-			break;
-		case CC_Dot:
-			//TODO: Spawn Dot
-			break;
-		case CC_Cookie:
-			//TODO: Spawn Cookie
-			break;
-		case CC_Fruit:
-			//TODO: Spawn Fruit
-			break;
-		}
+		
 
 		Grid->Cells[i] = NewCell;
 
@@ -95,5 +86,56 @@ std::shared_ptr<GameGrid> GridGenerator::GenerateGrid(std::shared_ptr<World> Par
 		}
 	}
 
+	auto map = std::make_shared<SpriteMap>();
+	CellSpriteGenerator::GenerateSpriteComponents(Grid, map);
+
+	for (int i = 0; i < Width * Height; i++)
+	{
+		switch (CellContents[i])
+		{
+		case CC_Empty:
+			break;
+		case CC_Dot:
+			SpawnDot(ParentWorld, Grid->Cells[i], Grid->Cells[i]->Coordinate);
+			break;
+		case CC_Cookie:
+			SpawnCookie(ParentWorld, Grid->Cells[i], Grid->Cells[i]->Coordinate);
+			break;
+		case CC_Fruit:
+			//TODO: Spawn Fruit
+			break;
+		}
+	}
+
 	return Grid;
+}
+
+void GridGenerator::SpawnDot(std::shared_ptr<World> ParentWorld, std::shared_ptr<GridCell> ParentCell, Point2 Coordinate)
+{
+	std::shared_ptr<Dot> NewDot = ParentWorld->CreateActor<Dot>();
+	NewDot->ActorTransform.SetLocation(Coordinate);
+	NewDot->ActorTransform.SetScale(Vector2::One());
+	ParentCell->AddContent(NewDot);
+	NewDot->BindToCell(ParentCell);
+
+	std::shared_ptr<SpriteComponent> spriteComp = NewDot->AddComponent<SpriteComponent>();
+	std::vector<std::string> names;
+	names.emplace_back("Dot");
+	const auto sprite = AssetLoader::GetSprite(names[0]);
+	spriteComp->Initialize(sprite);
+}
+
+void GridGenerator::SpawnCookie(std::shared_ptr<World> ParentWorld, std::shared_ptr<GridCell> ParentCell, Point2 Coordinate)
+{
+	std::shared_ptr<Cookie> NewDot = ParentWorld->CreateActor<Cookie>();
+	NewDot->ActorTransform.SetLocation(Coordinate);
+	NewDot->ActorTransform.SetScale(Vector2::One());
+	ParentCell->AddContent(NewDot);
+	NewDot->BindToCell(ParentCell);
+
+	std::shared_ptr<SpriteComponent> spriteComp = NewDot->AddComponent<SpriteComponent>();
+	std::vector<std::string> names;
+	names.emplace_back("Energizer");
+	const auto sprite = AssetLoader::GetSprite(names[0]);
+	spriteComp->Initialize(sprite);
 }

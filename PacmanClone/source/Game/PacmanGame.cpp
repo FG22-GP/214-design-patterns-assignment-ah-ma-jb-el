@@ -15,9 +15,9 @@
 void PacmanGame::Initialize()
 {
 	GameBase::Initialize();
+	LoadSprites();
 
 	GameWorld = std::make_shared<World>();
-	LoadSprites();
 	LoadLevel();
 	
 	if(LevelInfo.bIsValid)
@@ -108,6 +108,7 @@ void PacmanGame::LoadLevel()
 	Grid = GridGenerator::GenerateGrid(GameWorld, LevelInfo.Width, LevelInfo.Height, LevelInfo.Content, LevelInfo.Rules);
 
 	// Create Textures for each cell type
+	/*
 	std::shared_ptr<Texture> WallTexture = std::make_shared<Texture>( 
 		m_Window->GetRenderer(),
 		"Sprites/TestBlueSquare.png"
@@ -148,7 +149,7 @@ void PacmanGame::LoadLevel()
 
 		cell->ActorTransform.SetLocation(cell->Coordinate);
 	}
-
+	*/
 }
 
 //This is test code to show how to make textures, sprites, actors and sprite components.

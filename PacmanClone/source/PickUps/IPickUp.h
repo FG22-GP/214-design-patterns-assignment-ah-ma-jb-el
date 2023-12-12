@@ -10,13 +10,15 @@ class GridCellContent;
 class IPickUp : public Actor, public GridCellContent
 {
 public:
-    IPickUp(std::shared_ptr<GridCell> NewParent);
+    IPickUp(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTransform)
+        : Actor(ParentWorld, StartTransform) {}
     virtual ~IPickUp() = default;
     virtual void OnPickUp() = 0;
 
+    void BindToCell(std::shared_ptr<GridCell> Cell);
+    void UnbindEvent();
     void CheckNewCellContent(std::shared_ptr<GridCellContent> NewContent);
 
 private:
     Event<std::shared_ptr<GridCellContent>>::CallbackPtr EventCallback;
-    void UnbindEvent();
 };

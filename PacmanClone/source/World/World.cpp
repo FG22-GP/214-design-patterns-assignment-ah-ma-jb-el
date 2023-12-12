@@ -30,6 +30,8 @@ void World::RenderAllRegisteredActors()
 	if (Renderer == nullptr) return;
 	for (auto Comp : SpriteComponent::AllSpriteComponents)
 	{
+		if (Comp == nullptr)
+			continue;
 		//TODO At this point, Comp->GetPosition() is in grid-space, not pixel-space.
 		Renderer->Draw(*Comp);
 	}

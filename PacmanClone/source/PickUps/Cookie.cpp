@@ -3,5 +3,5 @@
 
 void Cookie::OnPickUp()
 {
-    
+    std::cout << "Cookie eaten" << std::endl;
 }

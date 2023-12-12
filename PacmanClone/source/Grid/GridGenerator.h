@@ -3,6 +3,7 @@
 
 class GameGrid;
 class World;
+class GridCell;
 
 enum CellContent
 {
@@ -27,5 +28,7 @@ class GridGenerator
 
 public:
 	static std::shared_ptr<GameGrid> GenerateGrid(std::shared_ptr<World> ParentWorld, uint16_t Width, uint16_t Height, std::vector<CellContent> CellContents, std::vector<CellRule> CellRules);
+	static void SpawnDot(std::shared_ptr<World> ParentWorld, std::shared_ptr<GridCell> ParentCell, Point2 Coordinate);
+	static void SpawnCookie(std::shared_ptr<World> ParentWorld, std::shared_ptr<GridCell> ParentCell, Point2 Coordinate);
 };
 

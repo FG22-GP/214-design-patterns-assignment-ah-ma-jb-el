@@ -18,9 +18,11 @@ void CellSpriteGenerator::HandleCell(std::shared_ptr<GridCell> Cell, std::shared
 	GameEngine::CellSpriteAlignment Alignment = GetCellAlignment(Cell);
 
 	std::shared_ptr<Sprite> AlignedSprite = SpriteMap->GetAlignedSprite(Alignment);
-
-	std::shared_ptr<SpriteComponent> SpriteComp = Cell->AddComponent<SpriteComponent>();
-	SpriteComp->Initialize(AlignedSprite);
+	if (AlignedSprite != nullptr)
+	{
+		std::shared_ptr<SpriteComponent> SpriteComp = Cell->AddComponent<SpriteComponent>();
+		SpriteComp->Initialize(AlignedSprite);
+	}
 }
 
 CellSpriteAlignment CellSpriteGenerator::GetCellAlignment(std::shared_ptr<GridCell> Cell)
@@ -33,30 +35,32 @@ CellSpriteAlignment CellSpriteGenerator::GetCellAlignment(std::shared_ptr<GridCe
 	for (int i = 0; i < 4; i++)
 	{
 		if (Cell->Links[i]->Target->bIsPlayerWalkable)
-			Walkability += 2 ^ i;
+		{
+			Walkability += 1 << i;
+		}
 	}
 
 	switch (Walkability)
 	{
 		//Cases with 1 walkable neighbour
 	case 1:
-		return Horizontal_Top;
-	case 2:
 		return Horizontal_Bottom;
+	case 2:
+		return Horizontal_Top;
 	case 4:
-		return Vertical_Right;
-	case 8:
 		return Vertical_Left;
+	case 8:
+		return Vertical_Right;
 
 		//Cases with 2 walkable neighbours
 	case 5:
-		return NE_Outer;
-	case 6:
-		return SE_Outer;
-	case 9:
-		return NW_Outer;
-	case 10:
 		return SW_Outer;
+	case 6:
+		return NW_Outer;
+	case 9:
+		return SE_Outer;
+	case 10:
+		return NE_Outer;
 
 	case 0:
 		//special case, handled outside of switch case
@@ -75,13 +79,13 @@ CellSpriteAlignment CellSpriteGenerator::GetCellAlignment(std::shared_ptr<GridCe
 	bool SWWalkable = Cell->Links[1]->Target->Links[3]->Target->bIsPlayerWalkable;
 
 	if (NEWalkable)
-		return NE_Inner;
-	if (NWWalkable)
-		return NW_Inner;
-	if (SEWalkable)
-		return SE_Inner;
-	if (SWWalkable)
 		return SW_Inner;
+	if (NWWalkable)
+		return SE_Inner;
+	if (SEWalkable)
+		return NW_Inner;
+	if (SWWalkable)
+		return NE_Inner;
 
 	return Filled;
 }

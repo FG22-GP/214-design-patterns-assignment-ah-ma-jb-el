@@ -3,10 +3,9 @@
 #include "Grid\GridCell.h"
 #include "ZakuMan\ZakuMan.hpp"
 
-IPickUp::IPickUp(std::shared_ptr<GridCell> NewParent)
+void IPickUp::BindToCell(std::shared_ptr<GridCell> Cell)
 {
-	SetCell(NewParent);
-	EventCallback = NewParent->OnContentEnters.AddListener(
+	EventCallback = Cell->OnContentEnters.AddListener(
 		[this](std::shared_ptr<GridCellContent> NewContent) {
 		this->CheckNewCellContent(NewContent);
 		});
@@ -14,9 +13,11 @@ IPickUp::IPickUp(std::shared_ptr<GridCell> NewParent)
 
 void IPickUp::CheckNewCellContent(std::shared_ptr<GridCellContent> NewContent)
 {
+	std::cout << "Checking new cell content" << std::endl;
 	std::shared_ptr<ZakuMan> CastContent = std::dynamic_pointer_cast<ZakuMan>(NewContent);
 	if (CastContent != nullptr)
 	{
+		std::cout << "Found Pacman" << std::endl;
 		UnbindEvent();
 		OnPickUp();
 	}

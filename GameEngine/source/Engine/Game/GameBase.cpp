@@ -16,7 +16,7 @@ namespace GameEngine
 		Application::Init();
 
 		m_Window = Window::Create(
-			"Pack-Man Clone", 800, 600
+			"Pack-Man Clone", 28*16, 36*16
 		);
 	}
 
