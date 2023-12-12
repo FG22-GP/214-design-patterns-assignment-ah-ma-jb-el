@@ -42,15 +42,15 @@ Directions Pathfinding::GetDirection(std::shared_ptr<GridCell> nextCell, std::sh
 
 float Pathfinding::Calculate_Distance(std::shared_ptr<GridCell> start, std::shared_ptr<GridCell> goal)
 {
-    int startX = start->Coordinate.GetX();
-    int startY = start->Coordinate.GetY();
-    int goalX = goal->Coordinate.GetX();
-    int goalY = goal->Coordinate.GetX();
+    const int startX = start->Coordinate.GetX();
+    const int startY = start->Coordinate.GetY();
+    const int goalX = goal->Coordinate.GetX();
+    const int goalY = goal->Coordinate.GetX();
 
-    int x_sq = (startX - goalX) * (startX - goalX);
-    int y_sq = (startY - goalY) * (startY - goalY);
+    const int x_sq = (startX - goalX) * (startX - goalX);
+    const int y_sq = (startY - goalY) * (startY - goalY);
 
-    float sqrt = static_cast<float>(std::sqrt(x_sq + y_sq));
+    const float sqrt = static_cast<float>(std::sqrt(x_sq + y_sq));
 
     return sqrt;
 }
