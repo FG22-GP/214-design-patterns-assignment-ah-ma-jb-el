@@ -172,6 +172,7 @@ copy /Y "$(SolutionDir)$(ProjectName)\Sprites\SpriteAtlas.png" "$(SolutionDir)Bu
     <ClCompile Include="source\Grid\GridWrapLink.cpp" />
     <ClCompile Include="source\Grid\GridGenerator.cpp" />
     <ClCompile Include="source\Grid\GridCellContent.cpp" />
+    <ClCompile Include="source\Grid\SpriteMap.cpp" />
     <ClCompile Include="source\Movement\MovementComponent.cpp" />
     <ClCompile Include="source\Movement\Pathfinding.cpp" />
     <ClCompile Include="source\PacmanCore.cpp" />
@@ -209,6 +210,7 @@ copy /Y "$(SolutionDir)$(ProjectName)\Sprites\SpriteAtlas.png" "$(SolutionDir)Bu
     <ClInclude Include="source\Grid\GridWrapLink.h" />
     <ClInclude Include="source\Grid\GridGenerator.h" />
     <ClInclude Include="source\Grid\GridCellContent.h" />
+    <ClInclude Include="source\Grid\SpriteMap.hpp" />
     <ClInclude Include="source\Movement\MovementComponent.h" />
     <ClInclude Include="source\Movement\Pathfinding.h" />
     <ClInclude Include="source\PacmanCore.h" />

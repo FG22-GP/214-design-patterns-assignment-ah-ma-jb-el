@@ -120,6 +120,9 @@
     <ClCompile Include="source\Event\EventBroker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Grid\SpriteMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Grid\GameGrid.h">
@@ -222,6 +225,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Event\EventBroker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Grid\SpriteMap.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
