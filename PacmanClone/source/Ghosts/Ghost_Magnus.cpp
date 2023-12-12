@@ -6,6 +6,16 @@
 #include "Movement/Pathfinding.h"
 #include "ZakuMan/ZakuMan.hpp"
 
+Ghost_Magnus::Ghost_Magnus(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTransform)
+    : IGhost(ParentWorld, StartTransform)
+{
+    std::vector<std::string> names;
+    names.emplace_back("Ghost_4");
+
+    const auto sprite = AssetLoader::GetSprite(names[0]);
+
+    SpriteComp->Initialize(sprite);
+}
 
 Point2 Ghost_Magnus::GetTargetCoord()
 {

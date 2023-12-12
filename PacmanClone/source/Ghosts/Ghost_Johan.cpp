@@ -7,6 +7,17 @@
 #include "ZakuMan/ZakuMan.hpp"
 
 
+Ghost_Johan::Ghost_Johan(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTransform)
+    : IGhost(ParentWorld, StartTransform)
+{
+    std::vector<std::string> names;
+    names.emplace_back("Ghost_3");
+
+    const auto sprite = AssetLoader::GetSprite(names[0]);
+
+    SpriteComp->Initialize(sprite);
+}
+
 void Ghost_Johan::GiveFriend(const std::shared_ptr<Ghost_Anton>& friendly)
 {
     //give Johan a friend
