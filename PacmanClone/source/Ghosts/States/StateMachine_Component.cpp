@@ -7,12 +7,8 @@
 #include "AIState_Frightened.h"
 #include "AIState_Scatter.h"
 
-
-
-void StateMachine_Component::OnStart()
+StateMachine_Component::StateMachine_Component(std::shared_ptr<Actor> ParentActor) : ActorComponent(ParentActor)
 {
-    ActorComponent::OnStart();
-
     std::shared_ptr<IGhost> ghost = std::dynamic_pointer_cast<IGhost>(Parent);
 
     if (ghost != nullptr)
@@ -24,7 +20,6 @@ void StateMachine_Component::OnStart()
         
         CurrentState = ChaseState;
     }
-    
 }
 
 void StateMachine_Component::Tick(float DeltaTime)
@@ -36,6 +31,7 @@ void StateMachine_Component::Tick(float DeltaTime)
         CurrentState->OnStateRunning();
     }
 }
+
 
 void StateMachine_Component::PushNewState(std::shared_ptr<IAIState> newState)
 {

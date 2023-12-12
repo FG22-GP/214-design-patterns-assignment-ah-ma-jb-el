@@ -1,6 +1,8 @@
 #include "PacmanCore.h"
 #include "Ghost_Magnus.h"
 
-void Ghost_Magnus::ChasePlayer()
+
+std::shared_ptr<GridCell> Ghost_Magnus::GetTargetCell()
 {
+    return IGhost::GetTargetCell();
 }
