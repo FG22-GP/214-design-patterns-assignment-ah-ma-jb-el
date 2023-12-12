@@ -3,7 +3,6 @@
 
 #include "Engine/Input/Input.hpp"
 #include "Movement/MovementComponent.h"
-#include "Grid/GridCellContent.h"
 #include "World/Actors/SpriteComponent.hpp"
 
 
@@ -29,7 +28,7 @@ ZakuMan::ZakuMan(std::shared_ptr<World> ParentWorld, GameEngine::Transform Start
     SpriteComp = AddComponent<SpriteComponent>();
 
     std::vector<std::string> names;
-    names.emplace_back("Zacuman_Opened");
+    names.emplace_back("Zakuman_Opened");
 
     const auto sprite = AssetLoader::GetSprite(names[0]);
 

@@ -69,8 +69,8 @@ void PacmanGame::LoadSprites(){
 	names[3] = "SE_Outer";
 	names[4] = "Horizontal_Bottom";
 	names[5] = "SW_Outer";
-	names[6] = "Zacuman_Closed";
-	names[7] = "Zacuman_Opened";
+	names[6] = "Zakuman_Closed";
+	names[7] = "Zakuman_Opened";
 	names[8] = "Vertical_Left";
 	names[9] = "Empty";
 	names[10] = "Vertical_Right";
