@@ -14,30 +14,6 @@ namespace GameEngine
 		Left  = 3,
 		None  = 4
 	};
-
-	class DirectionHelpers {  // TODO: Move to a more appropriate place
-	public:
-		static bool IsOpposingDirection(Directions dir1, Directions dir2) {
-			return (dir1 == Up && dir2 == Down) ||
-				(dir1 == Down && dir2 == Up) ||
-				(dir1 == Right && dir2 == Left) ||
-				(dir1 == Left && dir2 == Right);
-		}
-		static Directions GetOppositeDirection(Directions dir) {
-			switch (dir) {
-			case Up:
-				return Down;
-			case Down:
-				return Up;
-			case Right:
-				return Left;
-			case Left:
-				return Right;
-			default:
-				return None;
-			}
-		}
-	};
 	
 	struct Point2
 	{
@@ -87,5 +63,44 @@ namespace GameEngine
 		struct Deleter { void operator ()(SDL_Point*) const noexcept; };
 		std::unique_ptr<SDL_Point, Deleter> m_Point;
 
+	};
+
+	
+	class DirectionHelpers {  // TODO: Move to a more appropriate place
+		public:
+		static bool IsOpposingDirection(Directions dir1, Directions dir2) {
+			return (dir1 == Up && dir2 == Down) ||
+				(dir1 == Down && dir2 == Up) ||
+				(dir1 == Right && dir2 == Left) ||
+				(dir1 == Left && dir2 == Right);
+		}
+		static Directions GetOppositeDirection(Directions dir) {
+			switch (dir) {
+			case Up:
+				return Down;
+			case Down:
+				return Up;
+			case Right:
+				return Left;
+			case Left:
+				return Right;
+			default:
+				return None;
+			}
+		}
+		static Point2 GetPoint2InDirection(Point2 point, Directions dir, uint32_t distance = 1) {
+			switch (dir) {
+			case Up: // Bugged in real pacman game, keeping it for flavour
+				return Point2(point.GetX() - distance, point.GetY() - distance); 
+			case Down:
+				return Point2(point.GetX(), point.GetY() + distance);
+			case Right:
+				return Point2(point.GetX() + distance, point.GetY());
+			case Left:
+				return Point2(point.GetX() - distance, point.GetY());
+			default:
+				return Point2(point.GetX(), point.GetY());
+			}
+		}
 	};
 }
