@@ -1,6 +1,7 @@
 #include "PacmanCore.h"
 #include "IPickUp.h"
 #include "Grid\GridCell.h"
+#include "ZakuMan\ZakuMan.hpp"
 
 IPickUp::IPickUp(std::shared_ptr<GridCell> NewParent)
 {
@@ -13,6 +14,12 @@ IPickUp::IPickUp(std::shared_ptr<GridCell> NewParent)
 
 void IPickUp::CheckNewCellContent(std::shared_ptr<GridCellContent> NewContent)
 {
+	std::shared_ptr<ZakuMan> CastContent = std::dynamic_pointer_cast<ZakuMan>(NewContent);
+	if (CastContent != nullptr)
+	{
+		UnbindEvent();
+		OnPickUp();
+	}
 }
 
 void IPickUp::UnbindEvent()
