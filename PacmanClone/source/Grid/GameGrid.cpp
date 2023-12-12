@@ -15,7 +15,7 @@ std::shared_ptr<GridCell> GameGrid::GetCellAt(const Point2& Coordinate) const
 		Coordinate.GetX() >= Width || Coordinate.GetY() >= Height)
 		return nullptr;
 
-	uint16_t Index = Coordinate.GetX() * Width + Coordinate.GetY();
+	uint16_t Index = Coordinate.GetY() * Width + Coordinate.GetX();
 	return Cells[Index];
 }
 

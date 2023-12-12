@@ -79,5 +79,11 @@ namespace GameEngine
 
 		// Gives you a float of the distance between two points, squared.
 		GAME_API static float DistanceSquared(const Vector2& A, const Vector2& B);
+
+		// Gives you a float of the magnitude of the vector.
+		GAME_API static float Magnitude(const Vector2& A);
+
+		// Gives you a Vector2 of the vector, clamped to the given magnitude.
+		GAME_API static Vector2 ClampMagnitude(const Vector2& A, float MaxMagnitude);
 	};
 }

@@ -2,6 +2,7 @@
 #include "AIState_Dead.h"
 
 #include "Ghosts/IGhost.h"
+#include "Grid/GridCell.h"
 
 AIState_Dead::AIState_Dead(const std::shared_ptr<IGhost>& ghost) : IAIState(ghost)
 {

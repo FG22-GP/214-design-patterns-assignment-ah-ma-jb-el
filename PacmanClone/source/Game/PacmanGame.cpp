@@ -20,14 +20,15 @@ void PacmanGame::Initialize()
 	LoadSprites();
 	LoadLevel();
 	
-	// Create the player
-	std::shared_ptr<ZakuMan> Zaku = GameWorld->CreateActor<ZakuMan>();
-	Zaku->ActorTransform.SetLocation(Vector2(1.5f, 1.5f));
 	if(LevelInfo.bIsValid)
 	{
-		Zaku->SetCell(Grid->GetCellAt(LevelInfo.PlayerSpawn));
-		Zaku->ActorTransform.SetLocation(LevelInfo.PlayerSpawn);
-		Zaku->GetMovementComponent()->Init(Grid->GetCellAt(LevelInfo.PlayerSpawn));
+		// Create the player
+		const std::shared_ptr<ZakuMan> Zaku = GameWorld->CreateActor<ZakuMan>();
+		Zaku->ActorTransform.SetLocation(Vector2(1.5f, 1.5f));
+		const Point2 PlayerSpawn = LevelInfo.PlayerSpawn;
+		Zaku->SetCell(Grid->GetCellAt(PlayerSpawn));
+		Zaku->ActorTransform.SetLocation(PlayerSpawn);
+		Zaku->GetMovementComponent()->Init(Grid->GetCellAt(PlayerSpawn));
 	}
 
 	
@@ -140,7 +141,7 @@ void PacmanGame::LoadLevel()
 	for (const std::shared_ptr<GridCell> cell : Grid->Cells)
 	{
 		const std::shared_ptr<SpriteComponent> SpriteComp = cell->AddComponent<SpriteComponent>();
-		if (cell->bIsPlayerWalkable || cell->bIsGhostWalkable)
+		if (cell->bIsPlayerWalkable)
 			SpriteComp->Initialize(FloorSprite);
 		else
 			SpriteComp->Initialize(WallSprite);

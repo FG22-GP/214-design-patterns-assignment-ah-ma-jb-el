@@ -8,23 +8,17 @@
 #include "ZakuMan/ZakuMan.hpp"
 
 
-std::shared_ptr<GridCell> Ghost_Erik::GetTargetCell()
+Point2 Ghost_Erik::GetTargetCoord()
 {
+    //initial null-checks
+    if (ZakuMan == nullptr || ZakuMan->GetCell() == nullptr || ZakuMan->GetMovementComponent() == nullptr)
+        { return Point2{}; }
+    
     std::shared_ptr<GridCell> ZakuCell = ZakuMan->GetCell();
-    Directions ZakuDir = Up; // = ZakuMan->GetMovementComponent()->currentDirection;  behöver en Getter här
-
-    if (ZakuCell == nullptr) { return nullptr; }
-
-    Point2 newCoord = ZakuCell->Coordinate
-    + Point2::DirectionVector(ZakuDir)
-    + Point2::DirectionVector(ZakuDir)
-    + Point2::DirectionVector(ZakuDir)
-    + Point2::DirectionVector(ZakuDir);
-
+    Directions ZakuDir = ZakuMan->GetMovementComponent()->GetCurrentDirection();
     
-    std::shared_ptr<GridCell> target = ZakuCell->Grid->GetCellAt(newCoord);
+    if (ZakuDir == None) { return Point2{}; }
 
-    if (target != nullptr) { return target; }
-    
-    return nullptr;
+    Point2 newCoord = DirectionHelpers::GetPoint2InDirection(ZakuCell->Coordinate, ZakuDir, 4);
+    return newCoord;
 }

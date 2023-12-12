@@ -97,5 +97,20 @@ namespace GameEngine
 		const float dy = A.Y - B.Y;
 		return dx * dx + dy * dy;
 	}
+
+	float Vector2::Magnitude(const Vector2& A)
+	{
+		return std::sqrt(A.X * A.X + A.Y * A.Y); 
+	}
+
+	Vector2 Vector2::ClampMagnitude(const Vector2& A, float MaxMagnitude)
+	{
+		const float mag = Magnitude(A);
+		if (mag > MaxMagnitude) {
+			const float ratio = MaxMagnitude / mag;
+			return {A.X * ratio, A.Y * ratio};
+		}
+		return A;
+	}
 }
 
