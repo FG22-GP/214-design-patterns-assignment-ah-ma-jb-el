@@ -7,7 +7,7 @@
 #include "Grid/GridLink.h"
 
 
-Point2 Pathfinding::Chase_GetDirection(std::shared_ptr<GridCell> nextCell, std::shared_ptr<GridCell> targetCell)
+Directions Pathfinding::GetDirection(std::shared_ptr<GridCell> nextCell, std::shared_ptr<GridCell> targetCell)
 {
     float lowestDistance = 999.f;
     int index {};
@@ -23,19 +23,19 @@ Point2 Pathfinding::Chase_GetDirection(std::shared_ptr<GridCell> nextCell, std::
             index = i;
         }
     }
-
+    
     switch (index)
     {
     case Up:
-        return Point2::Up();
+        return Up;
     case Down:
-        return Point2::Down();
+        return Down;
     case Right:
-        return Point2::Right();
+        return Right;
     case Left:
-        return Point2::Left();
+        return Left;
     default:
-        return Point2{};
+        return Up;
     }
     
 }

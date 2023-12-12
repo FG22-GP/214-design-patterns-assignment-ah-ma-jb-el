@@ -16,7 +16,7 @@ void AIState_Dead::OnStateRunning()
 {
     if (Ghost == nullptr) { return; }
     
-    Ghost->Scatter(nullptr);
+    Ghost->Scatter(Ghost->GetDeathCell());
 }
 
 void AIState_Dead::OnStateExit()
