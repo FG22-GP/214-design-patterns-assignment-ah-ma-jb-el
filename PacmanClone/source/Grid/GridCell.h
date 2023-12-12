@@ -3,6 +3,7 @@
 #include "PacmanCore.h"
 #include "GridLink.h"
 #include "World\Actors\Actor.hpp"
+#include "Event\Event.h"
 
 class GridCellContent;
 class GameGrid;
@@ -14,12 +15,22 @@ public:
 	GridCell(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTransform) :
 		Actor(ParentWorld, StartTransform) {}
 
+#pragma region Events
+	Event<std::shared_ptr<GridCellContent>> OnContentEnters;
+	Event<std::shared_ptr<GridCellContent>> OnContentExit;
+#pragma endregion
+
 	std::vector<std::shared_ptr<GridCellContent>> GetContents() const { return Contents; }
-	void AddContent(const std::shared_ptr<GridCellContent>& NewContent) { Contents.push_back(NewContent); }
+	void AddContent(const std::shared_ptr<GridCellContent>& NewContent) 
+	{ 
+		Contents.push_back(NewContent); 
+		OnContentEnters.Invoke(NewContent);
+	}
 	void RemoveContent(const std::shared_ptr<GridCellContent>& ContentToRemove)
 	{
 		auto it = std::find(Contents.begin(), Contents.end(), ContentToRemove);
 		if (it != Contents.end()) {
+			OnContentExit.Invoke(*it);
 			Contents.erase(it);
 		}
 	}

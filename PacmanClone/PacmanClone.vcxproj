@@ -153,6 +153,8 @@ copy /Y "$(SolutionDir)$(ProjectName)\Sprites\SpriteAtlas.png" "$(SolutionDir)Bu
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\Event\EventBroker.cpp" />
+    <ClCompile Include="source\Event\Event.cpp" />
     <ClCompile Include="source\Grid\CellSpriteGenerator.cpp" />
     <ClCompile Include="source\Game\PacmanGame.cpp" />
     <ClCompile Include="source\Game\PacmanLevelInfoParser.cpp" />
@@ -188,6 +190,8 @@ copy /Y "$(SolutionDir)$(ProjectName)\Sprites\SpriteAtlas.png" "$(SolutionDir)Bu
     <ClCompile Include="source\ZakuMan\ZakuMan.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\Event\EventBroker.h" />
+    <ClInclude Include="source\Event\Event.h" />
     <ClInclude Include="source\Grid\CellSpriteGenerator.h" />
     <ClInclude Include="source\Game\PacmanGame.h" />
     <ClInclude Include="source\Game\PacmanLevelInfoParser.h" />
