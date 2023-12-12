@@ -10,12 +10,13 @@ class AIState_Dead;
 class StateMachine_Component : public ActorComponent
 {
 public:
+    StateMachine_Component(std::shared_ptr<Actor> ParentActor);
     std::shared_ptr<IAIState> CurrentState;
 
     void PushNewState(std::shared_ptr<IAIState> newState);
     
 protected:
-    void OnStart() override;
+
     void Tick(float DeltaTime) override;
     
 private:
