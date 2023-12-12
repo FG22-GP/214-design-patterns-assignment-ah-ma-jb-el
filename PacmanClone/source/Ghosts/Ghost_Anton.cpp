@@ -1,6 +1,10 @@
 #include "PacmanCore.h"
 #include "Ghost_Anton.h"
 
-void Ghost_Anton::ChasePlayer()
+#include "Grid/GridCellContent.h"
+#include "ZakuMan/ZakuMan.hpp"
+
+std::shared_ptr<GridCell> Ghost_Anton::GetTargetCell()
 {
+    return ZakuMan->GetCell();
 }

@@ -4,7 +4,7 @@
 
 class Ghost_Johan : public IGhost
 {
-public:
-    void ChasePlayer() override;
+protected:
+    std::shared_ptr<GridCell> GetTargetCell() override;
     
 };
