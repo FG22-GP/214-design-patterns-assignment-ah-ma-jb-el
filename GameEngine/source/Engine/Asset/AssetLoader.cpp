@@ -86,7 +86,7 @@ namespace GameEngine
 
 		for (uint32_t y = 0; y < rows; y++){
 			for (uint32_t x = 0; x < columns; x++){
-				uint32_t index = (y * width) + x;
+				uint32_t index = (y * columns) + x;
 				if (index > names.size() - 1) break;
 
 				auto crop   = Rectangle(x * width, y * height, width, height);
