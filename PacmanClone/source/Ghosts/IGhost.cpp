@@ -2,6 +2,7 @@
 #include "IGhost.h"
 
 #include "Grid/GridCell.h"
+#include "Grid/GridGenerator.h"
 #include "Movement/MovementComponent.h"
 #include "Movement/Pathfinding.h"
 
@@ -15,24 +16,56 @@ IGhost::IGhost(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTr
 
 void IGhost::ChasePlayer()
 {
+    if (MovementComp == nullptr) { return; }
+    
     const Directions newDir = Pathfinding::GetDirection(MovementComp->GetCurrentCell(), MovementComp->GetTargetCell(), GetTargetCoord());
     MovementComp->SetDirection(newDir);
 }
 
 void IGhost::Flee()
 {
+    if (MovementComp == nullptr) { return; }
+
+    std::vector<std::shared_ptr<GridCell>> cells;
     std::shared_ptr<GridCell> nextCell = MovementComp->GetTargetCell();
     for (int i = 0; i < nextCell->Links.size(); i++)
     {
         // välj random direction här på något sätt
         std::shared_ptr<GridCell> cell = nextCell->Links[i]->Target;
-        if (!cell->bIsGhostWalkable) { continue; }
-        
+        if (!cell->bIsGhostWalkable || cell == MovementComp->GetCurrentCell()) { continue; }
+
+        cells.push_back(cell);
     }
+
+    if (cells.size() <= 0) { return; }
+    
+    int index = rand() % cells.size();
+
+    Point2 dirVector = cells[index]->Coordinate - nextCell->Coordinate;
+
+    if (dirVector == Point2::Up())
+    {
+        MovementComp->SetDirection(Up);
+    }
+    else if (dirVector == Point2::Down())
+    {
+        MovementComp->SetDirection(Down);
+    }
+    else if (dirVector == Point2::Right())
+    {
+        MovementComp->SetDirection(Right);
+    }
+    else if (dirVector == Point2::Left())
+    {
+        MovementComp->SetDirection(Left);
+    }
+    
 }
 
-void IGhost::Scatter(const Point2 scatterCoords)
+void IGhost::Scatter(Point2 scatterCoords)
 {
+    if (MovementComp == nullptr) { return; }
+    
     const Directions newDir = Pathfinding::GetDirection(MovementComp->GetCurrentCell(), MovementComp->GetTargetCell() ,scatterCoords);
     MovementComp->SetDirection(newDir);
 }
