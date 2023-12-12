@@ -2,6 +2,7 @@
 #include "Input.hpp"
 
 #include <SDL_events.h>
+#include "Engine/Window/Window.hpp"
 
 namespace GameEngine
 {
@@ -16,6 +17,10 @@ namespace GameEngine
 
         while (SDL_PollEvent(&Event) != 0) {
 
+            // Handle window close event TODO: -> Move to event broker if there's time
+            if(Event.type == SDL_QUIT)
+                Window::GetMain()->Close();
+            
             if (Event.type == SDL_KEYDOWN)
                 EventCallbacks = &KeyDownCallbacks;
             else if (Event.type == SDL_KEYUP)
