@@ -22,35 +22,28 @@ std::shared_ptr<GameGrid> GridGenerator::GenerateGrid(std::shared_ptr<World> Par
 		switch (CellRules[i])
 		{
 		case CR_Wall:
-			NewCell->bIsPlayerWalkable = false;
-			NewCell->bIsGhostWalkable = false;
-			NewCell->bGhostCannotWalkUp = false;
-			NewCell->bGhostIsSlowed = false;
 			break;
 		case CR_Standard:
-			NewCell->bIsPlayerWalkable = true; 
+			NewCell->bIsPlayerWalkable = true;
 			NewCell->bIsGhostWalkable = true;
-			NewCell->bGhostCannotWalkUp = false;
-			NewCell->bGhostIsSlowed = false;
+			break;
 		case CR_Ghost:
 			NewCell->bIsPlayerWalkable = false; 
 			NewCell->bIsGhostWalkable = true;
-			NewCell->bGhostCannotWalkUp = false;
-			NewCell->bGhostIsSlowed = false;
 			break;
 		case CR_GhostNoUp:
 			NewCell->bIsPlayerWalkable = true;
 			NewCell->bIsGhostWalkable = true;
 			NewCell->bGhostCannotWalkUp = true;
-			NewCell->bGhostIsSlowed = false;
 			break;
 		case CR_GhostSlow:
 			NewCell->bIsPlayerWalkable = true;
 			NewCell->bIsGhostWalkable = true;
-			NewCell->bGhostCannotWalkUp = false;
 			NewCell->bGhostIsSlowed = true;
 			break;
 		}
+
+		std::cout << "Cell " << NewCell->Coordinate.ToString() << " is " << (NewCell->bIsPlayerWalkable ? "walkable" : "not walkable") << std::endl;
 		
 		switch (CellContents[i])
 		{
