@@ -15,7 +15,7 @@ IGhost::IGhost(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTr
 
 void IGhost::ChasePlayer()
 {
-    const Directions newDir = Pathfinding::GetDirection(MovementComp->GetTargetCell(), GetTargetCell());
+    const Directions newDir = Pathfinding::GetDirection(MovementComp->GetCurrentCell(), MovementComp->GetTargetCell(), GetTargetCoord());
     MovementComp->SetDirection(newDir);
 }
 
@@ -31,21 +31,33 @@ void IGhost::Flee()
     }
 }
 
-void IGhost::Scatter(std::shared_ptr<GridCell> scatterCell)
+void IGhost::Scatter(const Point2 scatterCoords)
 {
-    const Directions newDir = Pathfinding::GetDirection(MovementComp->GetTargetCell() ,scatterCell);
+    const Directions newDir = Pathfinding::GetDirection(MovementComp->GetCurrentCell(), MovementComp->GetTargetCell() ,scatterCoords);
     MovementComp->SetDirection(newDir);
 }
 
-#pragma region Getters
-std::shared_ptr<GridCell> IGhost::GetScatterCell()
+void IGhost::InitializeGhost(
+    Point2 deathCell,
+    Point2 scatterCoords,
+    std::shared_ptr<::ZakuMan>& target)
 {
-    return ScatterCell;
+    DeathCellCoords = deathCell;
+    ScatterCellCoords = scatterCoords;
+    ZakuMan = target;
+    
 }
 
-std::shared_ptr<GridCell> IGhost::GetDeathCell()
+
+#pragma region Getters
+Point2 IGhost::GetScatterCoords()
 {
-    return DeathCell;
+    return ScatterCellCoords;
+}
+
+Point2 IGhost::GetDeathCell()
+{
+    return DeathCellCoords;
 }
 
 std::shared_ptr<ZakuMan> IGhost::GetTarget()
@@ -53,8 +65,13 @@ std::shared_ptr<ZakuMan> IGhost::GetTarget()
     return ZakuMan;
 }
 
-std::shared_ptr<GridCell> IGhost::GetTargetCell()
+std::shared_ptr<MovementComponent> IGhost::GetMovementComponent()
 {
-    return nullptr;
+    return MovementComp;
+}
+
+Point2 IGhost::GetTargetCoord()
+{
+    return Point2{};
 }
 #pragma endregion 
