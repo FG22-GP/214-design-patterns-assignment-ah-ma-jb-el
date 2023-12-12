@@ -25,5 +25,5 @@ Point2 Ghost_Magnus::GetTargetCoord()
         return targetCell->Coordinate;
     }
 
-    return ScatterCell->Coordinate;
+    return ScatterCellCoords;
 }

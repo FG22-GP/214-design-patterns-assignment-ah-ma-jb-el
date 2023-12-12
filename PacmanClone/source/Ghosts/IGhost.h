@@ -17,17 +17,19 @@ public:
     IGhost(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTransform);
     void ChasePlayer();
     void Flee();
-    void Scatter(std::shared_ptr<GridCell> scatterCell);
+    void Scatter(Point2 scatterCoords);
 
-    std::shared_ptr<GridCell> GetScatterCell();
-    std::shared_ptr<GridCell> GetDeathCell();
+    void InitializeGhost(Point2 deathCell, Point2 scatterCoords, std::shared_ptr<ZakuMan>& target);
+
+    Point2 GetScatterCoords();
+    Point2 GetDeathCell();
     std::shared_ptr<ZakuMan> GetTarget();
 
     std::shared_ptr<MovementComponent> GetMovementComponent();
 
 protected:
-    std::shared_ptr<GridCell> ScatterCell;
-    std::shared_ptr<GridCell> DeathCell;
+    Point2 ScatterCellCoords;
+    Point2 DeathCellCoords;
     
     std::shared_ptr<ZakuMan> ZakuMan;
     std::shared_ptr<StateMachine_Component> StateMachineComp;

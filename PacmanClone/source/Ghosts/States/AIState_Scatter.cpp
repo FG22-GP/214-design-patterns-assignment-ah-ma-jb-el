@@ -18,7 +18,7 @@ void AIState_Scatter::OnStateRunning()
 {
     if (Ghost == nullptr) { return; }
     
-    Ghost->Scatter(Ghost->GetScatterCell());
+    Ghost->Scatter(Ghost->GetScatterCoords());
 }
 
 void AIState_Scatter::OnStateExit()

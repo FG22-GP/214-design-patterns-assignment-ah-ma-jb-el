@@ -31,21 +31,33 @@ void IGhost::Flee()
     }
 }
 
-void IGhost::Scatter(std::shared_ptr<GridCell> scatterCell)
+void IGhost::Scatter(const Point2 scatterCoords)
 {
-    const Directions newDir = Pathfinding::GetDirection(MovementComp->GetCurrentCell(), MovementComp->GetTargetCell() ,scatterCell->Coordinate);
+    const Directions newDir = Pathfinding::GetDirection(MovementComp->GetCurrentCell(), MovementComp->GetTargetCell() ,scatterCoords);
     MovementComp->SetDirection(newDir);
 }
 
-#pragma region Getters
-std::shared_ptr<GridCell> IGhost::GetScatterCell()
+void IGhost::InitializeGhost(
+    Point2 deathCell,
+    Point2 scatterCoords,
+    std::shared_ptr<::ZakuMan>& target)
 {
-    return ScatterCell;
+    DeathCellCoords = deathCell;
+    ScatterCellCoords = scatterCoords;
+    ZakuMan = target;
+    
 }
 
-std::shared_ptr<GridCell> IGhost::GetDeathCell()
+
+#pragma region Getters
+Point2 IGhost::GetScatterCoords()
 {
-    return DeathCell;
+    return ScatterCellCoords;
+}
+
+Point2 IGhost::GetDeathCell()
+{
+    return DeathCellCoords;
 }
 
 std::shared_ptr<ZakuMan> IGhost::GetTarget()
