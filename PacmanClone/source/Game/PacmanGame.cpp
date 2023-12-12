@@ -57,7 +57,7 @@ void PacmanGame::LoadSprites(){
 	AssetLoader::LoadTexture(AssetLoader::GetAssetPath("SpriteAtlas.png"));
 	auto atlas = AssetLoader::GetTexture("SpriteAtlas");
 
-	std::vector<std::string> names(26);
+	std::vector<std::string> names(27);
 	names[0] = "NW_Inner";
 	names[1] = "Horizontal_Top";
 	names[2] = "NE_Inner";
@@ -82,8 +82,9 @@ void PacmanGame::LoadSprites(){
 	names[21] = "NW_Outer";
 	names[22] = "Ghost_3";
 	names[23] = "Ghost_4";
-	names[24] = "Energizer";
-	names[25] = "Dot";
+	names[24] = "Ghost_5";
+	names[25] = "Energizer";
+	names[26] = "Dot";
 
 	AssetLoader::LoadSprites(atlas, names, 8, 8);
 }
