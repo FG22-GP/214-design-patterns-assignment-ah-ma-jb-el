@@ -2,7 +2,7 @@
 #include "IPickUp.h"
 #include "World/Actors/Actor.hpp"
 
-class Dot : public Actor , public IPickUp
+class Dot : public IPickUp
 {
 public:
     void OnPickUp() override;
