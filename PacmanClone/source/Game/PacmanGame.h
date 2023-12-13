@@ -7,12 +7,15 @@
 #include "World\World.hpp"
 
 
+class ZakuMan;
 class GameGrid;
 
 class PacmanGame :
     public GameEngine::GameBase
 {
 public:
+    std::shared_ptr<ZakuMan> SpawnPlayer() const;
+    void SpawnGhosts(std::shared_ptr<ZakuMan> Player) const;
     virtual void Initialize() override;
     virtual void Run() override;
     virtual void Exit() override;
