@@ -20,6 +20,7 @@ public:
     void Scatter(Point2 scatterCoords);
 
     void SetDirection();
+    void ChangeCell();
 
     void InitializeGhost(Point2 deathCell, Point2 scatterCoords, std::shared_ptr<ZakuMan>& target);
 
@@ -40,7 +41,9 @@ protected:
 
     Event<>::CallbackPtr EnterCellCallback;
     Event<>::CallbackPtr MiddleOfCellCallback;
-    
+    Event<std::shared_ptr<GridCellContent>>::CallbackPtr CellContentCallback;
+
+    std::shared_ptr<GridCell> PreviousCell;
     std::shared_ptr<ZakuMan> ZakuMan;
     std::shared_ptr<StateMachine_Component> StateMachineComp;
     std::shared_ptr<MovementComponent> MovementComp;
