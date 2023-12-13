@@ -37,6 +37,7 @@ void StateMachine_Component::Tick(float DeltaTime)
 {
     ActorComponent::Tick(DeltaTime);
 
+    ScatterChaseTimer(DeltaTime);
     
     if (CurrentState != nullptr)
     {
