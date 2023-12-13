@@ -186,6 +186,7 @@ copy /Y "$(SolutionDir)$(ProjectName)\Sprites\SpriteAtlas.png" "$(SolutionDir)Bu
     <ClCompile Include="source\PickUps\IPickUp.cpp" />
     <ClCompile Include="source\World\Actors\Actor.cpp" />
     <ClCompile Include="source\World\Actors\ActorComponent.cpp" />
+    <ClCompile Include="source\World\Actors\SpriteAnimationComponent.cpp" />
     <ClCompile Include="source\World\Actors\SpriteComponent.cpp" />
     <ClCompile Include="source\World\World.cpp" />
     <ClCompile Include="source\ZakuMan\ZakuMan.cpp" />
@@ -223,6 +224,7 @@ copy /Y "$(SolutionDir)$(ProjectName)\Sprites\SpriteAtlas.png" "$(SolutionDir)Bu
     <ClInclude Include="source\PickUps\IPickUp.h" />
     <ClInclude Include="source\World\Actors\Actor.hpp" />
     <ClInclude Include="source\World\Actors\ActorComponent.hpp" />
+    <ClInclude Include="source\World\Actors\SpriteAnimationComponent.hpp" />
     <ClInclude Include="source\World\Actors\SpriteComponent.hpp" />
     <ClInclude Include="source\World\World.hpp" />
     <ClInclude Include="source\ZakuMan\ZakuMan.hpp" />
