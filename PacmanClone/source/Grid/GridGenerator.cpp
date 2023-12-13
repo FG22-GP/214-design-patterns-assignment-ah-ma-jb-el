@@ -3,7 +3,6 @@
 #include "GameGrid.h"
 #include "GridCell.h"
 #include "GridLink.h"
-#include "GridWrapLink.h"
 #include "GridCellContent.h"
 #include "World\World.hpp"
 #include "PickUps\Dot.h"
@@ -74,7 +73,8 @@ std::shared_ptr<GameGrid> GridGenerator::GenerateGrid(std::shared_ptr<World> Par
 				bIsEdge = false;
 
 			// If we're wrapping around the edge, we create a GridWrapLink instead of a regular GridLink.
-			std::shared_ptr<GridLink> Link = bIsEdge ? std::make_shared<GridWrapLink>() : std::make_shared<GridLink>();
+			std::shared_ptr<GridLink> Link = std::make_shared<GridLink>();
+			Link->bIsWrapLink = bIsEdge;
 
 			Link->Source = Grid->Cells[i];
 			Link->Target = Grid->GetCellAt(NeighbourCoord);

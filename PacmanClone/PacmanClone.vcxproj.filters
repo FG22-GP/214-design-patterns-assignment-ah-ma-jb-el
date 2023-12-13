@@ -36,9 +36,6 @@
     <ClCompile Include="source\Grid\GridGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\Grid\GridWrapLink.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\Ghosts\States\AIState_Chasing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -147,9 +144,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Grid\GridGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Grid\GridWrapLink.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Ghosts\States\AIState_Chasing.h">

@@ -11,5 +11,7 @@ public:
 
 	std::shared_ptr<GridCell> Source, Target;
 
+	bool bIsWrapLink = false;
+
 };
 

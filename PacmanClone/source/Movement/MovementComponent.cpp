@@ -5,7 +5,6 @@
 #include "Grid/GridCell.h"
 #include "Grid/GridCellContent.h"
 #include "Grid/GridLink.h"
-#include "Grid/GridWrapLink.h"
 
 void MovementComponent::Tick(float DeltaTime)
 {
@@ -108,9 +107,7 @@ Vector2 MovementComponent::WrapLerp(Vector2 start, Vector2 target, float T)
 
 bool MovementComponent::IsWrapLink(std::shared_ptr<GridLink>& link)
 {
-    std::shared_ptr<GridWrapLink> wraplink = std::static_pointer_cast<GridWrapLink>(link);
-
-    return wraplink != nullptr;
+    return link->bIsWrapLink;
 }
 
 void MovementComponent::OnEnterNewCell(const std::shared_ptr<GridCell>& newCell)
