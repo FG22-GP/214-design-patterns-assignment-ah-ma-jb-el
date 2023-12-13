@@ -22,7 +22,11 @@ public:
 
 	Vector2 GetPosition();
 
+	void SetLocalFlip(RenderFlip flip);
+
 protected:
+
+	RenderFlip SpriteFlip;
 	std::shared_ptr<Sprite> LoadedSprite;
 
 	static std::vector<std::shared_ptr<SpriteComponent>> AllSpriteComponents;

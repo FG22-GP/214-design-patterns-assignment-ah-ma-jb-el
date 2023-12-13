@@ -18,6 +18,10 @@ Vector2 SpriteComponent::GetPosition()
 	return Parent->ActorTransform.GetLocation();
 }
 
+void SpriteComponent::SetLocalFlip(RenderFlip flip){
+	SpriteFlip = flip;
+}
+
 const Texture& SpriteComponent::GetTexture()
 {
 	return LoadedSprite->GetTexture();
@@ -38,6 +42,9 @@ const Point2& SpriteComponent::GetCentre()
 }
 RenderFlip SpriteComponent::GetFlip()
 {
+	if (SpriteFlip != RenderFlip::None)
+		return SpriteFlip;
+
 	return LoadedSprite->GetFlip();
 }
 const Vector2& SpriteComponent::GetWorldLocation()
