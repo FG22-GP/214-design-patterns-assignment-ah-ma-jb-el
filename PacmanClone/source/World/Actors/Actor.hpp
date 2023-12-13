@@ -32,6 +32,8 @@ public:
 
 	GameEngine::Transform ActorTransform;
 
+	bool bIsEnabled = true;
+
 protected:
 
 	std::shared_ptr<World> ParentWorld;
