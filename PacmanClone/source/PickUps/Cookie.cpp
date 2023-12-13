@@ -1,7 +1,9 @@
 #include "PacmanCore.h"
 #include "Cookie.h"
+#include "Event\EventBroker.h"
 
 void Cookie::OnPickUp()
 {
-    std::cout << "Cookie eaten" << std::endl;
+    EventBroker::OnCookieEaten.Invoke();
+    bIsEnabled = false;
 }

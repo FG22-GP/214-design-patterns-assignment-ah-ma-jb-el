@@ -3,14 +3,13 @@
 
 // CONSTRUCTORS
 
-	SpriteAnimationComponent::SpriteAnimationComponent(std::shared_ptr<Actor> ParentActor)
-		: SpriteComponent(ParentActor), m_Sprites(), m_Duration(1.0f), m_Framerate(0.5f), m_Frame(1), m_Time(0){}
+	SpriteAnimationComponent::SpriteAnimationComponent(std::shared_ptr<Actor> parent)
+		: SpriteComponent(parent), m_Sprites(), m_Duration(1.0f), m_Framerate(0.5f), m_Frame(1), m_Time(0){}
 
 // INITIALISATION
 
 	void SpriteAnimationComponent::Initialise(const std::vector<std::shared_ptr<Sprite>>& sprites, const float duration){
 		SpriteComponent::Initialize(sprites[0]);
-
 		m_Sprites   = sprites;
 		m_Duration  = duration;
 		m_Framerate = duration / sprites.size();

@@ -1,7 +1,9 @@
 #include "PacmanCore.h"
 #include "Dot.h"
+#include "Event\EventBroker.h"
 
 void Dot::OnPickUp()
 {
-    std::cout << "DOT-EATING NOT IMPLEMENTED" << std::endl;
+    EventBroker::OnDotEaten.Invoke();
+    bIsEnabled = false;
 }

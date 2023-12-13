@@ -7,7 +7,7 @@ class SpriteAnimationComponent : public SpriteComponent
 {
 public:
 
-	SpriteAnimationComponent(std::shared_ptr<Actor> ParentActor);
+	SpriteAnimationComponent(std::shared_ptr<Actor> parent);
 
 	void Initialise(const std::vector<std::shared_ptr<Sprite>>& sprites, const float duration);
 	

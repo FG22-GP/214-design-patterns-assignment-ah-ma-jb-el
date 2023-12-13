@@ -15,6 +15,7 @@ public:
 	ActorComponent(std::shared_ptr<Actor> ParentActor);
 
 	std::shared_ptr<Actor> GetParent() { return Parent; }
+	bool bIsEnabled();
 
 protected:
 	std::shared_ptr<Actor> Parent;
