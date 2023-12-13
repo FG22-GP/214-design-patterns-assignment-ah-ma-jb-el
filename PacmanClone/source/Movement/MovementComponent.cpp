@@ -25,23 +25,25 @@ bool MovementComponent::TrySetNewTargetCell()
         std::cout << "No link in direction" << '\n';
         return false;
     }
-    
-    std::shared_ptr<GridCell> NewTarget = CurrentCell->GetLinkInDirection(SteeringDirection)->Target;
-    Directions NewDirection = SteeringDirection;
 
+    Directions NewDirection = SteeringDirection;
+    std::shared_ptr<GridLink> NewLink = CurrentCell->GetLinkInDirection(NewDirection);
+    std::shared_ptr<GridCell> NewTarget = NewLink->Target;
 
     if((bIsPlayer && !NewTarget->bIsPlayerWalkable) || (!bIsPlayer && !NewTarget->bIsGhostWalkable)) // Target in steering direction is not walkable
     {
-        NewTarget = CurrentCell->GetLinkInDirection(MoveDirection)->Target;
+        NewLink = CurrentCell->GetLinkInDirection(MoveDirection);
+        NewTarget = NewLink->Target;
         NewDirection = MoveDirection;
         if((bIsPlayer && !NewTarget->bIsPlayerWalkable) || (!bIsPlayer && !NewTarget->bIsGhostWalkable)) // Target in move direction is not walkable
         {
             return false; // Won't update target cell
         }
     }
-    
+
     TargetCell = NewTarget;
     MoveDirection = NewDirection;
+    CurrentCell = NewLink->Target;
 
     // TODO: Implement wrap links
 
@@ -61,7 +63,6 @@ void MovementComponent::Move(float DeltaTime)
 
     if(DistanceToTarget < DistanceToCurrent)
     {
-        OnEnterNewCellEvent.Invoke();
         OnEnterNewCell(TargetCell);
     }
     
@@ -120,6 +121,7 @@ void MovementComponent::OnEnterNewCell(const std::shared_ptr<GridCell>& newCell)
     }
     CurrentCell = newCell;
     TrySetNewTargetCell();
+    OnEnterNewCellEvent.Invoke();
 }
 
 void MovementComponent::SetDirection(Directions newDirection)
@@ -133,6 +135,7 @@ void MovementComponent::Init(std::shared_ptr<GridCell> startCell, bool inIsPlaye
     CurrentCell = std::move(startCell);
     MoveDirection = Directions::Right;
     TargetCell = CurrentCell;
+    CurrentLink = CurrentCell->GetLinkInDirection(MoveDirection);
     TrySetNewTargetCell();
 
     bIsPlayer = inIsPlayer;

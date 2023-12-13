@@ -40,6 +40,7 @@ private:
     float fMoveSpeed = 2;
     std::shared_ptr<GridCell> CurrentCell = nullptr;
     std::shared_ptr<GridCell> TargetCell = nullptr;
+    std::shared_ptr<GridLink> CurrentLink = nullptr;
 
     bool TrySetNewTargetCell();
     void Move(float DeltaTime);
