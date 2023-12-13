@@ -9,6 +9,7 @@ AIState_Chasing::AIState_Chasing(const std::shared_ptr<IGhost>& ghost) : IAIStat
 
 void AIState_Chasing::OnStateEnter()
 {
+    fTimer = 0;
 }
 
 void AIState_Chasing::OnStateRunning()
@@ -20,4 +21,13 @@ void AIState_Chasing::OnStateRunning()
 
 void AIState_Chasing::OnStateExit()
 {
+}
+
+void AIState_Chasing::OnStateTick(float DeltaTime)
+{
+    fTimer += DeltaTime;
+    if (fTimer >= fStateDuration)
+    {
+        Ghost->GetStateMachineComponent()->PushScatter();
+    }
 }

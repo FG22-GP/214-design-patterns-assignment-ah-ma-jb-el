@@ -8,4 +8,5 @@ public:
     void OnStateEnter() override;
     void OnStateRunning() override;
     void OnStateExit() override;
+    void OnStateTick(float DeltaTime) override;
 };

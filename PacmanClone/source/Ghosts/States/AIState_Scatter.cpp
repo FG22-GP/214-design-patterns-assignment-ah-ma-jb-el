@@ -11,6 +11,7 @@ AIState_Scatter::AIState_Scatter(const std::shared_ptr<IGhost>& ghost) : IAIStat
 
 void AIState_Scatter::OnStateEnter()
 {
+    fTimer = 0;
     const Directions dir = Ghost->GetMovementComponent()->GetCurrentDirection();
     Ghost->GetMovementComponent()->SetDirection(DirectionHelpers::GetOppositeDirection(dir));
 }
@@ -31,4 +32,13 @@ void AIState_Scatter::OnStateRunning()
 
 void AIState_Scatter::OnStateExit()
 {
+}
+
+void AIState_Scatter::OnStateTick(float DeltaTime)
+{
+    fTimer += DeltaTime;
+    if (fTimer >= fStateDuration)
+    {
+        Ghost->GetStateMachineComponent()->PushChase();
+    }
 }

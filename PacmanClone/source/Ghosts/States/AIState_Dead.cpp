@@ -24,3 +24,8 @@ void AIState_Dead::OnStateExit()
 {
     //change sprite back to default
 }
+
+void AIState_Dead::OnStateTick(float DeltaTime)
+{
+    
+}

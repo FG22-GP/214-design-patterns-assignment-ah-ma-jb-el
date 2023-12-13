@@ -26,13 +26,17 @@ public:
 		Contents.push_back(NewContent); 
 		OnContentEnters.Invoke(NewContent);
 	}
-	void RemoveContent(const std::shared_ptr<GridCellContent>& ContentToRemove)
+	std::shared_ptr<GridCellContent> RemoveContent(GridCellContent* ContentToRemove)
 	{
-		auto it = std::find(Contents.begin(), Contents.end(), ContentToRemove);
-		if (it != Contents.end()) {
-			OnContentExit.Invoke(*it);
-			Contents.erase(it);
+		for (auto i = Contents.begin(); i != Contents.end(); ++i)
+		{
+			if (i->get() == ContentToRemove)
+			{
+				OnContentExit.Invoke(*i);
+				return *i;
+			}
 		}
+		return nullptr;
 	}
 
 	void Initialize(std::shared_ptr<GameGrid> ParentGrid);
