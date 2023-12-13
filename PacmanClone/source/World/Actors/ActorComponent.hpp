@@ -7,6 +7,7 @@ class Actor;
 class ActorComponent
 {
 public:
+	virtual ~ActorComponent() = default;
 	virtual void Tick(float DeltaTime) {}
 	virtual void OnStart() {}
 	virtual void OnDestroy() {}
