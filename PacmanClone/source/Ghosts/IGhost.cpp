@@ -13,6 +13,7 @@ IGhost::IGhost(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTr
     EnterCellCallback = MovementComp->OnEnterNewCellEvent.AddListener([this]()
     {
         StateMachineComp->RunCurrentState();
+        StateMachineComp->CheckForZaku();
     });
     MiddleOfCellCallback = MovementComp->OnCenterOfCellEvent.AddListener([this]()
     {

@@ -44,3 +44,7 @@ void AIState_Dead::OnStateTick(float DeltaTime)
 {
     
 }
+
+void AIState_Dead::OnZakuOverlap()
+{
+}

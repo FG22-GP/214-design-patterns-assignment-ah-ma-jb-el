@@ -9,4 +9,5 @@ public:
     void OnStateRunning() override;
     void OnStateExit() override;
     void OnStateTick(float DeltaTime) override;
+    void OnZakuOverlap() override;
 };

@@ -19,6 +19,7 @@ public:
     bool bScatter = true;
 
     void RunCurrentState() const;
+    void CheckForZaku();
     bool IsDead() const;
 
     void PushFrightened(bool bOverrideDead = false);

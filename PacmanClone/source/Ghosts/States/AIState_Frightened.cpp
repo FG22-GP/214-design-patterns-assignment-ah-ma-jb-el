@@ -45,3 +45,11 @@ void AIState_Frightened::OnStateTick(float DeltaTime)
         fTimer = 0;
     }
 }
+
+void AIState_Frightened::OnZakuOverlap()
+{
+    const std::shared_ptr<StateMachine_Component> machine = Ghost->GetStateMachineComponent();
+    if (machine == nullptr) { return; }
+
+    machine->PushDead();
+}

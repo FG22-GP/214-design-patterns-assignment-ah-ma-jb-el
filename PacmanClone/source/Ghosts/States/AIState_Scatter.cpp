@@ -37,3 +37,8 @@ void AIState_Scatter::OnStateTick(float DeltaTime)
 {
 
 }
+
+void AIState_Scatter::OnZakuOverlap()
+{
+    // kill Zaku, game over here
+}

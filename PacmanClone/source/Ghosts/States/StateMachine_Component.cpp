@@ -7,6 +7,7 @@
 #include "AIState_Frightened.h"
 #include "AIState_Scatter.h"
 #include "Event/EventBroker.h"
+#include "ZakuMan/ZakuMan.hpp"
 
 StateMachine_Component::StateMachine_Component(std::shared_ptr<Actor> ParentActor) : ActorComponent(ParentActor)
 {
@@ -50,6 +51,17 @@ void StateMachine_Component::RunCurrentState() const
     if (CurrentState != nullptr)
     {
         CurrentState->OnStateRunning();
+    }
+}
+
+void StateMachine_Component::CheckForZaku()
+{
+    std::shared_ptr<IGhost> ghost = std::static_pointer_cast<IGhost>(Parent);
+    if (ghost == nullptr) { return; }
+
+    if (ghost->GetCell() == ghost->GetTarget()->GetCell())
+    {
+        CurrentState->OnZakuOverlap();
     }
 }
 
