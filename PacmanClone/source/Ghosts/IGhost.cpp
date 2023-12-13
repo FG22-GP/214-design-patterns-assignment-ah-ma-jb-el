@@ -2,7 +2,6 @@
 #include "IGhost.h"
 
 #include "Grid/GridCell.h"
-#include "Grid/GridGenerator.h"
 #include "Movement/MovementComponent.h"
 #include "Movement/Pathfinding.h"
 
