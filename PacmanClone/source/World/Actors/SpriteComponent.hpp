@@ -26,7 +26,7 @@ public:
 
 protected:
 
-	RenderFlip SpriteFlip;
+	RenderFlip SpriteFlip = RenderFlip::None;
 	std::shared_ptr<Sprite> LoadedSprite;
 
 	static std::vector<std::shared_ptr<SpriteComponent>> AllSpriteComponents;
