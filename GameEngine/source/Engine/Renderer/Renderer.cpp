@@ -82,6 +82,34 @@ namespace GameEngine
 			render.GetCentre().ToSDL(),
 			(SDL_RendererFlip)render.GetFlip()
 		);
+
+		//Here we check if a rect extends beyond the edge of the screen; in which case we wrap it.
+		if (rect.GetX() < 0)
+		{
+			rect.SetX(rect.GetX() + m_Resolution.get()->GetX());
+			SDL_RenderCopyEx(
+				m_Renderer.get(),
+				render.GetTexture().ToSDL(),
+				render.GetCrop().ToSDL(),
+				rect.ToSDL(),
+				render.GetRotation(),
+				render.GetCentre().ToSDL(),
+				(SDL_RendererFlip)render.GetFlip()
+			);
+		}
+		else if (rect.GetX() + rect.GetWidth() > m_Resolution.get()->GetX())
+		{
+			rect.SetX(rect.GetX() - m_Resolution.get()->GetX());
+			SDL_RenderCopyEx(
+				m_Renderer.get(),
+				render.GetTexture().ToSDL(),
+				render.GetCrop().ToSDL(),
+				rect.ToSDL(),
+				render.GetRotation(),
+				render.GetCentre().ToSDL(),
+				(SDL_RendererFlip)render.GetFlip()
+			);
+		}
 	}
 
 	void Renderer::StopDrawing(){
