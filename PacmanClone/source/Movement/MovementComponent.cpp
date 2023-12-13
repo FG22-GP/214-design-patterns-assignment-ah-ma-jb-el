@@ -21,7 +21,7 @@ bool MovementComponent::TrySetNewTargetCell()
     
     if(!CurrentCell->GetLinkInDirection(SteeringDirection))
     {
-        std::cout << "No link in direction" << std::endl;
+        std::cout << "No link in direction" << '\n';
         return false;
     }
     
@@ -29,16 +29,13 @@ bool MovementComponent::TrySetNewTargetCell()
     Directions NewDirection = SteeringDirection;
 
 
-    if((bIsPlayer && !NewTarget->bIsPlayerWalkable) || (!bIsPlayer && !NewTarget->bIsGhostWalkable))
+    if((bIsPlayer && !NewTarget->bIsPlayerWalkable) || (!bIsPlayer && !NewTarget->bIsGhostWalkable)) // Target in steering direction is not walkable
     {
-        //std::cout << "Target cell: " << NewTarget->Coordinate.ToString() << " is not walkable" << std::endl;
-    
         NewTarget = CurrentCell->GetLinkInDirection(MoveDirection)->Target;
         NewDirection = MoveDirection;
-        if((bIsPlayer && !NewTarget->bIsPlayerWalkable) || (!bIsPlayer && !NewTarget->bIsGhostWalkable))
+        if((bIsPlayer && !NewTarget->bIsPlayerWalkable) || (!bIsPlayer && !NewTarget->bIsGhostWalkable)) // Target in move direction is not walkable
         {
-            // std::cout << "Target cell: " << NewTarget->Coordinate.ToString() << " is not walkable" << std::endl;
-            return false;
+            return false; // Won't update target cell
         }
     }
     
@@ -137,4 +134,3 @@ void MovementComponent::Init(std::shared_ptr<GridCell> startCell, bool inIsPlaye
 
     bIsPlayer = inIsPlayer;
 }
-
