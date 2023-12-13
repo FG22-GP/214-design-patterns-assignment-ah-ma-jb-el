@@ -139,7 +139,7 @@ std::shared_ptr<ZakuMan> PacmanGame::SpawnPlayer() const
 	Grid->GetCellAt(PlayerSpawn)->AddContent(Zaku);
 	Zaku->SetCell(Grid->GetCellAt(PlayerSpawn));
 	Zaku->ActorTransform.SetLocation(PlayerSpawn);
-	Zaku->GetMovementComponent()->Init(Grid->GetCellAt(PlayerSpawn));
+	Zaku->GetMovementComponent()->Init(Grid->GetCellAt(PlayerSpawn), true);
 	return Zaku;
 }
 
