@@ -14,41 +14,38 @@ void MovementComponent::Tick(float DeltaTime)
 
 bool MovementComponent::TrySetNewTargetCell()
 {
+    if(SteeringDirection == Directions::None)
+    {
+        return false; // Stand Still
+    }
+    
     if(!CurrentCell->GetLinkInDirection(SteeringDirection))
     {
         std::cout << "No link in direction" << std::endl;
         return false;
     }
-
+    
     std::shared_ptr<GridCell> NewTarget = CurrentCell->GetLinkInDirection(SteeringDirection)->Target;
     Directions NewDirection = SteeringDirection;
-    
-    if(!NewTarget->bIsPlayerWalkable)
-    {
-        std::cout << "Target cell: " << NewTarget->Coordinate.ToString() << " is not walkable" << std::endl;
 
+
+    if((bIsPlayer && !NewTarget->bIsPlayerWalkable) || (!bIsPlayer && !NewTarget->bIsGhostWalkable))
+    {
+        //std::cout << "Target cell: " << NewTarget->Coordinate.ToString() << " is not walkable" << std::endl;
+    
         NewTarget = CurrentCell->GetLinkInDirection(MoveDirection)->Target;
         NewDirection = MoveDirection;
-        if(!NewTarget->bIsPlayerWalkable)
+        if((bIsPlayer && !NewTarget->bIsPlayerWalkable) || (!bIsPlayer && !NewTarget->bIsGhostWalkable))
         {
-            std::cout << "Target cell: " << NewTarget->Coordinate.ToString() << " is not walkable" << std::endl;
+            // std::cout << "Target cell: " << NewTarget->Coordinate.ToString() << " is not walkable" << std::endl;
             return false;
         }
     }
     
     TargetCell = NewTarget;
     MoveDirection = NewDirection;
-    std::cout << "New target cell set to: " << TargetCell->Coordinate.ToString() << std::endl;
 
-
-    
-    // targetLink = StartCell->Links[newDirection];
-    // targetCell = targetLink->Target;
-    // if (targetCell && targetCell->bIsWalkable)
-    // {
-    //     bWrapLerp = IsWrapLink(targetLink);
-    //     TargetCell = targetCell;
-    // }
+    // TODO: Implement wrap links
 
     return true;
 }
@@ -57,10 +54,12 @@ void MovementComponent::Move(float DeltaTime)
 {
     if (!TargetCell) { return; }
 
-    const std::shared_ptr<Actor> Parent = GetParent();
-    
-    const float DistanceToCurrent = Vector2::Distance(Parent->ActorTransform.GetLocation(), GetCurrentCell()->ActorTransform.GetLocation());
-    const float DistanceToTarget = Vector2::Distance(Parent->ActorTransform.GetLocation(), TargetCell->ActorTransform.GetLocation());
+    const Vector2 CurrentLocation = GetParent()->ActorTransform.GetLocation();
+    const Vector2 TargetCellLocation = TargetCell->ActorTransform.GetLocation();
+    const Vector2 CurrentCellLocation = CurrentCell->ActorTransform.GetLocation();
+
+    const float DistanceToCurrent = Vector2::Distance(CurrentLocation, CurrentCellLocation);
+    const float DistanceToTarget = Vector2::Distance(CurrentLocation, TargetCellLocation);
 
     if(DistanceToTarget < DistanceToCurrent)
     {
@@ -69,25 +68,33 @@ void MovementComponent::Move(float DeltaTime)
     
     if (DistanceToTarget < 0.01f)
     {
-        return; // We're already there.
+        return; // We're already there. // TODO: Fire event here?
     }
     
-    float MoveX = TargetCell->ActorTransform.GetLocation().X - Parent->ActorTransform.GetLocation().X;
-    float MoveY = TargetCell->ActorTransform.GetLocation().Y - Parent->ActorTransform.GetLocation().Y;
-    
-    MoveX = static_cast<float>(std::clamp(MoveX, -1.0f, 1.0f));
-    MoveY = static_cast<float>(std::clamp(MoveY, -1.0f, 1.0f));
+    float MoveX = TargetCellLocation.X - CurrentLocation.X;
+    float MoveY = TargetCellLocation.Y - CurrentLocation.Y;
 
     // Convert to -1, 0, or 1
     MoveX = static_cast<float>((MoveX > 0) - (MoveX < 0));
     MoveY = static_cast<float>((MoveY > 0) - (MoveY < 0));
 
-    const Vector2 MoveVector(MoveX, MoveY);
-
+    // Removes shaking but causes slower movement on tile switch TODO: Fix this
+    const float XDistanceToTarget = TargetCellLocation.X - CurrentLocation.X;
+    const float YDistanceToTarget = TargetCellLocation.Y - CurrentLocation.Y;
     
-    const float MoveSpeed = 1.0f; // Adjust this speed as needed
-    const Vector2 DeltaPosition = MoveVector * MoveSpeed * DeltaTime;
-    const Vector2 NewPosition = GetParent()->ActorTransform.GetLocation() + DeltaPosition;
+    if(std::abs(MoveX) > std::abs(XDistanceToTarget) )
+    {
+        MoveX = XDistanceToTarget;
+    }
+    if(std::abs(MoveY) > std::abs(YDistanceToTarget) )
+    {
+        MoveY = YDistanceToTarget;
+    }
+
+    const Vector2 MoveVector(MoveX, MoveY);
+    
+    const Vector2 DeltaPosition = MoveVector * fMoveSpeed * DeltaTime;
+    const Vector2 NewPosition = CurrentLocation + DeltaPosition;
     GetParent()->ActorTransform.SetLocation(NewPosition);
 
 }
@@ -113,7 +120,6 @@ void MovementComponent::OnEnterNewCell(const std::shared_ptr<GridCell>& newCell)
     }
     CurrentCell = newCell;
     TrySetNewTargetCell();
-
 }
 
 void MovementComponent::SetDirection(Directions newDirection)
@@ -122,12 +128,13 @@ void MovementComponent::SetDirection(Directions newDirection)
     TrySetNewTargetCell();
 }
 
-void MovementComponent::Init(std::shared_ptr<GridCell> startCell)
+void MovementComponent::Init(std::shared_ptr<GridCell> startCell, bool inIsPlayer)
 {
     CurrentCell = std::move(startCell);
-    SetDirection(Right);
-
-    TargetCell = CurrentCell->Links[SteeringDirection]->Target;
+    MoveDirection = Directions::Right;
+    TargetCell = CurrentCell;
     TrySetNewTargetCell();
+
+    bIsPlayer = inIsPlayer;
 }
 

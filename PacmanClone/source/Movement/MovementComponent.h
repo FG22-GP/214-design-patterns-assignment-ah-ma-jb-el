@@ -18,23 +18,23 @@ public:
 
     void SetDirection(Directions newDirection);
 
-    void SetLerpDuration(float duration) { fLerpDuration = duration; }
-    void Init(std::shared_ptr<GridCell> startCell);
+    void Init(std::shared_ptr<GridCell> startCell, bool inIsPlayer = false);
 
     std::shared_ptr<GridCell> GetTargetCell() { return TargetCell; }
     std::shared_ptr<GridCell> GetCurrentCell() { return CurrentCell; }
     Directions GetCurrentDirection() const { return MoveDirection; }
+    void SetMoveSpeed(float speed) { fMoveSpeed = speed; }
 
+    
 protected:
-    Directions MoveDirection = Directions::Right;
+    Directions MoveDirection = Directions::None;
     Directions SteeringDirection = Directions::Right;
 
     void Tick(float DeltaTime) override;
 
 private:
-    float fTimeElapsed = 0;
-    float fLerpDuration = 1;
-    bool bWrapLerp = false;
+    bool bIsPlayer = false;
+    float fMoveSpeed =2;
     std::shared_ptr<GridCell> CurrentCell = nullptr;
     std::shared_ptr<GridCell> TargetCell = nullptr;
 
