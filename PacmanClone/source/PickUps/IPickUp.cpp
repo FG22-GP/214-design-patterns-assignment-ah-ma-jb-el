@@ -13,11 +13,9 @@ void IPickUp::BindToCell(std::shared_ptr<GridCell> Cell)
 
 void IPickUp::CheckNewCellContent(std::shared_ptr<GridCellContent> NewContent)
 {
-	std::cout << "Checking new cell content" << std::endl;
 	std::shared_ptr<ZakuMan> CastContent = std::dynamic_pointer_cast<ZakuMan>(NewContent);
 	if (CastContent != nullptr)
 	{
-		std::cout << "Found Pacman" << std::endl;
 		UnbindEvent();
 		OnPickUp();
 	}

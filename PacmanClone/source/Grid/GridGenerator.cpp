@@ -116,6 +116,7 @@ void GridGenerator::SpawnDot(std::shared_ptr<World> ParentWorld, std::shared_ptr
 	NewDot->ActorTransform.SetLocation(Coordinate);
 	NewDot->ActorTransform.SetScale(Vector2::One());
 	ParentCell->AddContent(NewDot);
+	NewDot->SetCell(ParentCell);
 	NewDot->BindToCell(ParentCell);
 
 	std::shared_ptr<SpriteComponent> spriteComp = NewDot->AddComponent<SpriteComponent>();
@@ -131,6 +132,7 @@ void GridGenerator::SpawnCookie(std::shared_ptr<World> ParentWorld, std::shared_
 	NewDot->ActorTransform.SetLocation(Coordinate);
 	NewDot->ActorTransform.SetScale(Vector2::One());
 	ParentCell->AddContent(NewDot);
+	NewDot->SetCell(ParentCell);
 	NewDot->BindToCell(ParentCell);
 
 	std::shared_ptr<SpriteComponent> spriteComp = NewDot->AddComponent<SpriteComponent>();

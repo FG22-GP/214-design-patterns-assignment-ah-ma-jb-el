@@ -4,14 +4,15 @@
 
 void GridCellContent::SetCell(std::shared_ptr<GridCell> NewParent)
 {
-    const std::shared_ptr<GridCellContent> This = std::make_shared<GridCellContent>();
-    if(ParentCell)
+    if(ParentCell && NewParent)
     {
-        ParentCell->RemoveContent(This);
+        std::shared_ptr<GridCellContent> This = ParentCell->RemoveContent(this);
+        ParentCell = NewParent;
+        if (This != nullptr)
+            ParentCell->AddContent(This);
     }
-    ParentCell = std::move(NewParent);
-    if(ParentCell)
+    else
     {
-        ParentCell->AddContent(This);
+        ParentCell = NewParent;
     }
 }

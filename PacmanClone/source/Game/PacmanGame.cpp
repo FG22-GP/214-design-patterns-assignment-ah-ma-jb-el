@@ -26,6 +26,7 @@ void PacmanGame::Initialize()
 		const std::shared_ptr<ZakuMan> Zaku = GameWorld->CreateActor<ZakuMan>();
 		Zaku->ActorTransform.SetLocation(Vector2(1.5f, 1.5f));
 		const Point2 PlayerSpawn = LevelInfo.PlayerSpawn;
+		Grid->GetCellAt(PlayerSpawn)->AddContent(Zaku);
 		Zaku->SetCell(Grid->GetCellAt(PlayerSpawn));
 		Zaku->ActorTransform.SetLocation(PlayerSpawn);
 		Zaku->GetMovementComponent()->Init(Grid->GetCellAt(PlayerSpawn));
