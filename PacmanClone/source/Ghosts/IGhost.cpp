@@ -98,9 +98,26 @@ std::shared_ptr<ZakuMan> IGhost::GetTarget()
     return ZakuMan;
 }
 
+bool IGhost::IsDead() const
+{
+    if (StateMachineComp == nullptr) { return true; }
+
+    return StateMachineComp->IsDead();
+}
+
 std::shared_ptr<MovementComponent> IGhost::GetMovementComponent()
 {
     return MovementComp;
+}
+
+std::shared_ptr<StateMachine_Component> IGhost::GetStateMachineComponent()
+{
+    return StateMachineComp;
+}
+
+std::shared_ptr<SpriteComponent> IGhost::GetSpriteComponent()
+{
+    return SpriteComp;
 }
 
 Point2 IGhost::GetTargetCoord()

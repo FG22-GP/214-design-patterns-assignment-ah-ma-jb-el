@@ -24,8 +24,11 @@ public:
     Point2 GetScatterCoords();
     Point2 GetDeathCell();
     std::shared_ptr<ZakuMan> GetTarget();
+    bool IsDead() const;
 
     std::shared_ptr<MovementComponent> GetMovementComponent();
+    std::shared_ptr<StateMachine_Component> GetStateMachineComponent();
+    std::shared_ptr<SpriteComponent> GetSpriteComponent();
 
 protected:
     Point2 ScatterCellCoords;
