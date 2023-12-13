@@ -47,10 +47,6 @@ std::shared_ptr<GameGrid> GridGenerator::GenerateGrid(std::shared_ptr<World> Par
 			break;
 		}
 
-		std::cout << "Cell " << NewCell->Coordinate.ToString() << " is " << (NewCell->bIsPlayerWalkable ? "walkable" : "not walkable") << std::endl;
-		
-		
-
 		Grid->Cells[i] = NewCell;
 
 	}
