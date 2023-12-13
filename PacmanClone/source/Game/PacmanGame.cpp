@@ -97,7 +97,9 @@ void PacmanGame::LoadSprites(){
 void PacmanGame::LoadLevel()
 {
 	// Load the level info from the file
-	const std::vector<std::string> CSVStrings = FileReader::ReadCSVFile("MapGenFiles/LevelInfo.txt");
+	const std::vector<std::string> CSVStrings = FileReader::ReadCSVFile(
+		AssetLoader::GetAssetPath("LevelInfo.txt")
+	);
 	LevelInfo = PacmanLevelInfoParser::ParseFromStringVector(CSVStrings);
 	if (!LevelInfo.bIsValid)
 	{
