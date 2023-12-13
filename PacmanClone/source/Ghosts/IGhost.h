@@ -35,7 +35,8 @@ public:
 protected:
     Point2 ScatterCellCoords;
     Point2 DeathCellCoords;
-    Directions SavedDirection {};
+    Directions NextDirection = None;
+    Directions CurrentDirection = None;
 
     Event<>::CallbackPtr EnterCellCallback;
     Event<>::CallbackPtr MiddleOfCellCallback;
