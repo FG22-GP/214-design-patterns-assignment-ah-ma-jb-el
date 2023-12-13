@@ -29,7 +29,7 @@ void IGhost::ChasePlayer()
     
     const Directions newDir = Pathfinding::GetDirection(MovementComp->GetCurrentCell(), MovementComp->GetTargetCell(), GetTargetCoord());
     // MovementComp->SetDirection(newDir);
-    SavedDirection = newDir;
+    NextDirection = newDir;
 }
 
 void IGhost::Flee()
@@ -55,22 +55,22 @@ void IGhost::Flee()
 
     if (dirVector == Point2::Up())
     {
-        SavedDirection = Up;
+        NextDirection = Up;
         // MovementComp->SetDirection(Up);
     }
     else if (dirVector == Point2::Down())
     {
-        SavedDirection = Down;
+        NextDirection = Down;
         // MovementComp->SetDirection(Down);
     }
     else if (dirVector == Point2::Right())
     {
-        SavedDirection = Right;
+        NextDirection = Right;
         // MovementComp->SetDirection(Right);
     }
     else if (dirVector == Point2::Left())
     {
-        SavedDirection = Left;
+        NextDirection = Left;
         // MovementComp->SetDirection(Left);
     }
     
@@ -82,17 +82,19 @@ void IGhost::Scatter(Point2 scatterCoords)
     
     const Directions newDir = Pathfinding::GetDirection(MovementComp->GetCurrentCell(), MovementComp->GetTargetCell() ,scatterCoords);
     // MovementComp->SetDirection(newDir);
-    SavedDirection = newDir;
+    NextDirection = newDir;
 }
 
 void IGhost::SetDirection()
 {
     if (MovementComp == nullptr) { return; }
     
-    if (MovementComp->GetCurrentDirection() != SavedDirection)
+    if (MovementComp->GetCurrentDirection() != CurrentDirection)
     {
-        MovementComp->SetDirection(SavedDirection);
+        MovementComp->SetDirection(CurrentDirection);
+        CurrentDirection = NextDirection;
     }
+    
     
 }
 
