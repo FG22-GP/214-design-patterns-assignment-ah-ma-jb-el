@@ -15,6 +15,8 @@ public:
 	void Tick(float DeltaTime);
 	void RenderAllRegisteredActors();
 
+	bool bShouldTickActors = true;
+
 protected:
 
 	std::vector<std::shared_ptr<Actor>> RegisteredActors;

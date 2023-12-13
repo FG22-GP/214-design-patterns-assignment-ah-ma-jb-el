@@ -5,7 +5,7 @@
 #include "PacmanLevelInfoParser.h"
 #include "Engine/Game/GameBase.h"
 #include "World\World.hpp"
-
+#include <Event\EventBroker.h>
 
 class ZakuMan;
 class GameGrid;
@@ -25,6 +25,10 @@ public:
 protected:
     void LoadSprites();
     void LoadLevel();
+    void SetupWinCon();
+    void HandleDotEaten();
+    Event<>::CallbackPtr Callback;
+    int EatenDots = 0;
     
     std::shared_ptr<World> GameWorld;
     std::shared_ptr<GameGrid> Grid;

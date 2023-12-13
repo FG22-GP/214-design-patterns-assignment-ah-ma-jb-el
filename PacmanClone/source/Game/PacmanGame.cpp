@@ -12,6 +12,7 @@
 #include "Grid/GridGenerator.h"
 #include "Movement/MovementComponent.h"
 #include "ZakuMan/ZakuMan.hpp"
+#include <PickUps\Dot.h>
 
 void PacmanGame::Initialize()
 {
@@ -30,6 +31,8 @@ void PacmanGame::Initialize()
 		SpawnGhosts(Player);
 	}
 
+	SetupWinCon();
+
 }
 
 void PacmanGame::Run()
@@ -39,7 +42,10 @@ void PacmanGame::Run()
 
 void PacmanGame::Exit()
 {
+	EventBroker::OnDotEaten.RemoveListener(Callback);
+
 	GameBase::Exit();
+
 }
 
 void PacmanGame::HandleTick(float DeltaTime)
@@ -100,6 +106,27 @@ void PacmanGame::LoadLevel()
 		
 	// Generate the grid from the level info 
 	Grid = GridGenerator::GenerateGrid(GameWorld, LevelInfo.Width, LevelInfo.Height, LevelInfo.Content, LevelInfo.Rules);
+}
+
+void PacmanGame::SetupWinCon()
+{
+	if (Dot::TotalDots < 1) return;
+
+	Callback = EventBroker::OnDotEaten.AddListener(
+		[this]() {
+			this->HandleDotEaten();
+		});
+}
+
+void PacmanGame::HandleDotEaten()
+{
+	EatenDots++;
+	std::cout << "You've eaten " << EatenDots << " Dots out of " << Dot::TotalDots << "." << std::endl;
+	if (EatenDots >= Dot::TotalDots)
+	{
+		GameWorld->bShouldTickActors = false;
+		std::cout << "WinCon here" << std::endl;
+	}
 }
 
 std::shared_ptr<ZakuMan> PacmanGame::SpawnPlayer() const
