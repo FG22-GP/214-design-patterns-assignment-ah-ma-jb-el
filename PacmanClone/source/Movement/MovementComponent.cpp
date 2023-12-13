@@ -40,6 +40,7 @@ bool MovementComponent::TrySetNewTargetCell()
         }
     }
 
+    CurrentLink = CurrentCell->GetLinkInDirection(MoveDirection);
     TargetCell = NewTarget;
     MoveDirection = NewDirection;
     //CurrentCell = NewLink->Target;
@@ -77,6 +78,8 @@ void MovementComponent::Move(float DeltaTime)
     // Convert to -1, 0, or 1
     MoveX = static_cast<float>((MoveX > 0) - (MoveX < 0));
     MoveY = static_cast<float>((MoveY > 0) - (MoveY < 0));
+    if (CurrentLink->bIsWrapLink)
+        MoveX *= -1;
 
     // Removes shaking but causes slower movement on tile switch TODO: Fix this
     const float XDistanceToTarget = TargetCellLocation.X - CurrentLocation.X;
@@ -94,7 +97,11 @@ void MovementComponent::Move(float DeltaTime)
     const Vector2 MoveVector(MoveX, MoveY);
     
     const Vector2 DeltaPosition = MoveVector * fMoveSpeed * DeltaTime;
-    const Vector2 NewPosition = CurrentLocation + DeltaPosition;
+    Vector2 NewPosition = CurrentLocation + DeltaPosition;
+    if (NewPosition.X > 28.0f)
+        NewPosition.X -= 28.0f;
+    if (NewPosition.X < 0.0f)
+        NewPosition.X += 28.0f;
     GetParent()->ActorTransform.SetLocation(NewPosition);
 
 }
@@ -123,6 +130,8 @@ void MovementComponent::OnEnterNewCell(const std::shared_ptr<GridCell>& newCell)
 
 void MovementComponent::SetDirection(Directions newDirection)
 {
+    if (CurrentLink->bIsWrapLink)
+        return;
     SteeringDirection = newDirection;
     TrySetNewTargetCell();
 }
