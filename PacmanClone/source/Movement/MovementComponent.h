@@ -4,6 +4,7 @@
 
 #include "World\Actors\ActorComponent.hpp"
 #include "Data/Vectors/Vector2.hpp"
+#include "Event/Event.h"
 
 class GridLink;
 class GridCell;
@@ -25,6 +26,8 @@ public:
     Directions GetCurrentDirection() const { return MoveDirection; }
     void SetMoveSpeed(float speed) { fMoveSpeed = speed; }
 
+    Event<> OnEnterNewCellEvent;
+    Event<> OnCenterOfCellEvent;
     
 protected:
     Directions MoveDirection = Directions::None;
@@ -34,7 +37,7 @@ protected:
 
 private:
     bool bIsPlayer = false;
-    float fMoveSpeed =2;
+    float fMoveSpeed = 2;
     std::shared_ptr<GridCell> CurrentCell = nullptr;
     std::shared_ptr<GridCell> TargetCell = nullptr;
 
@@ -42,6 +45,5 @@ private:
     void Move(float DeltaTime);
     Vector2 WrapLerp(Vector2 start, Vector2 target, float T);
     bool IsWrapLink(std::shared_ptr<GridLink>& link);
-
     void OnEnterNewCell(const std::shared_ptr<GridCell>& newCell);
 };

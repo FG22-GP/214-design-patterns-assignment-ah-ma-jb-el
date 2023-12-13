@@ -116,6 +116,7 @@ std::shared_ptr<ZakuMan> PacmanGame::SpawnPlayer() const
 
 void PacmanGame::SpawnGhosts(std::shared_ptr<ZakuMan> Player) const
 {
+	const Point2 DeathCellCoords = Point2(12, 14);
 	// Anton
 	const std::shared_ptr<Ghost_Anton> Anton = GameWorld->CreateActor<Ghost_Anton>();
 	const Point2 Ghost1Spawn = LevelInfo.GhostSpawn[0];
@@ -123,7 +124,7 @@ void PacmanGame::SpawnGhosts(std::shared_ptr<ZakuMan> Player) const
 	Grid->GetCellAt(Ghost1Spawn)->AddContent(Anton);
 	Anton->SetCell(Grid->GetCellAt(Ghost1Spawn));
 	Anton->GetMovementComponent()->Init(Grid->GetCellAt(Ghost1Spawn));
-	Anton->InitializeGhost(Point2(1,1), Point2(1, 1), Player);
+	Anton->InitializeGhost(DeathCellCoords, Point2(1, 1), Player);
 	// Erik
 	const std::shared_ptr<Ghost_Erik> Erik = GameWorld->CreateActor<Ghost_Erik>();
 	const Point2 Ghost2Spawn = LevelInfo.GhostSpawn[1];
@@ -131,7 +132,7 @@ void PacmanGame::SpawnGhosts(std::shared_ptr<ZakuMan> Player) const
 	Grid->GetCellAt(Ghost2Spawn)->AddContent(Erik);
 	Erik->SetCell(Grid->GetCellAt(Ghost2Spawn));
 	Erik->GetMovementComponent()->Init(Grid->GetCellAt(Ghost2Spawn));
-	Erik->InitializeGhost(Point2(1, 1), Point2(25, 25), Player);
+	Erik->InitializeGhost(DeathCellCoords, Point2(25, 25), Player);
 	// Johan
 	const std::shared_ptr<Ghost_Johan> Johan = GameWorld->CreateActor<Ghost_Johan>();
 	const Point2 JohanSpawn = LevelInfo.GhostSpawn[2];
@@ -139,7 +140,7 @@ void PacmanGame::SpawnGhosts(std::shared_ptr<ZakuMan> Player) const
 	Grid->GetCellAt(JohanSpawn)->AddContent(Johan);
 	Johan->SetCell(Grid->GetCellAt(JohanSpawn));
 	Johan->GetMovementComponent()->Init(Grid->GetCellAt(JohanSpawn));
-	Johan->InitializeGhost(Point2(1, 1), Point2(1, 25), Player);
+	Johan->InitializeGhost(DeathCellCoords, Point2(1, 25), Player);
 	Johan->GiveFriend(Anton);
 	// Magnus
 	const std::shared_ptr<Ghost_Magnus> Magnus = GameWorld->CreateActor<Ghost_Magnus>();
@@ -148,5 +149,5 @@ void PacmanGame::SpawnGhosts(std::shared_ptr<ZakuMan> Player) const
 	Grid->GetCellAt(MagnusSpawn)->AddContent(Magnus);
 	Magnus->SetCell(Grid->GetCellAt(MagnusSpawn));
 	Magnus->GetMovementComponent()->Init(Grid->GetCellAt(MagnusSpawn));
-	Magnus->InitializeGhost(Point2(1, 1), Point2(25, 1), Player);
+	Magnus->InitializeGhost(DeathCellCoords, Point2(25, 1), Player);
 }

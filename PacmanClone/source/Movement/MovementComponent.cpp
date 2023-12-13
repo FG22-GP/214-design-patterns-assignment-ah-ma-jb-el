@@ -1,5 +1,6 @@
 ﻿#include "PacmanCore.h"
 #include "MovementComponent.h"
+#include "Ghosts/States/StateMachine_Component.h"
 #include "World\Actors\Actor.hpp"
 #include "Grid/GridCell.h"
 #include "Grid/GridCellContent.h"
@@ -21,7 +22,7 @@ bool MovementComponent::TrySetNewTargetCell()
     
     if(!CurrentCell->GetLinkInDirection(SteeringDirection))
     {
-        std::cout << "No link in direction" << std::endl;
+        std::cout << "No link in direction" << '\n';
         return false;
     }
     
@@ -29,16 +30,13 @@ bool MovementComponent::TrySetNewTargetCell()
     Directions NewDirection = SteeringDirection;
 
 
-    if((bIsPlayer && !NewTarget->bIsPlayerWalkable) || (!bIsPlayer && !NewTarget->bIsGhostWalkable))
+    if((bIsPlayer && !NewTarget->bIsPlayerWalkable) || (!bIsPlayer && !NewTarget->bIsGhostWalkable)) // Target in steering direction is not walkable
     {
-        //std::cout << "Target cell: " << NewTarget->Coordinate.ToString() << " is not walkable" << std::endl;
-    
         NewTarget = CurrentCell->GetLinkInDirection(MoveDirection)->Target;
         NewDirection = MoveDirection;
-        if((bIsPlayer && !NewTarget->bIsPlayerWalkable) || (!bIsPlayer && !NewTarget->bIsGhostWalkable))
+        if((bIsPlayer && !NewTarget->bIsPlayerWalkable) || (!bIsPlayer && !NewTarget->bIsGhostWalkable)) // Target in move direction is not walkable
         {
-            // std::cout << "Target cell: " << NewTarget->Coordinate.ToString() << " is not walkable" << std::endl;
-            return false;
+            return false; // Won't update target cell
         }
     }
     
@@ -63,12 +61,14 @@ void MovementComponent::Move(float DeltaTime)
 
     if(DistanceToTarget < DistanceToCurrent)
     {
+        OnEnterNewCellEvent.Invoke();
         OnEnterNewCell(TargetCell);
     }
     
     if (DistanceToTarget < 0.01f)
     {
-        return; // We're already there. // TODO: Fire event here?
+        OnCenterOfCellEvent.Invoke();
+        return; // We're already there. 
     }
     
     float MoveX = TargetCellLocation.X - CurrentLocation.X;
@@ -137,4 +137,3 @@ void MovementComponent::Init(std::shared_ptr<GridCell> startCell, bool inIsPlaye
 
     bIsPlayer = inIsPlayer;
 }
-
