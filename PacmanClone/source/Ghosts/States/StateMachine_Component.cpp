@@ -39,11 +39,7 @@ void StateMachine_Component::Tick(float DeltaTime)
     ActorComponent::Tick(DeltaTime);
 
     ScatterChaseTimer(DeltaTime);
-    
-    if (CurrentState != nullptr)
-    {
-        CurrentState->OnStateRunning(); // should be changed to on state tick when events are in place
-    }
+
 }
 
 void StateMachine_Component::RunCurrentState() const
