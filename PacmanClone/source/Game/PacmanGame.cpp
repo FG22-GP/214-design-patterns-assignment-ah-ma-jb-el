@@ -107,9 +107,10 @@ std::shared_ptr<ZakuMan> PacmanGame::SpawnPlayer() const
 	// Create the player
 	std::shared_ptr<ZakuMan> Zaku = GameWorld->CreateActor<ZakuMan>();
 	const Point2 PlayerSpawn = LevelInfo.PlayerSpawn;
+	Grid->GetCellAt(PlayerSpawn)->AddContent(Zaku);
 	Zaku->SetCell(Grid->GetCellAt(PlayerSpawn));
 	Zaku->ActorTransform.SetLocation(PlayerSpawn);
-	Zaku->GetMovementComponent()->Init(Grid->GetCellAt(PlayerSpawn), true);
+	Zaku->GetMovementComponent()->Init(Grid->GetCellAt(PlayerSpawn));
 	return Zaku;
 }
 
@@ -119,6 +120,7 @@ void PacmanGame::SpawnGhosts(std::shared_ptr<ZakuMan> Player) const
 	const std::shared_ptr<Ghost_Anton> Anton = GameWorld->CreateActor<Ghost_Anton>();
 	const Point2 Ghost1Spawn = LevelInfo.GhostSpawn[0];
 	Anton->ActorTransform.SetLocation(Ghost1Spawn);
+	Grid->GetCellAt(Ghost1Spawn)->AddContent(Anton);
 	Anton->SetCell(Grid->GetCellAt(Ghost1Spawn));
 	Anton->GetMovementComponent()->Init(Grid->GetCellAt(Ghost1Spawn));
 	Anton->InitializeGhost(Point2(1,1), Point2(1, 1), Player);
@@ -126,6 +128,7 @@ void PacmanGame::SpawnGhosts(std::shared_ptr<ZakuMan> Player) const
 	const std::shared_ptr<Ghost_Erik> Erik = GameWorld->CreateActor<Ghost_Erik>();
 	const Point2 Ghost2Spawn = LevelInfo.GhostSpawn[1];
 	Erik->ActorTransform.SetLocation(Ghost2Spawn);
+	Grid->GetCellAt(Ghost2Spawn)->AddContent(Erik);
 	Erik->SetCell(Grid->GetCellAt(Ghost2Spawn));
 	Erik->GetMovementComponent()->Init(Grid->GetCellAt(Ghost2Spawn));
 	Erik->InitializeGhost(Point2(1, 1), Point2(25, 25), Player);
@@ -133,6 +136,7 @@ void PacmanGame::SpawnGhosts(std::shared_ptr<ZakuMan> Player) const
 	const std::shared_ptr<Ghost_Johan> Johan = GameWorld->CreateActor<Ghost_Johan>();
 	const Point2 JohanSpawn = LevelInfo.GhostSpawn[2];
 	Johan->ActorTransform.SetLocation(JohanSpawn);
+	Grid->GetCellAt(JohanSpawn)->AddContent(Johan);
 	Johan->SetCell(Grid->GetCellAt(JohanSpawn));
 	Johan->GetMovementComponent()->Init(Grid->GetCellAt(JohanSpawn));
 	Johan->InitializeGhost(Point2(1, 1), Point2(1, 25), Player);
@@ -141,6 +145,7 @@ void PacmanGame::SpawnGhosts(std::shared_ptr<ZakuMan> Player) const
 	const std::shared_ptr<Ghost_Magnus> Magnus = GameWorld->CreateActor<Ghost_Magnus>();
 	const Point2 MagnusSpawn = LevelInfo.GhostSpawn[3];
 	Magnus->ActorTransform.SetLocation(MagnusSpawn);
+	Grid->GetCellAt(MagnusSpawn)->AddContent(Magnus);
 	Magnus->SetCell(Grid->GetCellAt(MagnusSpawn));
 	Magnus->GetMovementComponent()->Init(Grid->GetCellAt(MagnusSpawn));
 	Magnus->InitializeGhost(Point2(1, 1), Point2(25, 1), Player);

@@ -27,9 +27,21 @@ void AIState_Frightened::OnStateExit()
 
 void AIState_Frightened::OnStateTick(float DeltaTime)
 {
+    const std::shared_ptr<StateMachine_Component> machine = Ghost->GetStateMachineComponent();
+    if (machine == nullptr) { return; }
+    
     fTimer += DeltaTime;
-    if (fTimer >= fStateDuration)
+    if (fTimer >= fFrightenedDuration)
     {
-        Ghost->GetStateMachineComponent()->PushChase();
+        if (machine->bScatter)
+        {
+            machine->PushScatter();
+        }
+        else
+        {
+            machine->PushChase();
+        }
+        
+        fTimer = 0;
     }
 }

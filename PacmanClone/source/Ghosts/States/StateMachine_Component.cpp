@@ -6,6 +6,7 @@
 #include "AIState_Dead.h"
 #include "AIState_Frightened.h"
 #include "AIState_Scatter.h"
+#include "Event/EventBroker.h"
 
 StateMachine_Component::StateMachine_Component(std::shared_ptr<Actor> ParentActor) : ActorComponent(ParentActor)
 {
@@ -14,14 +15,32 @@ StateMachine_Component::StateMachine_Component(std::shared_ptr<Actor> ParentActo
     if (ghost != nullptr)
     {
         ChaseState = std::make_shared<AIState_Chasing>(ghost);
-        ChaseState->fStateDuration = 20.f;
         FrightenedState = std::make_shared<AIState_Frightened>(ghost);
-        FrightenedState->fStateDuration = 10.f;
         ScatterState = std::make_shared<AIState_Scatter>(ghost);
-        ChaseState->fStateDuration = 5.f;
         DeadState = std::make_shared<AIState_Dead>(ghost);
+
+        EventCallback = EventBroker::OnCookieEaten.AddListener([this]()
+        {
+            this->PushFrightened();
+        });
         
         CurrentState = ScatterState;
+    }
+}
+
+StateMachine_Component::~StateMachine_Component()
+{
+    EventBroker::OnCookieEaten.RemoveListener(EventCallback);
+}
+
+void StateMachine_Component::Tick(float DeltaTime)
+{
+    ActorComponent::Tick(DeltaTime);
+
+    
+    if (CurrentState != nullptr)
+    {
+        CurrentState->OnStateRunning(); // should be changed to on state tick when events are in place
     }
 }
 
@@ -33,41 +52,41 @@ void StateMachine_Component::RunCurrentState() const
     }
 }
 
-bool StateMachine_Component::IsDead() const
+void StateMachine_Component::ScatterChaseTimer(float DeltaTime)
 {
-    return CurrentState == DeadState;
-}
-
-void StateMachine_Component::PushFrightened()
-{
-    PushNewState(FrightenedState);
-}
-
-void StateMachine_Component::PushScatter()
-{
-    PushNewState(ScatterState);
-}
-
-void StateMachine_Component::PushChase()
-{
-    PushNewState(ChaseState);
-}
-
-void StateMachine_Component::PushDead()
-{
-    PushNewState(DeadState);
-}
-
-void StateMachine_Component::Tick(float DeltaTime)
-{
-    ActorComponent::Tick(DeltaTime);
-
-    if (CurrentState != nullptr)
+    fTimer += DeltaTime;
+    if (bScatter && fTimer >= fScatterDuration)
     {
-        CurrentState->OnStateRunning(); // should be changed to on state tick when events are in place
+        if (CurrentState != FrightenedState)
+        {
+            PushChase();
+        }
+        
+        iScatterIncrement++;
+        if (iScatterIncrement >= 2)
+        {
+            fScatterDuration = 5.f;
+        }
+        
+        bScatter = false;
+        fTimer = 0;
+    }
+    
+    if (!bScatter && fTimer >= 20)
+    {
+        if (CurrentState != FrightenedState)
+        {
+            PushScatter();
+        }
+
+        if (iScatterIncrement < 4)
+        {
+            bScatter = true;
+        }
+        
+        fTimer = 0;
     }
 }
-
 
 void StateMachine_Component::PushNewState(std::shared_ptr<IAIState> newState)
 {
@@ -76,4 +95,38 @@ void StateMachine_Component::PushNewState(std::shared_ptr<IAIState> newState)
     CurrentState->OnStateExit();
     newState->OnStateEnter();
     CurrentState = newState;
+}
+
+bool StateMachine_Component::IsDead() const
+{
+    return CurrentState == DeadState;
+}
+
+void StateMachine_Component::PushFrightened(bool bOverrideDead)
+{
+    if (!IsDead() || bOverrideDead)
+    {
+        PushNewState(FrightenedState);
+    }
+}
+
+void StateMachine_Component::PushScatter(bool bOverrideDead)
+{
+    if (!IsDead() || bOverrideDead)
+    {
+        PushNewState(ScatterState);
+    }
+}
+
+void StateMachine_Component::PushChase(bool bOverrideDead)
+{
+    if (!IsDead() || bOverrideDead)
+    {
+        PushNewState(ChaseState);
+    }
+}
+
+void StateMachine_Component::PushDead()
+{
+    PushNewState(DeadState);
 }

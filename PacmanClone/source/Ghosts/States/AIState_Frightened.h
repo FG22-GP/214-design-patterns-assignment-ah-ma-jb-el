@@ -9,4 +9,9 @@ public:
     void OnStateRunning() override;
     void OnStateExit() override;
     void OnStateTick(float DeltaTime) override;
+
+private:
+    float fTimer = 0;
+    float fFrightenedDuration = 10;
+    
 };

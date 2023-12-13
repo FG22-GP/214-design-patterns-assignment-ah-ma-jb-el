@@ -123,6 +123,9 @@
     <ClCompile Include="source\Grid\SpriteMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\World\Actors\SpriteAnimationComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Grid\GameGrid.h">
@@ -228,6 +231,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Grid\SpriteMap.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\World\Actors\SpriteAnimationComponent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
