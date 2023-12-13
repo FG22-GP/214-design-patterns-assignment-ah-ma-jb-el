@@ -1,5 +1,6 @@
 ﻿#include "PacmanCore.h"
 #include "MovementComponent.h"
+#include "Ghosts/States/StateMachine_Component.h"
 #include "World\Actors\Actor.hpp"
 #include "Grid/GridCell.h"
 #include "Grid/GridCellContent.h"
@@ -60,12 +61,14 @@ void MovementComponent::Move(float DeltaTime)
 
     if(DistanceToTarget < DistanceToCurrent)
     {
+        OnEnterNewCellEvent.Invoke();
         OnEnterNewCell(TargetCell);
     }
     
     if (DistanceToTarget < 0.01f)
     {
-        return; // We're already there. // TODO: Fire event here?
+        OnCenterOfCellEvent.Invoke();
+        return; // We're already there. 
     }
     
     float MoveX = TargetCellLocation.X - CurrentLocation.X;
