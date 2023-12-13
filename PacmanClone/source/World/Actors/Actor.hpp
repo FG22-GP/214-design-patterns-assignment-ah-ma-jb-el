@@ -50,13 +50,13 @@ template<typename T> std::shared_ptr<T> Actor::AddComponent()
 }
 
 template<typename T>
-bool Actor::TryRemoveComponent()
+inline bool Actor::TryRemoveComponent()
 {
 	static_assert(std::is_base_of<ActorComponent, T>::value,
 		"T must be derived from ActorComponent");
 	for (size_t i = 0; i < ChildComponents.size(); i++)
 	{
-		if (dynamic_cast<T*>(ChildComponents[i]) != nullptr)
+		if (dynamic_cast<T*>(ChildComponents[i].get()) != nullptr)
 		{
 			ChildComponents[i]->OnDestroy();
 			ChildComponents.erase(ChildComponents.begin() + i);
