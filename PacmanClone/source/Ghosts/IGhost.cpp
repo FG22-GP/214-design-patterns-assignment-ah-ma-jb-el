@@ -9,6 +9,16 @@ IGhost::IGhost(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTr
 {
     StateMachineComp = AddComponent<StateMachine_Component>();
     MovementComp = AddComponent<MovementComponent>();
+
+    EnterCellCallback = MovementComp->OnEnterNewCellEvent.AddListener([this]()
+    {
+        StateMachineComp->RunCurrentState();
+    });
+    MiddleOfCellCallback = MovementComp->OnCenterOfCellEvent.AddListener([this]()
+    {
+        this->SetDirection();
+    });
+    
     SpriteComp = AddComponent<SpriteComponent>();
 }
 
@@ -18,7 +28,8 @@ void IGhost::ChasePlayer()
     if (MovementComp == nullptr) { return; }
     
     const Directions newDir = Pathfinding::GetDirection(MovementComp->GetCurrentCell(), MovementComp->GetTargetCell(), GetTargetCoord());
-    MovementComp->SetDirection(newDir);
+    // MovementComp->SetDirection(newDir);
+    SavedDirection = newDir;
 }
 
 void IGhost::Flee()
@@ -44,19 +55,23 @@ void IGhost::Flee()
 
     if (dirVector == Point2::Up())
     {
-        MovementComp->SetDirection(Up);
+        SavedDirection = Up;
+        // MovementComp->SetDirection(Up);
     }
     else if (dirVector == Point2::Down())
     {
-        MovementComp->SetDirection(Down);
+        SavedDirection = Down;
+        // MovementComp->SetDirection(Down);
     }
     else if (dirVector == Point2::Right())
     {
-        MovementComp->SetDirection(Right);
+        SavedDirection = Right;
+        // MovementComp->SetDirection(Right);
     }
     else if (dirVector == Point2::Left())
     {
-        MovementComp->SetDirection(Left);
+        SavedDirection = Left;
+        // MovementComp->SetDirection(Left);
     }
     
 }
@@ -66,7 +81,19 @@ void IGhost::Scatter(Point2 scatterCoords)
     if (MovementComp == nullptr) { return; }
     
     const Directions newDir = Pathfinding::GetDirection(MovementComp->GetCurrentCell(), MovementComp->GetTargetCell() ,scatterCoords);
-    MovementComp->SetDirection(newDir);
+    // MovementComp->SetDirection(newDir);
+    SavedDirection = newDir;
+}
+
+void IGhost::SetDirection()
+{
+    if (MovementComp == nullptr) { return; }
+    
+    if (MovementComp->GetCurrentDirection() != SavedDirection)
+    {
+        MovementComp->SetDirection(SavedDirection);
+    }
+    
 }
 
 void IGhost::InitializeGhost(

@@ -19,6 +19,8 @@ public:
     void Flee();
     void Scatter(Point2 scatterCoords);
 
+    void SetDirection();
+
     void InitializeGhost(Point2 deathCell, Point2 scatterCoords, std::shared_ptr<ZakuMan>& target);
 
     Point2 GetScatterCoords();
@@ -33,6 +35,10 @@ public:
 protected:
     Point2 ScatterCellCoords;
     Point2 DeathCellCoords;
+    Directions SavedDirection {};
+
+    Event<>::CallbackPtr EnterCellCallback;
+    Event<>::CallbackPtr MiddleOfCellCallback;
     
     std::shared_ptr<ZakuMan> ZakuMan;
     std::shared_ptr<StateMachine_Component> StateMachineComp;
