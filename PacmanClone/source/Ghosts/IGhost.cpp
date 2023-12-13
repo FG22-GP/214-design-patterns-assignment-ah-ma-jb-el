@@ -14,6 +14,8 @@ IGhost::IGhost(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTr
     {
         StateMachineComp->RunCurrentState();
         StateMachineComp->CheckForZaku();
+
+        this->ChangeCell();
     });
     MiddleOfCellCallback = MovementComp->OnCenterOfCellEvent.AddListener([this]()
     {
@@ -97,6 +99,23 @@ void IGhost::SetDirection()
     }
     
     
+}
+
+void IGhost::ChangeCell()
+{
+    if (GetCell() == nullptr) { return; }
+    
+    if (PreviousCell != nullptr)
+    {
+        PreviousCell->OnContentEnters.RemoveListener(CellContentCallback);
+    }
+
+    CellContentCallback = GetCell()->OnContentEnters.AddListener([this](std::shared_ptr<GridCellContent>)
+    {
+        this->SetDirection();
+    });
+
+    PreviousCell = GetCell();
 }
 
 void IGhost::InitializeGhost(
