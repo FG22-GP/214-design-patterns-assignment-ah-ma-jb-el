@@ -81,22 +81,22 @@ void MovementComponent::Move(float DeltaTime)
     if (CurrentLink->bIsWrapLink)
         MoveX *= -1;
 
-    // Removes shaking but causes slower movement on tile switch TODO: Fix this
     const float XDistanceToTarget = TargetCellLocation.X - CurrentLocation.X;
     const float YDistanceToTarget = TargetCellLocation.Y - CurrentLocation.Y;
     
-    if(std::abs(MoveX) > std::abs(XDistanceToTarget) )
-    {
-        MoveX = XDistanceToTarget;
-    }
-    if(std::abs(MoveY) > std::abs(YDistanceToTarget) )
-    {
-        MoveY = YDistanceToTarget;
-    }
-
     const Vector2 MoveVector(MoveX, MoveY);
     
-    const Vector2 DeltaPosition = MoveVector * fMoveSpeed * DeltaTime;
+    Vector2 DeltaPosition = MoveVector * fMoveSpeed * DeltaTime;
+    
+    if(std::abs(DeltaPosition.X) > std::abs(XDistanceToTarget))
+    {
+        DeltaPosition.X = XDistanceToTarget;
+    }
+    if(std::abs(DeltaPosition.Y) > std::abs(YDistanceToTarget))
+    {
+        DeltaPosition.Y = YDistanceToTarget;
+    }
+    
     Vector2 NewPosition = CurrentLocation + DeltaPosition;
     if (NewPosition.X > 28.0f)
         NewPosition.X -= 28.0f;
