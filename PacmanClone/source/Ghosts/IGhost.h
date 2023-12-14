@@ -2,6 +2,7 @@
 #include "World/Actors/Actor.hpp"
 #include "Ghosts/States/StateMachine_Component.h"
 #include "Grid/GridCellContent.h"
+#include "World/Actors/SpriteSwitchComponent.hpp"
 
 class ZakuMan;
 class SpriteComponent;
@@ -31,7 +32,7 @@ public:
 
     std::shared_ptr<MovementComponent> GetMovementComponent();
     std::shared_ptr<StateMachine_Component> GetStateMachineComponent();
-    std::shared_ptr<SpriteComponent> GetSpriteComponent();
+    std::shared_ptr<SpriteSwitchComponent> GetSpriteComponent();
 
 protected:
     Point2 ScatterCellCoords;
@@ -47,7 +48,7 @@ protected:
     std::shared_ptr<ZakuMan> ZakuMan;
     std::shared_ptr<StateMachine_Component> StateMachineComp;
     std::shared_ptr<MovementComponent> MovementComp;
-    std::shared_ptr<SpriteComponent> SpriteComp;
+    std::shared_ptr<SpriteSwitchComponent> SpriteComp;
     
     virtual Point2 GetTargetCoord();
 };

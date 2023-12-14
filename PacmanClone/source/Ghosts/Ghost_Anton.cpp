@@ -10,10 +10,16 @@ Ghost_Anton::Ghost_Anton(std::shared_ptr<World> ParentWorld, GameEngine::Transfo
 {
     std::vector<std::string> names;
     names.emplace_back("Ghost_1");
+    names.emplace_back("Ghost_5");
 
-    const auto sprite = AssetLoader::GetSprite(names[0]);
+    const auto sprite_1 = AssetLoader::GetSprite(names[0]);
+    const auto sprite_2 = AssetLoader::GetSprite(names[1]);
 
-    SpriteComp->Initialize(sprite);
+    std::vector<std::shared_ptr<Sprite>> sprites;
+    sprites.push_back(sprite_1);
+    sprites.push_back(sprite_2);
+    
+    SpriteComp->Initialise(sprites);
 }
 
 Point2 Ghost_Anton::GetTargetCoord()
