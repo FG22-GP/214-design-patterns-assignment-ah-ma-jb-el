@@ -6,7 +6,6 @@
 
 bool ZakuMovementComponent::TrySetNewTargetCell()
 {
-    MovementComponent::TrySetNewTargetCell();
     if(SteeringDirection == Directions::None)
     {
         return false; // Stand Still
