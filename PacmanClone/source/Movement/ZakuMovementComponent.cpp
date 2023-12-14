@@ -93,4 +93,24 @@ void ZakuMovementComponent::Move(float DeltaTime)
     
     GetParent()->ActorTransform.SetLocation(NewPosition);
 
+
+#pragma region Rotate
+    float Rotation = 0.0f;
+    switch (MoveDirection)
+    {
+    case 0:
+        Rotation = 270.0f;
+        break;
+    case 1:
+        Rotation = 90.0f;
+        break;
+    case 2:
+        Rotation = 0.0f;
+        break;
+    case 3:
+        Rotation = 180.0f;
+        break;
+    }
+    GetParent()->ActorTransform.SetRotation(Rotation);
+#pragma endregion DetermineRotation
 }

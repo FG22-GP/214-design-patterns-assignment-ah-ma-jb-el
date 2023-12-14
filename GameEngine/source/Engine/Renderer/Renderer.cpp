@@ -6,6 +6,7 @@
 #include "Data/Visuals/Texture.hpp"
 #include "Data/Bounds/Rectangle.hpp"
 #include "Engine/Window/Window.hpp"
+#include "Data/Enums/RenderFlip.hpp"
 #include "SDL.h"
 
 namespace GameEngine
@@ -72,14 +73,15 @@ namespace GameEngine
 
 	void Renderer::Draw(IRenderable& render){
 		Rectangle rect = GetScreenRectFromWorldLocation(render.GetWorldLocation(), render.GetWorldScale());
-
+		Point2 centre = Point2(rect.GetWidth() / 2, rect.GetHeight() / 2);
+		
 		SDL_RenderCopyEx(
 			m_Renderer.get(),
 			render.GetTexture().ToSDL(),
 			render.GetCrop().ToSDL(),
 			rect.ToSDL(),
 			render.GetRotation(),
-			render.GetCentre().ToSDL(),
+			centre.ToSDL(),
 			(SDL_RendererFlip)render.GetFlip()
 		);
 
@@ -93,7 +95,7 @@ namespace GameEngine
 				render.GetCrop().ToSDL(),
 				rect.ToSDL(),
 				render.GetRotation(),
-				render.GetCentre().ToSDL(),
+				centre.ToSDL(),
 				(SDL_RendererFlip)render.GetFlip()
 			);
 		}
@@ -106,7 +108,7 @@ namespace GameEngine
 				render.GetCrop().ToSDL(),
 				rect.ToSDL(),
 				render.GetRotation(),
-				render.GetCentre().ToSDL(),
+				centre.ToSDL(),
 				(SDL_RendererFlip)render.GetFlip()
 			);
 		}

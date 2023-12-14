@@ -33,8 +33,15 @@ const Rectangle& SpriteComponent::GetCrop()
 
 double SpriteComponent::GetRotation()
 {
-	return GetParent()->ActorTransform.GetRotation() +
+	auto rotation = GetParent()->ActorTransform.GetRotation() +
 		LoadedSprite->GetRotation();
+
+	//We adjust rotations outside [-90..90] so the GetFlip() function can flip instead.
+	if (rotation > 90.0f)
+		return rotation - 180.0f;
+	if (rotation <= -90.0f)
+		return rotation + 180.0f;
+	return rotation;
 }
 const Point2& SpriteComponent::GetCentre()
 {
@@ -44,6 +51,13 @@ RenderFlip SpriteComponent::GetFlip()
 {
 	if (SpriteFlip != RenderFlip::None)
 		return SpriteFlip;
+
+	//We flip when we adjust rotations in GetRotation()
+	if (GetParent()->ActorTransform.GetRotation() <= -90.0f ||
+		GetParent()->ActorTransform.GetRotation() > 90.0f)
+	{
+		return RenderFlip::Horizontally;
+	}
 
 	return LoadedSprite->GetFlip();
 }

@@ -11,17 +11,17 @@ namespace GameEngine
 		//Default constructor
 		Transform() : Location(Vector2(0, 0)), Rotation(0.0f), Scale(Vector2(1, 1)) {}
 
-		const Vector2& GetLocation() const { return Location; }
-		float GetRotation() const { return Rotation; }
-		const Vector2& GetScale() const { return Scale; }
+		GAME_API const Vector2& GetLocation() const { return Location; }
+		GAME_API float GetRotation() const { return Rotation; }
+		GAME_API const Vector2& GetScale() const { return Scale; }
 
-		void SetLocation(const Vector2& NewLocation) { Location = NewLocation; }
-		void AddLocation(const Vector2& DeltaLocation) { Location += DeltaLocation; }
+		GAME_API void SetLocation(const Vector2& NewLocation) { Location = NewLocation; }
+		GAME_API void AddLocation(const Vector2& DeltaLocation) { Location += DeltaLocation; }
 
-		void SetRotation(const float NewRotation);
-		void Rotate(const float DeltaRotation);
+		GAME_API void SetRotation(const float NewRotation);
+		GAME_API void Rotate(const float DeltaRotation);
 
-		void SetScale(const Vector2& NewScale) { Scale = NewScale; }
+		GAME_API void SetScale(const Vector2& NewScale) { Scale = NewScale; }
 
 	protected:
 
