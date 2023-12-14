@@ -20,6 +20,11 @@ Directions Pathfinding::GetDirection(std::shared_ptr<GridCell> currentCell, std:
     {
         std::shared_ptr<GridCell> cell = nextCell->Links[i]->Target;
         if (!cell->bIsGhostWalkable || cell == currentCell) { continue; }
+
+        if (!cell->bIsPlayerWalkable && i == 1)
+        {
+            continue;
+        }
         
         const float newDistance = Calculate_Distance(cell, targetCoord);
         if (newDistance < lowestDistance)
