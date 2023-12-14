@@ -26,6 +26,20 @@ namespace GameEngine
 
 // PRESETS
 
+	Directions Point2::Direction(Point2 DirectionVector)
+	{
+		if(DirectionVector == Point2::Up())
+			return Directions::Up;
+		if(DirectionVector == Point2::Down())
+			return Directions::Down;
+		if(DirectionVector == Point2::Right())
+			return Directions::Right;
+		if(DirectionVector == Point2::Left())
+			return Directions::Left;
+
+		return Directions::None;
+	}
+
 	Point2 Point2::DirectionVector(Directions Dir){
 		switch (Dir)
 		{
@@ -51,7 +65,47 @@ namespace GameEngine
 		return Directions;
 	}
 
-// GETTERS
+	bool Point2::IsOpposingDirection(Directions dir1, Directions dir2)
+	{
+		return (dir1 == Directions::Up && dir2 == Directions::Down) ||
+			(dir1 == Directions::Down && dir2 == Directions::Up) ||
+			(dir1 == Directions::Right && dir2 == Directions::Left) ||
+			(dir1 == Directions::Left && dir2 == Directions::Right);
+	}
+
+	Directions Point2::GetOppositeDirection(Directions dir)
+	{
+		switch (dir) {
+		case Directions::Up:
+			return Directions::Down;
+		case Directions::Down:
+			return Directions::Up;
+		case Directions::Right:
+			return Directions::Left;
+		case Directions::Left:
+			return Directions::Right;
+		default:
+			return Directions::None;
+		}
+	}
+
+	Point2 Point2::GetPoint2InDirection(Point2 point, Directions dir, uint32_t distance)
+	{
+		switch (dir) {
+		case Directions::Up: // Bugged in real pacman game, keeping it for flavour
+			return Point2(point.GetX() - distance, point.GetY() - distance); 
+		case Directions::Down:
+			return Point2(point.GetX(), point.GetY() + distance);
+		case Directions::Right:
+			return Point2(point.GetX() + distance, point.GetY());
+		case Directions::Left:
+			return Point2(point.GetX() - distance, point.GetY());
+		default:
+			return Point2(point.GetX(), point.GetY());
+		}
+	}
+
+	// GETTERS
 
 	int32_t Point2::GetX() const {
 		return m_Point->x;
@@ -111,6 +165,52 @@ namespace GameEngine
 
 	Point2::operator SDL_Point* (){
 		return m_Point.get();
+	}
+
+	Point2 Point2::Rotate90DegreesClockwise(const Point2& point)
+	{
+		const int X = -point.GetY();
+		const int Y = point.GetX();
+		return Point2(X, Y);
+	}
+
+	Point2 Point2::Rotate90DegreesCounterClockwise(const Point2& point)
+	{
+		const int X = point.GetY();
+		const int Y = -point.GetX();
+		return Point2(X, Y);
+	}
+
+	Directions Point2::Rotate90DegreesClockwise(Directions Dir)
+	{
+		switch (Dir) {
+		case Directions::Up:
+			return Directions::Right;
+		case Directions::Down:
+			return Directions::Left;
+		case Directions::Right:
+			return Directions::Down;
+		case Directions::Left:
+			return Directions::Up;
+		default:
+			return Directions::None;
+		}
+	}
+
+	Directions Point2::Rotate90DegreesCounterClockwise(Directions Dir)
+	{
+		switch (Dir) {
+		case Directions::Up:
+			return Directions::Left;
+		case Directions::Down:
+			return Directions::Right;
+		case Directions::Right:
+			return Directions::Up;
+		case Directions::Left:
+			return Directions::Down;
+		default:
+			return Directions::None;
+		}
 	}
 
 	void Point2::Deleter::operator()(SDL_Point* p) const noexcept {

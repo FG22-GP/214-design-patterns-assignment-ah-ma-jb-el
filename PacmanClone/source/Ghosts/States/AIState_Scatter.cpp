@@ -12,7 +12,7 @@ AIState_Scatter::AIState_Scatter(const std::shared_ptr<IGhost>& ghost) : IAIStat
 void AIState_Scatter::OnStateEnter()
 {
     const Directions dir = Ghost->GetMovementComponent()->GetCurrentDirection();
-    Ghost->GetMovementComponent()->SetDirection(DirectionHelpers::GetOppositeDirection(dir));
+    Ghost->GetMovementComponent()->SetDirection(Point2::GetOppositeDirection(dir));
 }
 
 void AIState_Scatter::OnStateRunning()
