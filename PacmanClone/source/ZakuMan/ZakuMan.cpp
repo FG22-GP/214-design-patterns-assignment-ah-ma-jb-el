@@ -2,15 +2,14 @@
 #include "ZakuMan.hpp"
 
 #include "Engine/Input/Input.hpp"
-#include "Movement/MovementComponent.h"
+#include "Movement/ZakuMovementComponent.h"
 #include "World/Actors/SpriteAnimationComponent.hpp"
-#include "World/Actors/SpriteComponent.hpp"
 
 
 ZakuMan::ZakuMan(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTransform)
     : Actor(ParentWorld, StartTransform)
 {
-    MoveComp = AddComponent<MovementComponent>();
+    MoveComp = AddComponent<ZakuMovementComponent>();
 
     // Register Input Events
     Input::RegisterInputEvent(KEY_DOWN_EVENT, KeyboardKey::W, [this] { MoveComp->SetDirection(Up); });

@@ -19,7 +19,7 @@ public:
 
     void SetDirection(Directions newDirection);
 
-    void Init(std::shared_ptr<GridCell> startCell, bool inIsPlayer = false);
+    void Init(std::shared_ptr<GridCell> startCell, Directions startDirection);
 
     std::shared_ptr<GridCell> GetTargetCell() { return TargetCell; }
     std::shared_ptr<GridCell> GetCurrentCell() { return CurrentCell; }
@@ -32,19 +32,16 @@ public:
 protected:
     Directions MoveDirection = Directions::None;
     Directions SteeringDirection = Directions::Right;
+    std::shared_ptr<GridCell> CurrentCell = nullptr;
+    std::shared_ptr<GridLink> CurrentLink = nullptr;
+    std::shared_ptr<GridCell> TargetCell = nullptr;
+    float fMoveSpeed = 2;
 
     void Tick(float DeltaTime) override;
-
-private:
-    bool bIsPlayer = false;
-    float fMoveSpeed = 2;
-    std::shared_ptr<GridCell> CurrentCell = nullptr;
-    std::shared_ptr<GridCell> TargetCell = nullptr;
-    std::shared_ptr<GridLink> CurrentLink = nullptr;
-
-    bool TrySetNewTargetCell();
-    void Move(float DeltaTime);
+    virtual void Move(float DeltaTime);
+    virtual bool TrySetNewTargetCell();
+    void OnEnterNewCell(const std::shared_ptr<GridCell>& newCell);
     Vector2 WrapLerp(Vector2 start, Vector2 target, float T);
     bool IsWrapLink(std::shared_ptr<GridLink>& link);
-    void OnEnterNewCell(const std::shared_ptr<GridCell>& newCell);
+
 };

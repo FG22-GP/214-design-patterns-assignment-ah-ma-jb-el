@@ -14,38 +14,38 @@ void MovementComponent::Tick(float DeltaTime)
 
 bool MovementComponent::TrySetNewTargetCell()
 {
-    if(SteeringDirection == Directions::None)
-    {
-        return false; // Stand Still
-    }
-    
-    if(!CurrentCell->GetLinkInDirection(SteeringDirection))
-    {
-        std::cout << "No link in direction" << '\n';
-        return false;
-    }
-
-    Directions NewDirection = SteeringDirection;
-    //std::shared_ptr<GridLink> NewLink = CurrentCell->GetLinkInDirection(SteeringDirection);
-    std::shared_ptr<GridCell> NewTarget = CurrentCell->GetLinkInDirection(SteeringDirection)->Target;
-
-    if((bIsPlayer && !NewTarget->bIsPlayerWalkable) || (!bIsPlayer && !NewTarget->bIsGhostWalkable)) // Target in steering direction is not walkable
-    {
-        //CurrentCell->GetLinkInDirection(SteeringDirection) = CurrentCell->GetLinkInDirection(MoveDirection);
-        NewTarget = CurrentCell->GetLinkInDirection(MoveDirection)->Target;
-        NewDirection = MoveDirection;
-        if((bIsPlayer && !NewTarget->bIsPlayerWalkable) || (!bIsPlayer && !NewTarget->bIsGhostWalkable)) // Target in move direction is not walkable
-        {
-            return false; // Won't update target cell
-        }
-    }
-
-    CurrentLink = CurrentCell->GetLinkInDirection(MoveDirection);
-    TargetCell = NewTarget;
-    MoveDirection = NewDirection;
-    //CurrentCell = NewLink->Target;
-
-    // TODO: Implement wrap links
+    // if(SteeringDirection == Directions::None)
+    // {
+    //     return false; // Stand Still
+    // }
+    //
+    // if(!CurrentCell->GetLinkInDirection(SteeringDirection))
+    // {
+    //     std::cout << "No link in direction" << '\n';
+    //     return false;
+    // }
+    //
+    // Directions NewDirection = SteeringDirection;
+    // //std::shared_ptr<GridLink> NewLink = CurrentCell->GetLinkInDirection(SteeringDirection);
+    // std::shared_ptr<GridCell> NewTarget = CurrentCell->GetLinkInDirection(SteeringDirection)->Target;
+    //
+    // if((bIsPlayer && !NewTarget->bIsPlayerWalkable) || (!bIsPlayer && !NewTarget->bIsGhostWalkable)) // Target in steering direction is not walkable
+    // {
+    //     //CurrentCell->GetLinkInDirection(SteeringDirection) = CurrentCell->GetLinkInDirection(MoveDirection);
+    //     NewTarget = CurrentCell->GetLinkInDirection(MoveDirection)->Target;
+    //     NewDirection = MoveDirection;
+    //     if((bIsPlayer && !NewTarget->bIsPlayerWalkable) || (!bIsPlayer && !NewTarget->bIsGhostWalkable)) // Target in move direction is not walkable
+    //     {
+    //         return false; // Won't update target cell
+    //     }
+    // }
+    //
+    // CurrentLink = CurrentCell->GetLinkInDirection(MoveDirection);
+    // TargetCell = NewTarget;
+    // MoveDirection = NewDirection;
+    // //CurrentCell = NewLink->Target;
+    //
+    // // TODO: Implement wrap links
 
     return true;
 }
@@ -136,13 +136,11 @@ void MovementComponent::SetDirection(Directions newDirection)
     TrySetNewTargetCell();
 }
 
-void MovementComponent::Init(std::shared_ptr<GridCell> startCell, bool inIsPlayer)
+void MovementComponent::Init(std::shared_ptr<GridCell> startCell, Directions startDirection)
 {
     CurrentCell = std::move(startCell);
-    MoveDirection = Directions::Right;
+    MoveDirection = startDirection;
     TargetCell = CurrentCell;
     CurrentLink = CurrentCell->GetLinkInDirection(MoveDirection);
     TrySetNewTargetCell();
-
-    bIsPlayer = inIsPlayer;
 }

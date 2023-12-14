@@ -2,13 +2,13 @@
 #include "IGhost.h"
 
 #include "Grid/GridCell.h"
-#include "Movement/MovementComponent.h"
+#include "Movement/GhostMovementComponent.h"
 #include "Movement/Pathfinding.h"
 
 IGhost::IGhost(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTransform) : Actor(ParentWorld, StartTransform)
 {
     StateMachineComp = AddComponent<StateMachine_Component>();
-    MovementComp = AddComponent<MovementComponent>();
+    MovementComp = AddComponent<GhostMovementComponent>();
 
     EnterCellCallback = MovementComp->OnEnterNewCellEvent.AddListener([this]()
     {
