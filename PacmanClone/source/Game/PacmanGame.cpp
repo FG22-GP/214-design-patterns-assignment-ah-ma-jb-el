@@ -153,7 +153,7 @@ std::shared_ptr<ZakuMan> PacmanGame::SpawnPlayer() const
 
 void PacmanGame::SpawnGhosts(std::shared_ptr<ZakuMan> Player) const
 {
-	const Point2 DeathCellCoords = Point2(12, 14);
+	const Point2 DeathCellCoords = Point2(14, 11);
 	// Anton
 	const std::shared_ptr<Ghost_Anton> Anton = GameWorld->CreateActor<Ghost_Anton>();
 	const Point2 Ghost1Spawn = LevelInfo.GhostSpawn[0];

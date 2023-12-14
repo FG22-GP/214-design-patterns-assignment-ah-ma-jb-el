@@ -18,17 +18,7 @@ bool GhostMovementComponent::TrySetNewTargetCell()
 
     if(!NewTarget->bIsGhostWalkable)
         return false;
-    // for( int i = 0; i < 4; i++)
-    // {
-    //     NewLink = CurrentCell->GetLinkInDirection(NewDirection);
-    //     NewTarget = NewLink->Target;
-    //     if(NewTarget->bIsGhostWalkable)
-    //     {
-    //         break;
-    //     }
-    //     NewDirection = Point2::Rotate90DegreesClockwise(NewDirection);
-    //     
-    // }
+
     TargetCell = NewTarget;
     MoveDirection = NewDirection;
     CurrentLink = NewLink;
@@ -45,6 +35,7 @@ void GhostMovementComponent::OnEnterNewCell(const std::shared_ptr<GridCell>& new
 
 void GhostMovementComponent::OnReachedCenterOfCell()
 {
+    GetParent()->ActorTransform.SetLocation(CurrentCell->ActorTransform.GetLocation());
     ReachedCenterOfCell = true;
     std::cout << "ReachedCenterOfCell" << std::endl;
     OnCenterOfCellEvent.Invoke();
@@ -106,7 +97,7 @@ void GhostMovementComponent::Move(float DeltaTime)
     // Check if center
     // distanceTraveled += Vector2::Magnitude(DeltaMovePosition);
     // std::cout << "distanceTraveled: " << distanceTraveled << std::endl;
-    if(Vector2::Distance(NewPosition, TargetCellLocation) < 0.1f)
+    if(Vector2::Distance(NewPosition, CurrentCellLocation) < 0.01f)
     {
         OnReachedCenterOfCell();
     }
