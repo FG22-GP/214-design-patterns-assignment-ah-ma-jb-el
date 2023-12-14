@@ -95,7 +95,7 @@ void IGhost::GetOutOfGhostZone()
     std::shared_ptr<GridCell> nextCell = MovementComp->GetTargetCell();
 
     std::shared_ptr<GridCell> cell = nextCell->Links[0]->Target;
-    if (!cell->bIsGhostWalkable || cell == MovementComp->GetCurrentCell())
+    if (cell->bIsGhostWalkable && cell != MovementComp->GetCurrentCell())
     {
         NextDirection = Up;
         return;
@@ -105,7 +105,7 @@ void IGhost::GetOutOfGhostZone()
     {
         cell = nextCell->Links[2]->Target;
         
-        if (!cell->bIsGhostWalkable || cell == MovementComp->GetCurrentCell())
+        if (cell->bIsGhostWalkable && cell != MovementComp->GetCurrentCell())
         {
             NextDirection = Right;
         }
@@ -114,7 +114,7 @@ void IGhost::GetOutOfGhostZone()
     {
         cell = nextCell->Links[3]->Target;
         
-        if (!cell->bIsGhostWalkable || cell == MovementComp->GetCurrentCell())
+        if (cell->bIsGhostWalkable && cell != MovementComp->GetCurrentCell())
         {
             NextDirection = Left;
         }
