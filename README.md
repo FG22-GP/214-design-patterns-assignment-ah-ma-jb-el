@@ -42,10 +42,17 @@ We do this by using an [AssetLoader.hpp](GameEngine/source/Engine/Asset/AssetLoa
 For the hostile ghosts in our game we decided to use the State pattern, since the ghosts' behaviours are discrete and pre-determined. Each ghost is always in one of four possible states; Chase, Scatter, Frightened, and Dead, all of which are separate classes that implement the [IAIState.h](PacmanClone/source/Ghosts/States/IAIState.h) interface. Each ghost is equipped with a [StateMachine_Component.h](PacmanClone/source/Ghosts/States/StateMachine_Component.h), which is an ActorComponent. The StateMachine initializes one of each state class and then saves a pointer that always points to whichever one is the current state. Whenever the ghosts needs to make an action which varies depending on which state they're in they simply run the corresponding method override, i.e. OnStateRunning(), in the current state.
 
 
-## ~~Mistakes~~ Learning Opportunities
+## ~~Mistakes~~ Learnings
 ### Smart Pointers (or; sharing is **not** caring)
 Being used to the comforts of Unreal Engine, we found ourselves misusing smart pointers somewhat. Most of the pointers being passed around the game are **shared_ptr**. This seemed like a nice way to make sure things don't randomly get destroyed while in use.
 
 Unfortunately, towards the end of the project we started having issues because of this, since there's no healthy way to manually destroy an object owned by **shared_ptr**'s. For example, our **Actor** objects are owned entirely by the **World** object. In hindsight, we realized that they should have been managed using **unique_ptr**'s instead, so that we could easily call a **World->Destroy(Actor)** function. The overuse of **shared_ptr**'s made this impossible, and we had to take some less-than-optimal shortcuts to work around it.
 
 In future projects using C++ without an engine to manage memory, we should put a lot more effort into considering what pointer types to use, and worry more about ownership.
+
+### Don't overgeneralize
+The movement pattern of Pacman and the ghosts might seem similar, but they actually function very differently. Ghosts can't turn backwards; except when Pacman eats an Energizer. Ghosts can't take shortcuts around corners, but Pacman can!
+
+When we built the [MovementComponent.h](PacmanClone/source/Movement/MovementComponent.h) it was originally intended to be a shared component that both Pacman and the ghosts could use. This turned out to make it **very** hard to write the code, as there were so many ifs and buts.
+
+Eventually, we realized that the functionality needed to be separated into a baseclass with 2 children, [ZakuMovementComponent.h](PacmanClone/source/Movement/ZakuMovementComponent.h) and [GhostMovementComponent.h](PacmanClone/source/Movement/GhostMovementComponent.h).
