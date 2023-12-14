@@ -16,12 +16,23 @@
 
 // SWITCHING
 
+	void SpriteSwitchComponent::GoTo(const uint8_t index){
+		m_Index = std::clamp(
+			index, uint8_t(0), static_cast<uint8_t>(m_Sprites.size() - 1)
+		);
+		LoadedSprite = m_Sprites[m_Index];
+	}
+
 	void SpriteSwitchComponent::Previous(){
-		m_Index = (m_Index + m_Sprites.size()) % m_Sprites.size() - 1;
+		uint8_t size = static_cast<uint8_t>(m_Sprites.size());
+
+		m_Index = (m_Index + size) % size - 1;
 		LoadedSprite = m_Sprites[m_Index];
 	}
 
 	void SpriteSwitchComponent::Next(){
-		m_Index = (m_Index + 1) % m_Sprites.size();
+		uint8_t size = static_cast<uint8_t>(m_Sprites.size());	
+
+		m_Index = (m_Index + 1) % size;
 		LoadedSprite = m_Sprites[m_Index];
 	}

@@ -11,6 +11,7 @@ public:
 
 	void Initialise(const std::vector<std::shared_ptr<Sprite>>& sprites, const uint8_t start = 0);
 
+	void GoTo(const uint8_t index);
 	void Previous();
 	void Next();
 
