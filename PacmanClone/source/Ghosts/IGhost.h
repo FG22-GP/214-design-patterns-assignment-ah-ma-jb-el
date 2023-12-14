@@ -19,6 +19,7 @@ public:
     void ChasePlayer();
     void Flee();
     void Scatter(Point2 scatterCoords);
+    void GetOutOfGhostZone();
 
     void SetDirection();
     void ChangeCell();

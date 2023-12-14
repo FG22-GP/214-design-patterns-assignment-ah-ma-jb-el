@@ -88,6 +88,41 @@ void IGhost::Scatter(Point2 scatterCoords)
     NextDirection = newDir;
 }
 
+void IGhost::GetOutOfGhostZone()
+{
+    if (MovementComp == nullptr) { return; }
+    
+    std::shared_ptr<GridCell> nextCell = MovementComp->GetTargetCell();
+
+    std::shared_ptr<GridCell> cell = nextCell->Links[0]->Target;
+    if (!cell->bIsGhostWalkable || cell == MovementComp->GetCurrentCell())
+    {
+        NextDirection = Up;
+        return;
+    }
+
+    if (nextCell->Coordinate.GetX() <= 14)
+    {
+        cell = nextCell->Links[2]->Target;
+        
+        if (!cell->bIsGhostWalkable || cell == MovementComp->GetCurrentCell())
+        {
+            NextDirection = Right;
+        }
+    }
+    else
+    {
+        cell = nextCell->Links[3]->Target;
+        
+        if (!cell->bIsGhostWalkable || cell == MovementComp->GetCurrentCell())
+        {
+            NextDirection = Left;
+        }
+    }
+    
+
+}
+
 void IGhost::SetDirection()
 {
     if (MovementComp == nullptr) { return; }

@@ -21,7 +21,7 @@ void AIState_Scatter::OnStateRunning()
 
     if (Ghost->GetCell()->bIsGhostWalkable && !Ghost->GetCell()->bIsPlayerWalkable)
     {
-        Ghost->Scatter(Ghost->GetDeathCell());
+        Ghost->GetOutOfGhostZone();
     }
     else
     {
