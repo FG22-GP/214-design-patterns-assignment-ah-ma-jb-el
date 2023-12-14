@@ -31,9 +31,15 @@ namespace GameEngine
 		GAME_API static Point2 Down() { return {0, static_cast<uint32_t>(1)}; }
 		GAME_API static Point2 Right() { return {static_cast<uint32_t>(1), 0}; }
 		GAME_API static Point2 Left() { return {static_cast<uint32_t>(-1), 0}; }
+		GAME_API static Point2 Zero() { return {0, 0}; }
+		GAME_API static Point2 One() { return {1, 1}; }
+		GAME_API static Directions Direction(Point2 DirectionVector);
 		GAME_API static Point2 DirectionVector(Directions Dir);
 		GAME_API static std::vector<Point2> AllDirections();
-
+		GAME_API static bool IsOpposingDirection(Directions dir1, Directions dir2);
+		GAME_API static Directions GetOppositeDirection(Directions dir);
+		GAME_API static Point2 GetPoint2InDirection(Point2 point, Directions dir, uint32_t distance = 1);
+		
 	// GETTERS
 	
 		GAME_API int32_t GetX() const;
@@ -58,49 +64,16 @@ namespace GameEngine
 
 	// FUNC
 		GAME_API std::string ToString() const { return "(" + std::to_string(GetX()) + ", " + std::to_string(GetY()) + ")"; }
+		GAME_API static Point2 Rotate90DegreesClockwise(const Point2& point);
+		GAME_API static Point2 Rotate90DegreesCounterClockwise(const Point2& point);
+		GAME_API static Directions Rotate90DegreesClockwise(Directions Dir);
+		GAME_API static Directions Rotate90DegreesCounterClockwise(Directions Dir);
+
 	private:
 
 		struct Deleter { void operator ()(SDL_Point*) const noexcept; };
 		std::unique_ptr<SDL_Point, Deleter> m_Point;
 
 	};
-
 	
-	class DirectionHelpers {  // TODO: Move to a more appropriate place
-		public:
-		static bool IsOpposingDirection(Directions dir1, Directions dir2) {
-			return (dir1 == Up && dir2 == Down) ||
-				(dir1 == Down && dir2 == Up) ||
-				(dir1 == Right && dir2 == Left) ||
-				(dir1 == Left && dir2 == Right);
-		}
-		static Directions GetOppositeDirection(Directions dir) {
-			switch (dir) {
-			case Up:
-				return Down;
-			case Down:
-				return Up;
-			case Right:
-				return Left;
-			case Left:
-				return Right;
-			default:
-				return None;
-			}
-		}
-		static Point2 GetPoint2InDirection(Point2 point, Directions dir, uint32_t distance = 1) {
-			switch (dir) {
-			case Up: // Bugged in real pacman game, keeping it for flavour
-				return Point2(point.GetX() - distance, point.GetY() - distance); 
-			case Down:
-				return Point2(point.GetX(), point.GetY() + distance);
-			case Right:
-				return Point2(point.GetX() + distance, point.GetY());
-			case Left:
-				return Point2(point.GetX() - distance, point.GetY());
-			default:
-				return Point2(point.GetX(), point.GetY());
-			}
-		}
-	};
 }

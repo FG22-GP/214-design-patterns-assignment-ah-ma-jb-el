@@ -41,6 +41,6 @@ Point2 Ghost_Erik::GetTargetCoord()
     
     if (ZakuDir == None) { return Point2{}; }
 
-    Point2 newCoord = DirectionHelpers::GetPoint2InDirection(ZakuCell->Coordinate, ZakuDir, 4);
+    Point2 newCoord = Point2::GetPoint2InDirection(ZakuCell->Coordinate, ZakuDir, 4);
     return newCoord;
 }

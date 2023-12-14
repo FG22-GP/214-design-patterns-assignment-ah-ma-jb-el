@@ -47,7 +47,7 @@ Point2 Ghost_Johan::GetTargetCoord()
     
     if (ZakuDir == None) { return Point2{}; }
     
-    const Point2 targetVector = DirectionHelpers::GetPoint2InDirection(ZakuCoord, ZakuDir, 2) - FriendCoord;
+    const Point2 targetVector = Point2::GetPoint2InDirection(ZakuCoord, ZakuDir, 2) - FriendCoord;
     
     return targetVector + targetVector;
 }
