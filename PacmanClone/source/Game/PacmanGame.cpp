@@ -126,7 +126,6 @@ void PacmanGame::SetupWinCon()
 void PacmanGame::HandleDotEaten()
 {
 	EatenDots++;
-	std::cout << "You've eaten " << EatenDots << " Dots out of " << Dot::TotalDots << "." << std::endl;
 	if (EatenDots >= Dot::TotalDots)
 	{
 		GameWorld->bShouldTickActors = false;
