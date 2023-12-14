@@ -22,7 +22,7 @@ IGhost::IGhost(std::shared_ptr<World> ParentWorld, GameEngine::Transform StartTr
         this->SetDirection();
     });
     
-    SpriteComp = AddComponent<SpriteComponent>();
+    SpriteComp = AddComponent<SpriteSwitchComponent>();
 }
 
 
@@ -160,7 +160,7 @@ std::shared_ptr<StateMachine_Component> IGhost::GetStateMachineComponent()
     return StateMachineComp;
 }
 
-std::shared_ptr<SpriteComponent> IGhost::GetSpriteComponent()
+std::shared_ptr<SpriteSwitchComponent> IGhost::GetSpriteComponent()
 {
     return SpriteComp;
 }
