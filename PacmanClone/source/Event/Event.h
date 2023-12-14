@@ -23,9 +23,11 @@ public:
 
     // Invoke all registered callbacks
     void Invoke(Args... args) {
-        for (auto & listener : listeners) {
-            listener.get()->operator()(args ...);
+        for (int i = listeners.size() - 1; i >= 0; --i)
+        {
+            listeners[i].get()->operator()(args ...);
         }
+
     }
 
 private:
