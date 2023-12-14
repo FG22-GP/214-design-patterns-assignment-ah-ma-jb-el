@@ -11,7 +11,6 @@ void AIState_Frightened::OnStateEnter()
 {
     Ghost->GetSpriteComponent()->Next();
     fTimer = 0;
-    //change sprite to scared ghost
 }
 
 void AIState_Frightened::OnStateRunning()
@@ -24,7 +23,6 @@ void AIState_Frightened::OnStateRunning()
 void AIState_Frightened::OnStateExit()
 {
     Ghost->GetSpriteComponent()->Previous();
-    //change sprite back to default
 }
 
 void AIState_Frightened::OnStateTick(float DeltaTime)

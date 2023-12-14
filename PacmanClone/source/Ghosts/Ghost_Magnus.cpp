@@ -12,13 +12,18 @@ Ghost_Magnus::Ghost_Magnus(std::shared_ptr<World> ParentWorld, GameEngine::Trans
     std::vector<std::string> names;
     names.emplace_back("Ghost_4");
     names.emplace_back("Ghost_5");
+    names.emplace_back("Ghost_Dead");
 
     const auto sprite_1 = AssetLoader::GetSprite(names[0]);
     const auto sprite_2 = AssetLoader::GetSprite(names[1]);
+    const auto sprite_3 = AssetLoader::GetSprite(names[2]);
+
 
     std::vector<std::shared_ptr<Sprite>> sprites;
     sprites.push_back(sprite_1);
     sprites.push_back(sprite_2);
+    sprites.push_back(sprite_3);
+
     
     SpriteComp->Initialise(sprites);
 }

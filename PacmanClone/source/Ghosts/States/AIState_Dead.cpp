@@ -10,7 +10,7 @@ AIState_Dead::AIState_Dead(const std::shared_ptr<IGhost>& ghost) : IAIState(ghos
 
 void AIState_Dead::OnStateEnter()
 {
-    //change sprite to only eyes
+    Ghost->GetSpriteComponent()->Next();
 }
 
 void AIState_Dead::OnStateRunning()
@@ -31,13 +31,15 @@ void AIState_Dead::OnStateRunning()
             machine->PushChase(true);
         }
     }
-    
-    Ghost->Scatter(Ghost->GetDeathCell());
+    else
+    {
+        Ghost->Scatter(Ghost->GetDeathCell());
+    }
 }
 
 void AIState_Dead::OnStateExit()
 {
-    //change sprite back to default
+    Ghost->GetSpriteComponent()->Next();
 }
 
 void AIState_Dead::OnStateTick(float DeltaTime)
