@@ -37,3 +37,12 @@ As mentioned above, the game's objects are managed in a World->Actor->ActorCompo
 Since our game uses a Sprite Atlas for our in-game sprites, we realised it would be an excellent use case for the Flyweight pattern. We decided to make the [Sprite.hpp](GameEngine/source/Data/Visuals/Sprite.hpp) and [SpriteComponent.h](PacmanClone/source/World/Actors/SpriteComponent.hpp) separate, and multiple Components can reference a single Sprite. That way we only have to load and store each texture once even if we render it hundreds of times per frame, such as with the edible Dot. 
 
 We do this by using an [AssetLoader.hpp](GameEngine/source/Engine/Asset/AssetLoader.hpp) which we tell to pre-load all textures at the start of the game, generating the necessary Sprite objects. A SpriteComponent can then ask the AssetLoader for a reference to the Sprite it wants to render. Finally, the Renderer uses the SpriteComponent's owner's Transform to determine location and size for rendering.
+
+
+## ~~Mistakes~~ Learning Opportunities
+### Smart Pointers (or; sharing is **not** caring)
+Being used to the comforts of Unreal Engine, we found ourselves misusing smart pointers somewhat. Most of the pointers being passed around the game are **shared_ptr**. This seemed like a nice way to make sure things don't randomly get destroyed while in use.
+
+Unfortunately, towards the end of the project we started having issues because of this, since there's no healthy way to manually destroy an object owned by **shared_ptr**'s. For example, our **Actor** objects are owned entirely by the **World** object. In hindsight, we realized that they should have been managed using **unique_ptr**'s instead, so that we could easily call a **World->Destroy(Actor)** function. The overuse of **shared_ptr**'s made this impossible, and we had to take some less-than-optimal shortcuts to work around it.
+
+In future projects using C++ without an engine to manage memory, we should put a lot more effort into considering what pointer types to use, and worry more about ownership.
