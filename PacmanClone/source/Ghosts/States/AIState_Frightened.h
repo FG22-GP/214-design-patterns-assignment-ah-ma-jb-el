@@ -13,6 +13,6 @@ public:
 
 private:
     float fTimer = 0;
-    float fFrightenedDuration = 5;
+    float fFrightenedDuration = 10;
     
 };

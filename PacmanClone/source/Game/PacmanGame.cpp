@@ -62,35 +62,36 @@ void PacmanGame::LoadSprites(){
 	AssetLoader::LoadTexture(AssetLoader::GetAssetPath("SpriteAtlas.png"));
 	auto atlas = AssetLoader::GetTexture("SpriteAtlas");
 
-	std::vector<std::string> names(27);
-	names[0] = "NW_Inner";
-	names[1] = "Horizontal_Top";
-	names[2] = "NE_Inner";
-	names[3] = "SE_Outer";
-	names[4] = "Horizontal_Bottom";
-	names[5] = "SW_Outer";
-	names[6] = "Zakuman_Closed";
-	names[7] = "Zakuman_Opened";
-	names[8] = "Vertical_Left";
-	names[9] = "Empty";
-	names[10] = "Vertical_Right";
-	names[11] = "Vertical_Right2";
-	names[12] = "Filled";
-	names[13] = "Vertical_Left2";
-	names[14] = "Ghost_1";
-	names[15] = "Ghost_2";
-	names[16] = "SW_Inner";
-	names[17] = "Horizontal_Bottom2";
-	names[18] = "SE_Inner";
-	names[19] = "NE_Outer";
-	names[20] = "Horizontal_Top2";
-	names[21] = "NW_Outer";
-	names[22] = "Ghost_3";
-	names[23] = "Ghost_4";
-	names[24] = "Ghost_5";
-	names[25] = "Energizer";
-	names[26] = "Dot";
-
+	std::vector<std::string> names {
+		"NW_Inner",
+		"Horizontal_Top",
+		"NE_Inner",
+		"SE_Outer",
+		"Horizontal_Bottom",
+		"SW_Outer",
+		"Zakuman_Closed",
+		"Zakuman_Opened",
+		"Vertical_Left",
+		"Empty",
+		"Vertical_Right",
+		"Vertical_Right2",
+		"Filled",
+		"Vertical_Left2",
+		"Ghost_1",
+		"Ghost_2",
+		"SW_Inner",
+		"Horizontal_Bottom2",
+		"SE_Inner",
+		"NE_Outer",
+		"Horizontal_Top2",
+		"NW_Outer",
+		"Ghost_3",
+		"Ghost_4",
+		"Ghost_5",
+		"Ghost_Dead",
+		"Energizer",
+		"Dot",
+	};
 	AssetLoader::LoadSprites(atlas, names, 8, 8);
 }
 

@@ -17,7 +17,7 @@ The image in the left side of this table is an early version of the map using du
 
 | Sprite Atlas |
 | --- | 
-| ![Sprite Atlas](Screenshots/SpriteAtlasCropped.png) |
+| ![Sprite Atlas](PacmanClone/Sprites/SpriteAtlas.png) |
 
 
 
