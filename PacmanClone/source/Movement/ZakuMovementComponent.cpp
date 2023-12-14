@@ -6,6 +6,7 @@
 
 bool ZakuMovementComponent::TrySetNewTargetCell()
 {
+    MovementComponent::TrySetNewTargetCell();
     if(SteeringDirection == Directions::None)
     {
         return false; // Stand Still
@@ -58,42 +59,39 @@ void ZakuMovementComponent::Move(float DeltaTime)
         OnEnterNewCell(TargetCell);
     }
     
-    if (DistanceToTarget < 0.01f)
-    {
-        OnCenterOfCellEvent.Invoke();
-        return; // We're already there. 
-    }
-    
     float MoveX = TargetCellLocation.X - CurrentLocation.X;
     float MoveY = TargetCellLocation.Y - CurrentLocation.Y;
 
     // Convert to -1, 0, or 1
     MoveX = static_cast<float>((MoveX > 0) - (MoveX < 0));
     MoveY = static_cast<float>((MoveY > 0) - (MoveY < 0));
+    
     if (CurrentLink->bIsWrapLink)
         MoveX *= -1;
 
-    const float XDistanceToTarget = TargetCellLocation.X - CurrentLocation.X;
-    const float YDistanceToTarget = TargetCellLocation.Y - CurrentLocation.Y;
-    
     const Vector2 MoveVector(MoveX, MoveY);
     
     Vector2 DeltaPosition = MoveVector * fMoveSpeed * DeltaTime;
+
+    const float XDistanceToTarget = std::abs(TargetCellLocation.X - CurrentLocation.X);
+    const float YDistanceToTarget = std::abs(TargetCellLocation.Y - CurrentLocation.Y);
     
-    if(std::abs(DeltaPosition.X) > std::abs(XDistanceToTarget))
+    if(std::abs(DeltaPosition.X) > XDistanceToTarget)
     {
         DeltaPosition.X = XDistanceToTarget;
     }
-    if(std::abs(DeltaPosition.Y) > std::abs(YDistanceToTarget))
+    if(std::abs(DeltaPosition.Y) > YDistanceToTarget)
     {
         DeltaPosition.Y = YDistanceToTarget;
     }
     
     Vector2 NewPosition = CurrentLocation + DeltaPosition;
+    
     if (NewPosition.X > 28.0f)
         NewPosition.X -= 28.0f;
     if (NewPosition.X < 0.0f)
         NewPosition.X += 28.0f;
+    
     GetParent()->ActorTransform.SetLocation(NewPosition);
 
 }
