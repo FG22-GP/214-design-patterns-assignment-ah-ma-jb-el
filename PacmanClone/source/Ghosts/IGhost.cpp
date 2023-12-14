@@ -153,7 +153,7 @@ void IGhost::ChangeCell()
 
     CellContentCallback = GetCell()->OnContentEnters.AddListener([this](std::shared_ptr<GridCellContent>)
     {
-        this->SetDirection();
+        StateMachineComp->CheckForZaku();
     });
 
     PreviousCell = GetCell();
