@@ -130,7 +130,14 @@ void PacmanGame::HandleDotEaten()
 	if (EatenDots >= Dot::TotalDots)
 	{
 		GameWorld->bShouldTickActors = false;
-		std::cout << "WinCon here" << std::endl;
+		
+		std::shared_ptr<Actor> WinSplash = GameWorld->CreateActor<Actor>();
+		WinSplash->ActorTransform.SetLocation(Vector2(14, 16));
+		WinSplash->ActorTransform.SetScale(Vector2(8, 8));
+		auto spriteComp = WinSplash->AddComponent<SpriteComponent>();
+		auto sprite = AssetLoader::GetSprite("Dot"); //TODO: Change this to fetch the WinScreen when available.
+		spriteComp->Initialize(sprite);
+
 	}
 }
 
