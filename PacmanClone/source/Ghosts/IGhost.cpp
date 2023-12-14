@@ -128,7 +128,16 @@ void IGhost::SetDirection()
     if (MovementComp == nullptr) { return; }
     
     std::cout << "IGhost::SetDirection: CurrentDirection: " << CurrentDirection << " NextDirection: " << NextDirection << '\n';
-    MovementComp->SetDirection(CurrentDirection);
+    //
+    // if(CurrentDirection == None)
+    //     CurrentDirection = Right;
+    // if(NextDirection == None)
+    //     NextDirection = Right;
+    if(CurrentDirection == None)
+        MovementComp->SetDirection(Left);
+    else
+        MovementComp->SetDirection(CurrentDirection);
+    
     CurrentDirection = NextDirection;
     
 }

@@ -1,11 +1,7 @@
 ﻿#pragma once
 
 #include "PacmanCore.h"
-
 #include "MovementComponent.h"
-#include "World\Actors\ActorComponent.hpp"
-#include "Data/Vectors/Vector2.hpp"
-#include "Event/Event.h"
 
 class GridLink;
 class GridCell;
@@ -17,5 +13,17 @@ public:
         MovementComponent(ParentActor)
     {
     }
+
+protected:
+    void Move(float DeltaTime) override;
+    bool TrySetNewTargetCell() override;
+    void OnEnterNewCell(const std::shared_ptr<GridCell>& newCell) override;
+    
+
+private:
+    void OnReachedCenterOfCell();
+    
+    bool ReachedCenterOfCell = false;
+    float distanceTraveled = 0.f;
 
 };

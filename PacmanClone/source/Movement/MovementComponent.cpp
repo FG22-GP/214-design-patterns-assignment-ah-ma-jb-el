@@ -14,11 +14,7 @@ void MovementComponent::Tick(float DeltaTime)
 
 bool MovementComponent::TrySetNewTargetCell()
 {
-    if (CurrentLink == nullptr)
-    {
-        return false;
-    }
-    return true;
+    return false;
 }
 
 void MovementComponent::Move(float DeltaTime)
@@ -43,16 +39,22 @@ void MovementComponent::OnEnterNewCell(const std::shared_ptr<GridCell>& newCell)
         ParentAsGridCellContent->SetCell(newCell);
     }
     CurrentCell = newCell;
+    std::cout << "OnEnterNewCell" << std::endl;
     TrySetNewTargetCell();
     OnEnterNewCellEvent.Invoke();
 }
 
 void MovementComponent::SetDirection(Directions newDirection)
 {
-    if (CurrentLink->bIsWrapLink)
-        return;
     SteeringDirection = newDirection;
+    if (CurrentLink->bIsWrapLink)
+    {
+        std::cout << "WrapLink" << std::endl;
+        return;
+    }
     TrySetNewTargetCell();
+
+    std::cout << "SetDirection" << std::endl;
 }
 
 void MovementComponent::Init(std::shared_ptr<GridCell> startCell, Directions startDirection)
@@ -61,5 +63,6 @@ void MovementComponent::Init(std::shared_ptr<GridCell> startCell, Directions sta
     MoveDirection = startDirection;
     TargetCell = CurrentCell;
     CurrentLink = CurrentCell->GetLinkInDirection(MoveDirection);
+    std::cout << "Init" << std::endl;
     TrySetNewTargetCell();
 }

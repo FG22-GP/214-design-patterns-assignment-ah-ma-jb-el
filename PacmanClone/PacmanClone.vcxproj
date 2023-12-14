@@ -176,6 +176,7 @@ copy /Y "$(SolutionDir)$(ProjectName)\MapGenFiles\LevelInfo.txt" "$(SolutionDir)
     <ClCompile Include="source\Grid\GridGenerator.cpp" />
     <ClCompile Include="source\Grid\GridCellContent.cpp" />
     <ClCompile Include="source\Grid\SpriteMap.cpp" />
+    <ClCompile Include="source\Movement\GhostMovementComponent.cpp" />
     <ClCompile Include="source\Movement\MovementComponent.cpp" />
     <ClCompile Include="source\Movement\Pathfinding.cpp" />
     <ClCompile Include="source\Movement\ZakuMovementComponent.cpp" />

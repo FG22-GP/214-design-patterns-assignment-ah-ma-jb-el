@@ -40,8 +40,8 @@ protected:
     void Tick(float DeltaTime) override;
     virtual void Move(float DeltaTime);
     virtual bool TrySetNewTargetCell();
-    void OnEnterNewCell(const std::shared_ptr<GridCell>& newCell);
+    virtual void OnEnterNewCell(const std::shared_ptr<GridCell>& newCell);
     Vector2 WrapLerp(Vector2 start, Vector2 target, float T);
-    bool IsWrapLink(std::shared_ptr<GridLink>& link);
+    static bool IsWrapLink(std::shared_ptr<GridLink>& link);
 
 };
