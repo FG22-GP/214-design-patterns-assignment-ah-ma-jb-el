@@ -127,7 +127,7 @@ void IGhost::SetDirection()
 {
     if (MovementComp == nullptr) { return; }
     
-    std::cout << "IGhost::SetDirection: CurrentDirection: " << CurrentDirection << " NextDirection: " << NextDirection << '\n';
+   // std::cout << "IGhost::SetDirection: CurrentDirection: " << CurrentDirection << " NextDirection: " << NextDirection << '\n';
     //
     // if(CurrentDirection == None)
     //     CurrentDirection = Right;

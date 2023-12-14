@@ -10,7 +10,7 @@ bool GhostMovementComponent::TrySetNewTargetCell()
         std::cout << "Stand Still" << std::endl;
         return false;
     }
-    std::cout << "TrySetNewTargetCell" << std::endl;
+    //std::cout << "TrySetNewTargetCell" << std::endl;
 
     Directions NewDirection = SteeringDirection;
     std::shared_ptr<GridLink> NewLink = CurrentCell->GetLinkInDirection(NewDirection);
@@ -37,7 +37,7 @@ void GhostMovementComponent::OnReachedCenterOfCell()
 {
     GetParent()->ActorTransform.SetLocation(CurrentCell->ActorTransform.GetLocation());
     ReachedCenterOfCell = true;
-    std::cout << "ReachedCenterOfCell" << std::endl;
+    //std::cout << "ReachedCenterOfCell" << std::endl;
     OnCenterOfCellEvent.Invoke();
 }
 
@@ -46,7 +46,7 @@ void GhostMovementComponent::Move(float DeltaTime)
 {
     if(TargetCell == nullptr) { return; }
 
-    const Vector2 CurrentLocation = GetParent()->ActorTransform.GetLocation();
+    Vector2 CurrentLocation = GetParent()->ActorTransform.GetLocation();
     const Vector2 TargetCellLocation = TargetCell->ActorTransform.GetLocation();
     const Vector2 CurrentCellLocation = CurrentCell->ActorTransform.GetLocation();
 
@@ -65,14 +65,15 @@ void GhostMovementComponent::Move(float DeltaTime)
         float MoveValue =  TargetCellLocation.Y - CurrentLocation.Y;
         MoveValue = static_cast<float>((MoveValue > 0) - (MoveValue < 0));
         MoveVector = Vector2(0.0f, MoveValue);
-        GetParent()->ActorTransform.SetLocation(Vector2(TargetCellLocation.X, GetParent()->ActorTransform.GetLocation().Y));
+        GetParent()->ActorTransform.SetLocation(Vector2(CurrentCellLocation.X, GetParent()->ActorTransform.GetLocation().Y));
     } else
     {
         float MoveValue =  TargetCellLocation.X - CurrentLocation.X;
         MoveValue = static_cast<float>((MoveValue > 0) - (MoveValue < 0));
         MoveVector = Vector2(MoveValue, 0.0f);
-        GetParent()->ActorTransform.SetLocation(Vector2(GetParent()->ActorTransform.GetLocation().X, TargetCellLocation.Y));
+        GetParent()->ActorTransform.SetLocation(Vector2(GetParent()->ActorTransform.GetLocation().X, CurrentCellLocation.Y));
     }
+    CurrentLocation = GetParent()->ActorTransform.GetLocation();
     
     if (CurrentLink->bIsWrapLink)
         MoveVector.X *= -1;
@@ -100,6 +101,7 @@ void GhostMovementComponent::Move(float DeltaTime)
     if(Vector2::Distance(NewPosition, CurrentCellLocation) < 0.01f)
     {
         OnReachedCenterOfCell();
+        return;
     }
     
     
