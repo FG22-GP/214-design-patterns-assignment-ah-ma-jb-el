@@ -9,7 +9,8 @@ AIState_Frightened::AIState_Frightened(const std::shared_ptr<IGhost>& ghost) : I
 
 void AIState_Frightened::OnStateEnter()
 {
-    Ghost->GetSpriteComponent()->Next();
+    //change to "frightened" sprite
+    Ghost->GetSpriteComponent()->GoTo(1);
     fTimer = 0;
 }
 
@@ -22,7 +23,8 @@ void AIState_Frightened::OnStateRunning()
 
 void AIState_Frightened::OnStateExit()
 {
-    Ghost->GetSpriteComponent()->Previous();
+    //change to default sprite
+    Ghost->GetSpriteComponent()->GoTo(0);
 }
 
 void AIState_Frightened::OnStateTick(float DeltaTime)

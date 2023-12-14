@@ -10,7 +10,8 @@ AIState_Dead::AIState_Dead(const std::shared_ptr<IGhost>& ghost) : IAIState(ghos
 
 void AIState_Dead::OnStateEnter()
 {
-    Ghost->GetSpriteComponent()->Next();
+    //change to "dead" sprite
+    Ghost->GetSpriteComponent()->GoTo(2);
 }
 
 void AIState_Dead::OnStateRunning()
@@ -39,7 +40,8 @@ void AIState_Dead::OnStateRunning()
 
 void AIState_Dead::OnStateExit()
 {
-    Ghost->GetSpriteComponent()->Next();
+    //change to default sprite
+    Ghost->GetSpriteComponent()->GoTo(0);
 }
 
 void AIState_Dead::OnStateTick(float DeltaTime)
