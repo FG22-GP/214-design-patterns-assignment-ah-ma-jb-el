@@ -38,8 +38,10 @@ namespace GameEngine
 		GAME_API static void LoadTexture(const std::string& path);
 
 		// Loads and stores the sprites from the texture, going from top left to bottom right
-		// Names need to be specified for all of the tiles (columns * rows)
 		GAME_API static void LoadSprites(const std::shared_ptr<Texture> texture, const std::vector<std::string>& names, const uint16_t columns, const uint16_t rows);
+		
+		// Loads and stores the sprite, at XY tile location with tile width and height, from the texture
+		GAME_API static void LoadSprite(const std::shared_ptr<Texture> texture, const std::string& name, const uint16_t x, const uint16_t y, const uint16_t width, const uint16_t height, const uint16_t columns, const uint16_t rows);
 
 	private:
 

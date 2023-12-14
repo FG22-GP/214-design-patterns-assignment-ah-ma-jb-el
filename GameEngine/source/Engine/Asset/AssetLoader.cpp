@@ -101,4 +101,24 @@ namespace GameEngine
 		}
 	}
 
+	void AssetLoader::LoadSprite(const std::shared_ptr<Texture> texture, const std::string& name, const uint16_t x, const uint16_t y, const uint16_t width, const uint16_t height, const uint16_t columns, const uint16_t rows){
+		uint32_t tile_width = (texture->GetWidth()  / columns);
+		uint32_t tile_height = (texture->GetHeight() / rows);
+		
+		uint32_t sprite_width  = tile_width  * width;
+		uint32_t sprite_height = tile_height * height;
+
+		auto crop = Rectangle(
+			x * tile_width, y * tile_height, 
+			sprite_width, sprite_height
+		);
+		auto rect   = Rectangle(0, 0, sprite_width, sprite_height);
+		auto centre = Point2(sprite_width / 2, sprite_height / 2);
+
+		std::shared_ptr<Sprite> sprite(
+			new Sprite(texture, crop, rect, centre, RenderFlip::None, 0)
+		);
+		s_Sprites.insert(std::pair(name, sprite));
+	}
+
 }

@@ -93,6 +93,8 @@ void PacmanGame::LoadSprites(){
 		"Dot",
 	};
 	AssetLoader::LoadSprites(atlas, names, 8, 8);
+	AssetLoader::LoadSprite(atlas, "Won",  0, 4, 4, 4, 8, 8);
+	AssetLoader::LoadSprite(atlas, "Lost", 4, 4, 4, 4, 8, 8);
 }
 
 void PacmanGame::LoadLevel()
