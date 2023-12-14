@@ -24,7 +24,7 @@ namespace GameEngine
 			new Point2(window.GetSize())
 		);
 
-		CameraSize = Vector2(28, 36);
+		CameraSize = Vector2(28, 31);
 		CameraTopLeftLocation = Vector2(-0.5f, -0.5f);
 	}
 

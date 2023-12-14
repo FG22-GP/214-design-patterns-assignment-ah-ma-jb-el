@@ -135,9 +135,8 @@ void PacmanGame::HandleDotEaten()
 		WinSplash->ActorTransform.SetLocation(Vector2(14, 16));
 		WinSplash->ActorTransform.SetScale(Vector2(8, 8));
 		auto spriteComp = WinSplash->AddComponent<SpriteComponent>();
-		auto sprite = AssetLoader::GetSprite("Dot"); //TODO: Change this to fetch the WinScreen when available.
+		auto sprite = AssetLoader::GetSprite("Won");
 		spriteComp->Initialize(sprite);
-
 	}
 }
 
