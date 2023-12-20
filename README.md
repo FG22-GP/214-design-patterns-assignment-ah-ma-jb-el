@@ -41,6 +41,7 @@ We do this by using an [AssetLoader.hpp](GameEngine/source/Engine/Asset/AssetLoa
 ### State
 For the hostile ghosts in our game we decided to use the State pattern, since the ghosts' behaviours are discrete and pre-determined. Each ghost is always in one of four possible states; Chase, Scatter, Frightened, and Dead, all of which are separate classes that implement the [IAIState.h](PacmanClone/source/Ghosts/States/IAIState.h) interface. Each ghost is equipped with a [StateMachine_Component.h](PacmanClone/source/Ghosts/States/StateMachine_Component.h), which is an ActorComponent. The StateMachine initializes one of each state class and then saves a pointer that always points to whichever one is the current state. Whenever the ghosts needs to make an action which varies depending on which state they're in they simply run the corresponding method override, i.e. OnStateRunning(), in the current state.
 
+https://github.com/FG22-GP/214-design-patterns-assignment-ah-ma-jb-el/assets/113333482/4c97b6e2-3bb8-4d04-ac6d-50800cb5c274
 
 ## ~~Mistakes~~ Learnings
 ### Smart Pointers (or; sharing is **not** caring)
