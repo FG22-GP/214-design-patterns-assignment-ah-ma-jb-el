@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{6cebd95c-f0f5-4412-8e34-030f5a509198}</ProjectGuid>
+    <RootNamespace>PacmanClone</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)Builds\$(ProjectName)-$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\$(ProjectName)-$(Configuration)-$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)Builds\$(ProjectName)-$(Configuration)-$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\$(ProjectName)-$(Configuration)-$(Platform)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)GameEngine\source\;$(SolutionDir)$(ProjectName)\source\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeaderFile>PacmanCore.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Game.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Builds\Game-$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>if not exist "$(TargetDir)Assets" mkdir "$(TargetDir)Assets"
+copy /Y "$(SolutionDir)$(ProjectName)\Sprites\SpriteAtlas.png" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\Assets\"
+copy /Y "$(SolutionDir)$(ProjectName)\MapGenFiles\LevelInfo.txt" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\Assets\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)GameEngine\source\;$(SolutionDir)$(ProjectName)\source\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeaderFile>PacmanCore.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Game.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Builds\Game-$(Configuration)-$(Platform)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>if not exist "$(TargetDir)Assets" mkdir "$(TargetDir)Assets"
+copy /Y "$(SolutionDir)$(ProjectName)\Sprites\SpriteAtlas.png" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\Assets\"
+copy /Y "$(SolutionDir)$(ProjectName)\MapGenFiles\LevelInfo.txt" "$(SolutionDir)Builds\PacmanClone-$(Configuration)-$(Platform)\Assets\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="source\Event\EventBroker.cpp" />
+    <ClCompile Include="source\Event\Event.cpp" />
+    <ClCompile Include="source\Grid\CellSpriteGenerator.cpp" />
+    <ClCompile Include="source\Game\PacmanGame.cpp" />
+    <ClCompile Include="source\Game\PacmanLevelInfoParser.cpp" />
+    <ClCompile Include="source\Ghosts\Ghost_Anton.cpp" />
+    <ClCompile Include="source\Ghosts\Ghost_Erik.cpp" />
+    <ClCompile Include="source\Ghosts\Ghost_Johan.cpp" />
+    <ClCompile Include="source\Ghosts\Ghost_Magnus.cpp" />
+    <ClCompile Include="source\Ghosts\IGhost.cpp" />
+    <ClCompile Include="source\Ghosts\States\IAIState.cpp" />
+    <ClCompile Include="source\Ghosts\States\AIState_Chasing.cpp" />
+    <ClCompile Include="source\Ghosts\States\AIState_Dead.cpp" />
+    <ClCompile Include="source\Ghosts\States\AIState_Frightened.cpp" />
+    <ClCompile Include="source\Ghosts\States\AIState_Scatter.cpp" />
+    <ClCompile Include="source\Ghosts\States\StateMachine_Component.cpp" />
+    <ClCompile Include="source\Grid\GridGenerator.cpp" />
+    <ClCompile Include="source\Grid\GridCellContent.cpp" />
+    <ClCompile Include="source\Grid\SpriteMap.cpp" />
+    <ClCompile Include="source\Movement\GhostMovementComponent.cpp" />
+    <ClCompile Include="source\Movement\MovementComponent.cpp" />
+    <ClCompile Include="source\Movement\Pathfinding.cpp" />
+    <ClCompile Include="source\Movement\ZakuMovementComponent.cpp" />
+    <ClCompile Include="source\PacmanCore.cpp" />
+    <ClCompile Include="source\Grid\GridLink.cpp" />
+    <ClCompile Include="source\Grid\GridCell.cpp" />
+    <ClCompile Include="source\Grid\GameGrid.cpp" />
+    <ClCompile Include="source\Game.cpp" />
+    <ClCompile Include="source\PickUps\Cookie.cpp" />
+    <ClCompile Include="source\PickUps\Dot.cpp" />
+    <ClCompile Include="source\PickUps\Fruit.cpp" />
+    <ClCompile Include="source\PickUps\IPickUp.cpp" />
+    <ClCompile Include="source\World\Actors\Actor.cpp" />
+    <ClCompile Include="source\World\Actors\ActorComponent.cpp" />
+    <ClCompile Include="source\World\Actors\SpriteAnimationComponent.cpp" />
+    <ClCompile Include="source\World\Actors\SpriteComponent.cpp" />
+    <ClCompile Include="source\World\Actors\SpriteSwitchComponent.cpp" />
+    <ClCompile Include="source\World\World.cpp" />
+    <ClCompile Include="source\ZakuMan\ZakuMan.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\Event\EventBroker.h" />
+    <ClInclude Include="source\Event\Event.h" />
+    <ClInclude Include="source\Grid\CellSpriteGenerator.h" />
+    <ClInclude Include="source\Game\PacmanGame.h" />
+    <ClInclude Include="source\Game\PacmanLevelInfoParser.h" />
+    <ClInclude Include="source\Ghosts\Ghost_Anton.h" />
+    <ClInclude Include="source\Ghosts\Ghost_Erik.h" />
+    <ClInclude Include="source\Ghosts\Ghost_Johan.h" />
+    <ClInclude Include="source\Ghosts\Ghost_Magnus.h" />
+    <ClInclude Include="source\Ghosts\IGhost.h" />
+    <ClInclude Include="source\Ghosts\States\IAIState.h" />
+    <ClInclude Include="source\Ghosts\States\AIState_Chasing.h" />
+    <ClInclude Include="source\Ghosts\States\AIState_Dead.h" />
+    <ClInclude Include="source\Ghosts\States\AIState_Frightened.h" />
+    <ClInclude Include="source\Ghosts\States\AIState_Scatter.h" />
+    <ClInclude Include="source\Ghosts\States\StateMachine_Component.h" />
+    <ClInclude Include="source\Grid\GridGenerator.h" />
+    <ClInclude Include="source\Grid\GridCellContent.h" />
+    <ClInclude Include="source\Grid\SpriteMap.hpp" />
+    <ClInclude Include="source\Movement\GhostMovementComponent.h" />
+    <ClInclude Include="source\Movement\MovementComponent.h" />
+    <ClInclude Include="source\Movement\Pathfinding.h" />
+    <ClInclude Include="source\Movement\ZakuMovementComponent.h" />
+    <ClInclude Include="source\PacmanCore.h" />
+    <ClInclude Include="source\Grid\GridLink.h" />
+    <ClInclude Include="source\Grid\GridCell.h" />
+    <ClInclude Include="source\Grid\GameGrid.h" />
+    <ClInclude Include="source\PickUps\Cookie.h" />
+    <ClInclude Include="source\PickUps\Dot.h" />
+    <ClInclude Include="source\PickUps\Fruit.h" />
+    <ClInclude Include="source\PickUps\IPickUp.h" />
+    <ClInclude Include="source\World\Actors\Actor.hpp" />
+    <ClInclude Include="source\World\Actors\ActorComponent.hpp" />
+    <ClInclude Include="source\World\Actors\SpriteAnimationComponent.hpp" />
+    <ClInclude Include="source\World\Actors\SpriteComponent.hpp" />
+    <ClInclude Include="source\World\Actors\SpriteSwitchComponent.hpp" />
+    <ClInclude Include="source\World\World.hpp" />
+    <ClInclude Include="source\ZakuMan\ZakuMan.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="MapGenFiles\LevelInfo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Sprites\SpriteAtlas.png" />
+    <Image Include="Sprites\TestSprite.png" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -17,6 +17,8 @@
 mono_crash.*
 
 # Build results
+[Bb]uilds/
+[Tt]emp/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
@@ -403,3 +405,11 @@ FodyWeavers.xsd
 
 # Mac-specific
 *.DS_Store
+.idea/.idea.Game/.idea/.name
+.idea/.idea.Game/.idea/encodings.xml
+.idea/.idea.Game/.idea/indexLayout.xml
+.idea/.idea.Game/.idea/vcs.xml
+.idea/.idea.PacmanClone/.idea/.name
+.idea/.idea.PacmanClone/.idea/encodings.xml
+.idea/.idea.PacmanClone/.idea/indexLayout.xml
+.idea/.idea.PacmanClone/.idea/vcs.xml
